@@ -2,3 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+data/TLM_Barmah-Millewa_2022-23_validations_ALL.xlsx
+data/TLM_Barmah-Millewa_2022-23_AM_deployment_metadata.xlsx
+data/TLM_2022-23_Barmah-Millewa_FrogsEnsemble1_2023.csv
+data/precip_2023.nc
+data/precip_2022.nc
+data/ClassList.csv

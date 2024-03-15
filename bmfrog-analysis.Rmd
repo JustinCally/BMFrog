@@ -1,0 +1,180 @@
+---
+title: "BMFrog Analysis"
+output: html_document
+date: "2024-03-07"
+---
+
+```{r setup}
+library(tidyverse)
+library(sf)
+library(mapview)
+library(terra)
+library(readr)
+library(readxl)
+library(cmdstanr)
+check_cmdstan_toolchain(fix = TRUE, quiet = TRUE)
+options(mc.cores=4)
+register_knitr_engine(override = FALSE)
+```
+
+# Load Site Data  
+
+```{r}
+site_metadata <- read_excel("data/TLM_Barmah-Millewa_2022-23_AM_deployment_metadata.xlsx")
+site_metadata_sf <- site_metadata %>% 
+  st_as_sf(coords = c("Easting", "Northing"), crs = 28355) %>%
+  mutate(`Site name` = case_when(`Site name` == "Warri" ~ "Warri Yards", 
+                                 TRUE ~ `Site name`), 
+         Site = paste(`Site name`, AM_no, sep = "_AM")) %>%
+  arrange(`Site`) 
+```
+
+```{r}
+# load in daily precip 
+precipitation_daily <- c(terra::rast("data/precip_2022.nc"), terra::rast("data/precip_2023.nc"))
+precipitation_daily_df <- bind_cols(site_metadata_sf$Site, 
+                                    extract(precipitation_daily, vect(site_metadata_sf)))
+colnames(precipitation_daily_df) <- c("Site","ID", as.character(seq.Date(from = as.Date("2022-01-01"), 
+                                                     to = as.Date("2023-12-31"), by = "day")))
+
+precipitation_daily_long <- pivot_longer(precipitation_daily_df, cols = 3:732, names_to = "Date", values_to = "Precipitation") %>%
+  select(-ID) %>%
+  mutate(Date = as.Date(Date))
+```
+
+
+# All site records 
+```{r}
+site_records <- read_csv("data/TLM_2022-23_Barmah-Millewa_FrogsEnsemble1_2023.csv") %>%
+  rename(Site_prefix = Site) %>%
+  tidyr::separate_wider_delim(cols = "Filename", delim = "/", 
+                              names = c(NA,NA,NA,"Site", NA))
+```
+
+# Validated site records 
+
+```{r}
+site_validation <- read_excel("data/TLM_Barmah-Millewa_2022-23_validations_ALL.xlsx") %>%
+  mutate(Site = paste(Site, AM, sep = "_AM"))
+```
+
+```{r}
+# Generate STAN data 
+oneminus <- function(x) 1-x
+species <- 13131 # ESBF
+species_cols <- str_extract_all(last(colnames(site_records)), "[-+]?[0-9]+")[[1]] 
+
+#list of species codes and names
+class_list<-read_csv("data/ClassList.csv")
+
+#data with column containing string of category probabilities from the AI
+names(site_records)[16]<-"probvec"
+
+#clean and split the probabilities
+probs <- site_records %>% select(probvec) %>%
+  mutate(probvec=str_remove(probvec, "\n")) %>%
+  mutate(probvec=str_remove(probvec, "\\[")) %>%
+  mutate(probvec=str_remove(probvec, "\\]")) %>%
+  mutate(probvec=str_squish(probvec)) %>%
+  separate(probvec, into=paste0("sp_",class_list$TaxonId), sep="\\s") %>%
+  mutate(across(`sp_-2`:`sp_525739`, as.numeric))
+
+# perons probs 
+frog_probs <- probs %>%
+  select(sp_13131)
+
+all_records_filt <- site_records %>% 
+  mutate(Date = as.Date(Date_evening_of, "%d/%m/%Y")) %>%
+  bind_cols(frog_probs) %>%
+  group_by(Site, Date) %>%
+  summarise(Prob_One = max(sp_13131), 
+            FileId = FileId[which(sp_13131 == max(sp_13131))]) %>%
+  ungroup()
+
+validation_records_clean <- site_validation  %>% 
+  select(FileId, Site, Detected = `Eastern Sign-bearing Froglet`)
+
+joined_data <- left_join(all_records_filt, validation_records_clean) %>%
+  mutate(Detected = replace_na(Detected, -2)) %>%
+  group_by(Site, Date) %>%
+  arrange(desc(Detected), desc(Prob_One)) %>%
+  slice(1) %>%
+  ungroup() %>%
+  mutate(Detected = abs(Detected), 
+         Site_f = as.integer(factor(Site)), 
+         Prob_One_M = qlogis(case_when(Prob_One == 1 ~ 0.999, 
+                                Prob_One == 0 ~ 0.001, 
+                                TRUE ~ Prob_One))) %>%
+  arrange(Site_f, Detected) %>%
+  left_join(precipitation_daily_long)
+
+# Daily precipitation matrix
+theta_form <- ~ scale(Precipitation)
+call_rate_matrix <- model.matrix(theta_form, data = joined_data)
+
+# Get start and end position for all sites 
+start_idx_0 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
+end_idx_0 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
+start_idx_1 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
+end_idx_1 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
+start_idx_2 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
+end_idx_2 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
+for(i in unique(joined_data$Site_f)) {
+  start_idx_0[i] <- min(which(joined_data$Site_f == i & joined_data$Detected == 0))
+  end_idx_0[i] <- max(which(joined_data$Site_f == i & joined_data$Detected == 0))
+  
+  start_idx_1[i] <- min(which(joined_data$Site_f == i & joined_data$Detected == 1))
+  end_idx_1[i] <- max(which(joined_data$Site_f == i & joined_data$Detected == 1))
+  
+  start_idx_2[i] <- min(which(joined_data$Site_f == i & joined_data$Detected == 2))
+  end_idx_2[i] <- max(which(joined_data$Site_f == i & joined_data$Detected == 2))
+}
+
+start_idx_0[is.infinite(start_idx_0)] <- 0
+start_idx_1[is.infinite(start_idx_1)] <- 0
+start_idx_2[is.infinite(start_idx_2)] <- 0
+
+end_idx_0[is.infinite(end_idx_0)] <- 0
+end_idx_1[is.infinite(end_idx_1)] <- 0
+end_idx_2[is.infinite(end_idx_2)] <- 0
+
+any_seen <- as.integer(start_idx_1 != 0)
+
+stan_data <- list(nfiles = nrow(joined_data), 
+                  nsites = length(unique(joined_data$Site_f)), 
+                  score = joined_data$Prob_One_M, 
+                  site_idx = joined_data$Site_f, 
+                  d_idx = joined_data$Detected, 
+                  start_idx_0 = start_idx_0, 
+                  end_idx_0 = end_idx_0,
+                  start_idx_1 = start_idx_1, 
+                  end_idx_1 = end_idx_1, 
+                  start_idx_2 = start_idx_2, 
+                  end_idx_2 = end_idx_2, 
+                  any_seen = any_seen, 
+                  theta_mm = call_rate_matrix, 
+                  theta_nc = ncol(call_rate_matrix))
+
+```
+
+
+```{r}
+cont_model <- cmdstan_model("stan/continuous_model.stan")
+```
+
+```{r modelparams}
+ni <- 500 #samples
+nw <- 500 #warmups
+nc <- 6 #chains
+```
+
+```{r}
+fit <- cont_model$sample(data = stan_data,
+                         chains = nc,
+                         parallel_chains = nc,
+                         show_messages = TRUE,
+                         save_warmup = FALSE,
+                         iter_sampling = ni,
+                         iter_warmup = nw)
+```
+
