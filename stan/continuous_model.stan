@@ -46,8 +46,8 @@ model {
   eps_raw ~ normal(0,1);
   eps_sd ~ normal(0,1);
 
-  mu ~ normal(0,5);
-  sigma ~ normal(0,5);
+  mu ~ normal(0,10000);
+  sigma ~ normal(0,10000);
 
   beta_theta ~ normal(0,2);
 
@@ -76,6 +76,9 @@ for(i in 1:nsites) {
 
 generated quantities {
     int<lower=0,upper=1> z[nsites];
+    real mu_pred[2];
+
     z = bernoulli_rng(psi);
+    mu_pred = normal_rng(mu, sigma);
 }
 

@@ -25,8 +25,20 @@ site_metadata_sf <- site_metadata %>%
   st_as_sf(coords = c("Easting", "Northing"), crs = 28355) %>%
   mutate(`Site name` = case_when(`Site name` == "Warri" ~ "Warri Yards", 
                                  TRUE ~ `Site name`), 
-         Site = paste(`Site name`, AM_no, sep = "_AM")) %>%
-  arrange(`Site`) 
+         Site = paste(`Site name`, AM_no, sep = "_AM"), 
+         No_survey_nights = as.numeric(No_survey_nights)) %>%
+  arrange(`Site`) %>%
+  filter(!is.na(No_survey_nights) & No_survey_nights > 0)
+
+#nights deployed 
+nights_dep <- list()
+for(i in 1:nrow(site_metadata_sf)) {
+  nights_dep[[i]] <- data.frame(Site = site_metadata_sf$Site[i], 
+                           Date = seq.Date(from = as.Date(site_metadata_sf$Date_deployed[i]), 
+                                           by = "1 day", 
+                                           length.out = site_metadata_sf$No_survey_nights[i]))
+}
+nights_dep_joined <- bind_rows(nights_dep)
 ```
 
 ```{r}
@@ -39,7 +51,8 @@ colnames(precipitation_daily_df) <- c("Site","ID", as.character(seq.Date(from = 
 
 precipitation_daily_long <- pivot_longer(precipitation_daily_df, cols = 3:732, names_to = "Date", values_to = "Precipitation") %>%
   select(-ID) %>%
-  mutate(Date = as.Date(Date))
+  mutate(Date = as.Date(Date)) %>%
+  right_join(nights_dep_joined)
 ```
 
 
@@ -95,7 +108,9 @@ validation_records_clean <- site_validation  %>%
   select(FileId, Site, Detected = `Eastern Sign-bearing Froglet`)
 
 joined_data <- left_join(all_records_filt, validation_records_clean) %>%
-  mutate(Detected = replace_na(Detected, -2)) %>%
+  right_join(precipitation_daily_long) %>%
+  mutate(Detected = replace_na(Detected, -2), 
+         Prob_One = replace_na(Prob_One, 0)) %>%
   group_by(Site, Date) %>%
   arrange(desc(Detected), desc(Prob_One)) %>%
   slice(1) %>%
@@ -105,8 +120,7 @@ joined_data <- left_join(all_records_filt, validation_records_clean) %>%
          Prob_One_M = qlogis(case_when(Prob_One == 1 ~ 0.999, 
                                 Prob_One == 0 ~ 0.001, 
                                 TRUE ~ Prob_One))) %>%
-  arrange(Site_f, Detected) %>%
-  left_join(precipitation_daily_long)
+  arrange(Site_f, Detected) 
 
 # Daily precipitation matrix
 theta_form <- ~ scale(Precipitation)
