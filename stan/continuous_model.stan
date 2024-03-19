@@ -19,20 +19,26 @@ data {
 // The parameters accepted by the model. Our model
 // accepts two parameters 'mu' and 'sigma'.
 parameters {
-  real mu[2];
   real<lower=0> sigma[2];
   real alpha;
   vector[nsites] eps_raw;
   real<lower=0> eps_sd;
   vector[theta_nc] beta_theta; //call rate
+// re for mu
+  real mu_alpha[2];
+  array[nsites, 2] real eps_raw_mu;
+  real<lower=0> eps_sd_mu[2];
 }
 
 transformed parameters {
   vector<lower=0,upper=1>[nsites] psi;
   vector<lower=0,upper=1>[nfiles] theta;
+  array[nsites, 2] real mu;
 
 for(i in 1:nsites) {
   psi[i] = inv_logit(alpha + eps_sd * eps_raw[i]);
+  mu[i,1] = mu_alpha[1] + eps_sd_mu[1] * eps_raw_mu[i, 1];
+  mu[i,2] = mu_alpha[2] + eps_sd_mu[2] * eps_raw_mu[i, 2];
 }
 
   theta = inv_logit(theta_mm * beta_theta);
@@ -46,7 +52,11 @@ model {
   eps_raw ~ normal(0,1);
   eps_sd ~ normal(0,1);
 
-  mu ~ normal(0,10000);
+for(i in 1:2) {
+  mu_alpha[i] ~ normal(0,10);
+  eps_sd_mu[i] ~ normal(0,1);
+  eps_raw_mu[,i] ~ normal(0,1);
+}
   sigma ~ normal(0,10000);
 
   beta_theta ~ normal(0,2);
@@ -56,19 +66,19 @@ for(i in 1:nsites) {
 
   if(start_idx_0[i] != 0) {
     if(any_seen[i] == 0) {
-      target += log1m(psi[i]) + normal_lpdf(score[start_idx_0[i]:end_idx_0[i]] | mu[1], sigma[1]);
+      target += log1m(psi[i]) + normal_lpdf(score[start_idx_0[i]:end_idx_0[i]] | mu[i, 1], sigma[1]);
     }
-      target += log(psi[i]) + log1m(theta[start_idx_0[i]:end_idx_0[i]]) + normal_lpdf(score[start_idx_0[i]:end_idx_0[i]] | mu[1], sigma[1]);
+      target += log(psi[i]) + log1m(theta[start_idx_0[i]:end_idx_0[i]]) + normal_lpdf(score[start_idx_0[i]:end_idx_0[i]] | mu[i, 1], sigma[1]);
 }
   if(start_idx_1[i] != 0) {
-    target += log(psi[i]) + log(theta[start_idx_1[i]:end_idx_1[i]]) + normal_lpdf(score[start_idx_1[i]:end_idx_1[i]] | mu[2], sigma[2]);
+    target += log(psi[i]) + log(theta[start_idx_1[i]:end_idx_1[i]]) + normal_lpdf(score[start_idx_1[i]:end_idx_1[i]] | mu[i, 2], sigma[2]);
 }
   if(start_idx_2[i] != 0) {
         if(any_seen[i] == 0) {
-    target += log1m(psi[i]) + normal_lpdf(score[start_idx_2[i]:end_idx_2[i]] | mu[1], sigma[1]);
+    target += log1m(psi[i]) + normal_lpdf(score[start_idx_2[i]:end_idx_2[i]] | mu[i, 1], sigma[1]);
         }
-    target += log_sum_exp(log(psi[i]) + log_sum_exp(log1m(theta[start_idx_2[i]:end_idx_2[i]])) + normal_lpdf(score[start_idx_2[i]:end_idx_2[i]] | mu[1], sigma[1]),
-    log(psi[i]) + log_sum_exp(log(theta[start_idx_2[i]:end_idx_2[i]])) + normal_lpdf(score[start_idx_2[i]:end_idx_2[i]] | mu[2], sigma[2]));
+    target += log_sum_exp(log(psi[i]) + log_sum_exp(log1m(theta[start_idx_2[i]:end_idx_2[i]])) + normal_lpdf(score[start_idx_2[i]:end_idx_2[i]] | mu[i, 1], sigma[1]),
+    log(psi[i]) + log_sum_exp(log(theta[start_idx_2[i]:end_idx_2[i]])) + normal_lpdf(score[start_idx_2[i]:end_idx_2[i]] | mu[i, 2], sigma[2]));
 }
 }
 
@@ -79,6 +89,6 @@ generated quantities {
     real mu_pred[2];
 
     z = bernoulli_rng(psi);
-    mu_pred = normal_rng(mu, sigma);
+    mu_pred = normal_rng(mu_alpha, sigma);
 }
 

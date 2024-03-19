@@ -12,6 +12,7 @@ library(terra)
 library(readr)
 library(readxl)
 library(cmdstanr)
+library(bayesplot)
 check_cmdstan_toolchain(fix = TRUE, quiet = TRUE)
 options(mc.cores=4)
 register_knitr_engine(override = FALSE)
@@ -68,13 +69,25 @@ site_records <- read_csv("data/TLM_2022-23_Barmah-Millewa_FrogsEnsemble1_2023.cs
 
 ```{r}
 site_validation <- read_excel("data/TLM_Barmah-Millewa_2022-23_validations_ALL.xlsx") %>%
-  mutate(Site = paste(Site, AM, sep = "_AM"))
+ mutate(Site = case_when(Site == "Warri" ~ "Warri Yards", 
+                         TRUE ~ Site),
+        Site = paste(Site, AM, sep = "_AM"))
 ```
 
 ```{r}
 # Generate STAN data 
-oneminus <- function(x) 1-x
-species <- 13131 # ESBF
+species_list <- c(#`Barking Marsh Frog` = 13059, 
+                  `Eastern Sign-bearing Froglet` = 13131,
+                  #`Common Froglet` = 13134,
+                  # `Sloane's Froglet` = 13135,
+                  `Peron's Tree Frog` = 13204)#, 
+                  #`Pobblebonk Frog` = 63913)
+                  # `Growling Grass Frog` = 13207)
+
+nspecies <- length(species_list)
+
+sp_l_col <- paste0("sp_", species_list)
+
 species_cols <- str_extract_all(last(colnames(site_records)), "[-+]?[0-9]+")[[1]] 
 
 #list of species codes and names
@@ -94,27 +107,52 @@ probs <- site_records %>% select(probvec) %>%
 
 # perons probs 
 frog_probs <- probs %>%
-  select(sp_13131)
+  dplyr::select(all_of(sp_l_col))
 
-all_records_filt <- site_records %>% 
-  mutate(Date = as.Date(Date_evening_of, "%d/%m/%Y")) %>%
-  bind_cols(frog_probs) %>%
+site_records_date <- site_records %>% 
+  mutate(Date = as.Date(Date_evening_of, "%d/%m/%Y"), 
+         DateTime = as.POSIXct(paste(Date, Time))) %>%
+  bind_cols(frog_probs)
+
+# joined data
+joined_data <- list()
+
+# indexes for species
+nsites <- length(site_metadata_sf$Site)
+empty_array <- array(dim = c(nsites, length(species_list)))
+start_idx_0 <- empty_array
+end_idx_0 <- empty_array
+start_idx_1 <- empty_array
+end_idx_1 <- empty_array
+start_idx_2 <- empty_array
+end_idx_2 <- empty_array
+any_seen <- empty_array
+
+call_rate_matrix <- list()
+
+for(i in 1:length(species_list)) {
+
+all_records_filt <- site_records_date %>%
   group_by(Site, Date) %>%
-  summarise(Prob_One = max(sp_13131), 
-            FileId = FileId[which(sp_13131 == max(sp_13131))]) %>%
+  summarise(Prob_One = max(!!sym(sp_l_col[i])), 
+            FileId = FileId[which(!!sym(sp_l_col[i]) == max(!!sym(sp_l_col[i])))], 
+            Orig_Start_Time = Orig_Start_Time[which(!!sym(sp_l_col[i]) == max(!!sym(sp_l_col[i])))], 
+            Orig_End_Time = Orig_End_Time[which(!!sym(sp_l_col[i]) == max(!!sym(sp_l_col[i])))]) %>%
+  slice(1) %>%
   ungroup()
 
-validation_records_clean <- site_validation  %>% 
-  select(FileId, Site, Detected = `Eastern Sign-bearing Froglet`)
+validation_records_clean <- site_validation %>% 
+  select(FileId, Orig_Start_Time, Orig_End_Time, Site, Detected = !!sym(names(species_list)[i])) %>%
+  left_join(site_records_date %>%
+              select(FileId, Orig_Start_Time, Orig_End_Time, Site, Date, Prob_One = !!sym(sp_l_col[i])))
 
-joined_data <- left_join(all_records_filt, validation_records_clean) %>%
+joined_data[[i]] <- full_join(all_records_filt, validation_records_clean) %>%
+  group_by(Site, Date) %>%
+  arrange(desc(Detected), Prob_One) %>%
+  slice(1) %>%
   right_join(precipitation_daily_long) %>%
   mutate(Detected = replace_na(Detected, -2), 
          Prob_One = replace_na(Prob_One, 0)) %>%
-  group_by(Site, Date) %>%
-  arrange(desc(Detected), desc(Prob_One)) %>%
-  slice(1) %>%
-  ungroup() %>%
   mutate(Detected = abs(Detected), 
          Site_f = as.integer(factor(Site)), 
          Prob_One_M = qlogis(case_when(Prob_One == 1 ~ 0.999, 
@@ -124,41 +162,40 @@ joined_data <- left_join(all_records_filt, validation_records_clean) %>%
 
 # Daily precipitation matrix
 theta_form <- ~ scale(Precipitation)
-call_rate_matrix <- model.matrix(theta_form, data = joined_data)
+call_rate_matrix[[i]] <- model.matrix(theta_form, data = joined_data[[i]])
 
-# Get start and end position for all sites 
-start_idx_0 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
-end_idx_0 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
-start_idx_1 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
-end_idx_1 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
-start_idx_2 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
-end_idx_2 <- vector(mode="integer", length=length(unique(joined_data$Site_f)))
-for(i in unique(joined_data$Site_f)) {
-  start_idx_0[i] <- min(which(joined_data$Site_f == i & joined_data$Detected == 0))
-  end_idx_0[i] <- max(which(joined_data$Site_f == i & joined_data$Detected == 0))
+for(j in 1:nsites) {
+  start_idx_0[j,i] <- min(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 0))
+  end_idx_0[j,i] <- max(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 0))
   
-  start_idx_1[i] <- min(which(joined_data$Site_f == i & joined_data$Detected == 1))
-  end_idx_1[i] <- max(which(joined_data$Site_f == i & joined_data$Detected == 1))
+  start_idx_1[j,i] <- min(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 1))
+  end_idx_1[j,i] <- max(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 1))
   
-  start_idx_2[i] <- min(which(joined_data$Site_f == i & joined_data$Detected == 2))
-  end_idx_2[i] <- max(which(joined_data$Site_f == i & joined_data$Detected == 2))
+  start_idx_2[j,i] <- min(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 2))
+  end_idx_2[j,i] <- max(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 2))
 }
 
-start_idx_0[is.infinite(start_idx_0)] <- 0
-start_idx_1[is.infinite(start_idx_1)] <- 0
-start_idx_2[is.infinite(start_idx_2)] <- 0
+start_idx_0[is.infinite(start_idx_0[,i]),i] <- 0
+start_idx_1[is.infinite(start_idx_1[,i]),i] <- 0
+start_idx_2[is.infinite(start_idx_2[,i]),i] <- 0
 
-end_idx_0[is.infinite(end_idx_0)] <- 0
-end_idx_1[is.infinite(end_idx_1)] <- 0
-end_idx_2[is.infinite(end_idx_2)] <- 0
+end_idx_0[is.infinite(end_idx_0[,i]),i] <- 0
+end_idx_1[is.infinite(end_idx_1[,i]),i] <- 0
+end_idx_2[is.infinite(end_idx_2[,i]),i] <- 0
 
-any_seen <- as.integer(start_idx_1 != 0)
+any_seen[,i] <- as.integer(start_idx_1[,i] != 0)
+}
+```
 
-stan_data <- list(nfiles = nrow(joined_data), 
-                  nsites = length(unique(joined_data$Site_f)), 
-                  score = joined_data$Prob_One_M, 
-                  site_idx = joined_data$Site_f, 
-                  d_idx = joined_data$Detected, 
+
+```{r}
+nfiles <- nrow(joined_data[[1]])
+scores <- lapply(joined_data, function(x) pull(x, Prob_One_M)) 
+
+stan_data <- list(nfiles = nfiles, 
+                  nsites = nsites, 
+                  nspec = nspecies,
+                  score = array(unlist(scores),dim=c(nfiles,nspecies)), 
                   start_idx_0 = start_idx_0, 
                   end_idx_0 = end_idx_0,
                   start_idx_1 = start_idx_1, 
@@ -167,28 +204,40 @@ stan_data <- list(nfiles = nrow(joined_data),
                   end_idx_2 = end_idx_2, 
                   any_seen = any_seen, 
                   theta_mm = call_rate_matrix, 
-                  theta_nc = ncol(call_rate_matrix))
+                  theta_nc = ncol(call_rate_matrix[[1]]))
 
 ```
 
 
 ```{r}
 cont_model <- cmdstan_model("stan/continuous_model.stan")
+cont_model_ms <- cmdstan_model("stan/continuous_model_ms.stan")
 ```
 
 ```{r modelparams}
-ni <- 500 #samples
-nw <- 500 #warmups
-nc <- 6 #chains
+ni <- 2000 #samples
+nw <- 2000 #warmups
+nc <- 8 #chains
 ```
 
 ```{r}
-fit <- cont_model$sample(data = stan_data,
+fit <- cont_model_ms$sample(data = stan_data,
                          chains = nc,
                          parallel_chains = nc,
                          show_messages = TRUE,
                          save_warmup = FALSE,
                          iter_sampling = ni,
-                         iter_warmup = nw)
+                         iter_warmup = nw, adapt_delta = 0.99)
+```
+
+```{r}
+psi_summary <- fit$summary("psi")
+psi_summary$any_seen <- any_seen 
+
+psi_summary %>%
+  group_by(any_seen) %>%
+  summarise(psi = mean(mean))
+
+fit$summary("mu_alpha")
 ```
 
