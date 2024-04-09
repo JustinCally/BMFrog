@@ -8,3 +8,12 @@ data/TLM_2022-23_Barmah-Millewa_FrogsEnsemble1_2023.csv
 data/precip_2023.nc
 data/precip_2022.nc
 data/ClassList.csv
+data/waterbodies/ga_ls_wb_3_v2.cpg
+data/waterbodies/ga_ls_wb_3_v2.dbf
+data/waterbodies/ga_ls_wb_3_v2.prj
+data/waterbodies/ga_ls_wb_3_v2.shp
+data/waterbodies/ga_ls_wb_3_v2.shx
+data/climate/precip_2022.nc
+data/climate/precip_2023.nc
+data/climate/tmin_2022.nc
+data/climate/tmin_2023.nc

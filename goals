@@ -1,0 +1,31 @@
+- Analyse the data to see what metrics predict frog populations over time:
+    -> Inundation
+    -> Water flow
+    -> Different types of water bodys: creeks, permenant, ephemeral
+    -> Climate
+    -> Horse numbers?
+    -> Local habitat components? (how often have they been measured):
+        -- we should use the habitat
+        -- Get together with Lou to look into habitat across sites
+    -> What are the differences between sites: can we see any difference?
+    -> Value of predictions for meeting certain thresholds? (e.g. x amount of water and precipitation needed for y length breeding season/calling period)
+
+- Environmental Water Management Plan update last June:
+    -> What are the goals for the frogs?
+    -> Breeding duration (based on call rates)
+
+- Acoustic Model sensitivity and specificity (ability to detect frogs): E.g. how good is our ability to detect certain species.
+
+- Descriptive (What's happening?) (e.g. trands over time in occ/calls)
+- Analytical (Why's it happening?) (e.g. how much of an effect is the hydrological conditions having)
+- Evaluative (against goals)... are current management systems allowing suitable occupancy/call rates; what works well what doesn't
+- Evaluative: How good is our acoustic classifier model/ Are we oversampling/undersampling.
+
+
+Covariates:
+
+- Site:
+ On ground variables (depth of water, vegetation)
+
+ - Time:
+ Stacked approach
