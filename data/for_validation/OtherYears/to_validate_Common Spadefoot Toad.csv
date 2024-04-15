@@ -1,0 +1,361 @@
+"","FileId","Filename","Site","Date","DateTime","Orig_Start","Orig_End","Observed_TaxonId","Observed_Label","Probability","Barking Marsh Frog","Eastern Sign-bearing Froglet","Common Froglet","Common Spadefoot Toad","Peron's Tree Frog","Pobblebonk Frog","Spotted Marsh Frog (race unknown)","[-903723   13033   13042   13059   13063   13120   13125   13131   13134
+   13135   13182   13204   13936   63913   13207   13086  525739]"
+"1",82018,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM1/20210101_110000.WAV","Cucumber Gully_AM1",2020-12-31,2021-01-01 11:00:00,0,1.5,-903723,"Not a frog",0.979,0,0,0,0.016,0,0.001,0.003,"[0.98  0.    0.    0.    0.003 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.001 0.    0.016 0.   ]"
+"2",88572,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM2/20210227_111500.WAV","Cucumber Gully_AM2",2021-02-26,2021-02-27 11:15:00,0,1.5,-903723,"Not a frog",0.829,0.01,0.01,0.126,0,0.014,0,0.006,"[0.829 0.    0.    0.01  0.006 0.004 0.    0.01  0.126 0.    0.001 0.014
+ 0.    0.    0.    0.    0.   ]"
+"3",37061,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Black Swamp_AM2/20210210_094500.WAV","Black Swamp_AM2",2021-02-09,2021-02-10 09:45:00,0,1.5,-903723,"Not a frog",0.969,0,0,0.009,0.001,0.003,0,0.017,"[0.969 0.    0.    0.    0.017 0.    0.    0.    0.009 0.    0.    0.003
+ 0.    0.    0.    0.001 0.   ]"
+"4",15764,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Barmah Creek Corrys_AM2/20210106_130000.WAV","Barmah Creek Corrys_AM2",2021-01-05,2021-01-06 13:00:00,0,1.5,-903723,"Not a frog",0.932,0,0,0,0.015,0.004,0,0.002,"[0.932 0.    0.    0.    0.002 0.    0.    0.    0.    0.045 0.    0.004
+ 0.    0.    0.    0.015 0.   ]"
+"5",94051,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM2/20200903_113000.WAV","Wathours_AM2",2020-09-02,2020-09-03 11:30:00,0,1.5,-903723,"Not a frog",0.97,0.007,0.002,0.013,0,0.004,0,0.003,"[0.97  0.    0.    0.007 0.003 0.001 0.    0.002 0.013 0.    0.    0.004
+ 0.    0.    0.    0.    0.   ]"
+"6",1172,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Lowries Pump_AM2/20201115_091500.WAV","Lowries Pump_AM2",2020-11-14,2020-11-15 09:15:00,0,1.5,-903723,"Not a frog",0.98,0,0,0,0.001,0.013,0,0.005,"[0.98  0.    0.    0.    0.005 0.    0.    0.    0.    0.    0.    0.013
+ 0.    0.    0.    0.001 0.   ]"
+"7",8015,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Barmah Creek Corrys_AM1/20200921_140000.WAV","Barmah Creek Corrys_AM1",2020-09-20,2020-09-21 14:00:00,6,7.5,13059,"Barking Marsh Frog",0.577,0.576,0.003,0.001,0.003,0.002,0.002,0.164,"[0.248 0.    0.    0.576 0.164 0.001 0.    0.003 0.001 0.    0.    0.002
+ 0.    0.002 0.    0.003 0.   ]"
+"8",8787,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Barmah Creek Corrys_AM1/5D8B5DC8.WAV","Barmah Creek Corrys_AM1",2019-09-25,2019-09-25 22:30:00,106,107.5,525739,"Frogs Galore",0.51,0.015,0.011,0.018,0.024,0.095,0.001,0.26,"[0.02  0.001 0.001 0.015 0.26  0.002 0.001 0.011 0.018 0.003 0.002 0.095
+ 0.03  0.001 0.003 0.024 0.51 ]"
+"9",8402,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Little Rushy Swamp_AM2/20201205_111500.WAV","Little Rushy Swamp_AM2",2020-12-04,2020-12-05 11:15:00,58,59.5,13204,"Perons Tree Frog",0.975,0,0,0,0,0.975,0,0,"[0.025 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.975
+ 0.    0.    0.    0.    0.   ]"
+"10",21454,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Big Bog_AM1/20210205_141500.WAV","Big Bog_AM1",2021-02-04,2021-02-05 14:15:00,0,1.5,-903723,"Not a frog",0.957,0,0.008,0,0,0.024,0,0.01,"[0.957 0.    0.    0.    0.01  0.    0.    0.008 0.    0.    0.    0.024
+ 0.    0.    0.    0.    0.   ]"
+"11",110128,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Little Rushy_AM2/5D944AF0.WAV","Little Rushy_AM2",2019-10-01,2019-10-02 17:00:00,0,1.5,-903723,"Not a frog",0.789,0.002,0.024,0.066,0.001,0.088,0.001,0.02,"[0.789 0.    0.    0.002 0.02  0.008 0.    0.024 0.066 0.    0.    0.088
+ 0.    0.001 0.    0.001 0.   ]"
+"12",18336,"S:/SoundData/FrogCalls/TLM_2018-19_Barmah-Millewa/Mannions/5C3F8584.WAV","Mannions_AM1",2019-01-16,2019-01-17 06:27:00,0,1.5,-903723,"Not a frog",0.925,0.043,0,0,0.005,0.001,0,0.025,"[0.925 0.    0.    0.043 0.025 0.    0.    0.    0.    0.    0.    0.001
+ 0.    0.    0.    0.005 0.   ]"
+"13",13447,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Barmah Creek Corrys_AM2/20201002_094500.WAV","Barmah Creek Corrys_AM2",2020-10-01,2020-10-02 09:45:00,0,1.5,-903723,"Not a frog",0.649,0.008,0.006,0.006,0,0.312,0,0.019,"[0.649 0.    0.    0.008 0.019 0.    0.    0.006 0.006 0.    0.    0.312
+ 0.    0.    0.    0.    0.   ]"
+"14",59362,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Bunyip Gully Gowers_AM1/20200919_104500.WAV","Bunyip Gully Gowers_AM1",2020-09-18,2020-09-19 10:45:00,0,1.5,-903723,"Not a frog",0.986,0,0.005,0.001,0,0.003,0,0.005,"[0.986 0.    0.    0.    0.005 0.    0.    0.005 0.001 0.    0.    0.003
+ 0.    0.    0.    0.    0.   ]"
+"15",32087,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Boals Deadwoods_AM1/5D930780.WAV","Boals Deadwoods_AM1",2019-09-30,2019-10-01 18:00:00,40,41.5,13063,"Spotted Marsh Frog (race unknown)",0.358,0.003,0.004,0.11,0.047,0.179,0,0.358,"[0.279 0.    0.    0.003 0.358 0.003 0.001 0.004 0.11  0.    0.001 0.179
+ 0.003 0.    0.002 0.047 0.011]"
+"16",8547,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Little Rushy Swamp_AM2/20201211_113000.WAV","Little Rushy Swamp_AM2",2020-12-10,2020-12-11 11:30:00,54,55.5,13204,"Perons Tree Frog",0.595,0.061,0.004,0.005,0.015,0.594,0.001,0.011,"[0.189 0.    0.    0.061 0.011 0.001 0.    0.004 0.005 0.005 0.09  0.594
+ 0.016 0.001 0.004 0.015 0.003]"
+"17",125440,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Horseshoe Lagoon_AM2/20201110_110000.WAV","Horseshoe Lagoon_AM2",2020-11-09,2020-11-10 11:00:00,54,55.5,13204,"Perons Tree Frog",0.711,0,0,0,0.155,0.712,0,0.001,"[0.132 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.712
+ 0.    0.    0.    0.155 0.   ]"
+"18",81677,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM1/20201218_094500.WAV","Cucumber Gully_AM1",2020-12-17,2020-12-18 09:45:00,0,1.5,-903723,"Not a frog",0.892,0.001,0,0,0.107,0,0,0,"[0.892 0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.107 0.   ]"
+"19",9493,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Little Rushy Swamp_AM2/20210119_140000.WAV","Little Rushy Swamp_AM2",2021-01-18,2021-01-19 14:00:00,0,1.5,-903723,"Not a frog",0.866,0.006,0.02,0.002,0.001,0.064,0,0.039,"[0.866 0.    0.    0.006 0.039 0.    0.    0.02  0.002 0.    0.    0.064
+ 0.    0.    0.    0.001 0.   ]"
+"20",80502,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Two Mile Sandridge_AM1/20201017_090000.WAV","Two Mile Sandridge_AM1",2020-10-16,2020-10-17 09:00:00,41,42.5,13134,"Common Froglet",0.6,0,0,0.6,0.167,0,0.001,0.01,"[0.016 0.    0.    0.    0.01  0.    0.    0.    0.6   0.    0.    0.
+ 0.    0.001 0.    0.167 0.205]"
+"21",37978,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Boals Deadwoods_AM1/20200818_104500.WAV","Boals Deadwoods_AM1",2020-08-17,2020-08-18 10:45:00,0,1.5,-903723,"Not a frog",0.999,0,0,0.001,0,0,0,0,"[0.999 0.    0.    0.    0.    0.    0.    0.    0.001 0.    0.    0.
+ 0.    0.    0.    0.    0.   ]"
+"22",96877,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM2/20201230_100000.WAV","Wathours_AM2",2020-12-29,2020-12-30 10:00:00,0,1.5,-903723,"Not a frog",0.999,0,0,0,0.001,0,0,0,"[0.998 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.001 0.   ]"
+"23",8534,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Barmah Creek Corrys_AM1/5D85F950.WAV","Barmah Creek Corrys_AM1",2019-09-20,2019-09-21 20:20:00,67,68.5,13936,"Large Brown Tree Frog",0.326,0,0.024,0.006,0.009,0.034,0.001,0.214,"[0.091 0.    0.    0.    0.214 0.    0.001 0.024 0.006 0.    0.    0.034
+ 0.326 0.001 0.005 0.009 0.288]"
+"24",59314,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Bunyip Gully Gowers_AM1/20200917_104500.WAV","Bunyip Gully Gowers_AM1",2020-09-16,2020-09-17 10:45:00,0,1.5,-903723,"Not a frog",0.996,0,0.001,0,0,0.002,0,0.001,"[0.996 0.    0.    0.    0.001 0.    0.    0.001 0.    0.    0.    0.002
+ 0.    0.    0.    0.    0.   ]"
+"25",76800,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Two Mile Bunyip_AM2/20201217_141500.WAV","Two Mile Bunyip_AM2",2020-12-16,2020-12-17 14:15:00,0,1.5,-903723,"Not a frog",0.938,0,0.044,0,0.012,0,0,0.006,"[0.938 0.    0.    0.    0.006 0.    0.    0.044 0.    0.    0.    0.
+ 0.    0.    0.    0.012 0.   ]"
+"26",82399,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Two Mile Sandridge_AM1/20210104_091500.WAV","Two Mile Sandridge_AM1",2021-01-03,2021-01-04 09:15:00,0,1.5,-903723,"Not a frog",0.972,0,0,0.002,0.021,0,0,0.005,"[0.972 0.    0.    0.    0.005 0.    0.    0.    0.002 0.    0.    0.
+ 0.    0.    0.    0.021 0.   ]"
+"27",10947,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Barmah Creek Corrys_AM1/20210122_090000.WAV","Barmah Creek Corrys_AM1",2021-01-21,2021-01-22 09:00:00,0,1.5,-903723,"Not a frog",0.713,0.002,0.13,0.006,0.001,0.124,0,0.02,"[0.713 0.    0.001 0.002 0.02  0.    0.    0.13  0.006 0.    0.002 0.124
+ 0.    0.    0.    0.001 0.   ]"
+"28",130268,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hughs Crossing_AM1/20201111_120000.WAV","Hughs Crossing_AM1",2020-11-10,2020-11-11 12:00:00,48,49.5,13204,"Perons Tree Frog",0.656,0.001,0.004,0.001,0.015,0.656,0,0.001,"[0.321 0.    0.    0.001 0.001 0.    0.    0.004 0.001 0.    0.    0.656
+ 0.    0.    0.    0.015 0.   ]"
+"29",126276,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Horseshoe Lagoon_AM2/20201215_100000.WAV","Horseshoe Lagoon_AM2",2020-12-14,2020-12-15 10:00:00,0,1.5,-903723,"Not a frog",0.966,0,0,0,0.029,0,0,0.004,"[0.966 0.    0.    0.    0.004 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.029 0.   ]"
+"30",111890,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Gooseneck_AM1/20201222_141500.WAV","Gooseneck_AM1",2020-12-21,2020-12-22 14:15:00,0,1.5,-903723,"Not a frog",0.99,0,0.002,0,0.003,0,0,0.001,"[0.99  0.    0.    0.    0.001 0.    0.    0.002 0.    0.    0.    0.
+ 0.    0.    0.    0.003 0.001]"
+"31",107781,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Duck Hole Plain_AM2/20201228_130000.WAV","Duck Hole Plain_AM2",2020-12-27,2020-12-28 13:00:00,0,1.5,-903723,"Not a frog",0.627,0,0,0,0.181,0,0,0.001,"[0.628 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.
+ 0.19  0.    0.    0.181 0.   ]"
+"32",128756,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Rookery_AM2/5DD4D8B8.WAV","Rookery_AM2",2019-11-19,2019-11-20 17:10:00,0,1.5,-903723,"Not a frog",0.798,0.008,0.006,0.14,0.002,0.003,0,0.044,"[0.798 0.    0.    0.008 0.044 0.    0.    0.006 0.14  0.    0.    0.003
+ 0.    0.    0.    0.002 0.   ]"
+"33",7181,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20201024_111500.WAV","Pinchgut Lagoon_AM1",2020-10-23,2020-10-24 11:15:00,0,1.5,-903723,"Not a frog",0.837,0.005,0.002,0,0.002,0.008,0.002,0.142,"[0.837 0.    0.    0.005 0.142 0.    0.    0.002 0.    0.001 0.    0.008
+ 0.    0.002 0.    0.002 0.001]"
+"34",50931,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Bunyip Gully Gowers_AM1/5D84BF40.WAV","Bunyip Gully Gowers_AM1",2019-09-20,2019-09-20 22:00:00,27,28.5,13063,"Spotted Marsh Frog (race unknown)",0.441,0.012,0.003,0.001,0.035,0.226,0.001,0.442,"[0.202 0.    0.001 0.012 0.442 0.001 0.    0.003 0.001 0.002 0.002 0.226
+ 0.063 0.001 0.001 0.035 0.009]"
+"35",13296,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Lowries Pump_AM1/20201206_103000.WAV","Lowries Pump_AM1",2020-12-05,2020-12-06 10:30:00,0,1.5,-903723,"Not a frog",0.994,0,0,0,0.002,0.003,0,0,"[0.994 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.003
+ 0.    0.    0.    0.002 0.   ]"
+"36",98722,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Hughs Crossing_AM2/5E0F0740.WAV","Hughs Crossing_AM2",2020-01-02,2020-01-03 20:20:00,13,14.5,13063,"Spotted Marsh Frog (race unknown)",0.498,0,0,0,0.001,0.202,0,0.498,"[0.288 0.    0.    0.    0.498 0.001 0.    0.    0.    0.    0.    0.202
+ 0.    0.    0.    0.001 0.01 ]"
+"37",131631,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hughs Crossing_AM1/20210107_104500.WAV","Hughs Crossing_AM1",2021-01-06,2021-01-07 10:45:00,0,1.5,-903723,"Not a frog",0.673,0.001,0.003,0.151,0.001,0.068,0,0.103,"[0.673 0.    0.    0.001 0.103 0.    0.    0.003 0.151 0.    0.    0.068
+ 0.    0.    0.    0.001 0.   ]"
+"38",114873,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Gooseneck_AM2/20200922_094500.WAV","Gooseneck_AM2",2020-09-21,2020-09-22 09:45:00,51,52.5,525739,"Frogs Galore",0.522,0,0.19,0.003,0.038,0.018,0,0.029,"[0.199 0.    0.    0.    0.029 0.    0.    0.19  0.003 0.    0.    0.018
+ 0.    0.    0.    0.038 0.522]"
+"39",63762,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Bunyip Gully Gowers_AM2/20200818_123000.WAV","Bunyip Gully Gowers_AM2",2020-08-17,2020-08-18 12:30:00,0,1.5,-903723,"Not a frog",0.901,0.003,0.005,0.005,0,0.05,0,0.033,"[0.902 0.    0.    0.003 0.033 0.    0.    0.005 0.005 0.    0.    0.05
+ 0.    0.    0.    0.    0.   ]"
+"40",108686,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Duck Hole Plain_AM2/20210204_111500.WAV","Duck Hole Plain_AM2",2021-02-03,2021-02-04 11:15:00,0,1.5,-903723,"Not a frog",1,0,0,0,0,0,0,0,"[1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]"
+"41",99881,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Whores Creek_AM1/20201016_110000.WAV","Whores Creek_AM1",2020-10-15,2020-10-16 11:00:00,4,5.5,525739,"Frogs Galore",0.548,0,0.001,0.001,0.013,0.021,0.001,0.27,"[0.144 0.    0.    0.    0.27  0.    0.    0.001 0.001 0.    0.    0.021
+ 0.001 0.001 0.001 0.013 0.548]"
+"42",53835,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Tarma Lagoon_AM1/20210218_103000.WAV","Tarma Lagoon_AM1",2021-02-17,2021-02-18 10:30:00,0,1.5,-903723,"Not a frog",0.726,0.001,0.001,0.001,0.137,0.038,0.004,0.026,"[0.726 0.001 0.01  0.001 0.026 0.    0.    0.001 0.001 0.    0.054 0.038
+ 0.001 0.004 0.    0.137 0.   ]"
+"43",2214,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM2/20210202_141500.WAV","Hut Lake_AM2",2021-02-01,2021-02-02 14:15:00,26,27.5,13936,"Large Brown Tree Frog",0.56,0,0,0,0.006,0,0,0.002,"[0.43  0.    0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.
+ 0.56  0.    0.    0.006 0.   ]"
+"44",7601,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Little Rushy Swamp_AM2/20201102_090000.WAV","Little Rushy Swamp_AM2",2020-11-01,2020-11-02 09:00:00,47,48.5,13204,"Perons Tree Frog",0.63,0,0.001,0,0.001,0.63,0,0.114,"[0.253 0.    0.    0.    0.114 0.    0.    0.001 0.    0.    0.    0.63
+ 0.    0.    0.    0.001 0.001]"
+"45",85657,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Gooseneck_AM1/5D74A948.WAV","Gooseneck_AM1",2019-09-07,2019-09-08 17:10:00,61,62.5,13063,"Spotted Marsh Frog (race unknown)",0.58,0.001,0,0,0.127,0.044,0,0.58,"[0.244 0.    0.    0.001 0.58  0.    0.    0.    0.    0.    0.    0.044
+ 0.002 0.    0.    0.127 0.002]"
+"46",12148,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Barmah Creek Corrys_AM2/5D720648.WAV","Barmah Creek Corrys_AM2",2019-09-05,2019-09-06 17:10:00,0,1.5,-903723,"Not a frog",0.963,0,0,0,0.037,0,0,0,"[0.964 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.037 0.   ]"
+"47",81825,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Two Mile Sandridge_AM1/20201211_094500.WAV","Two Mile Sandridge_AM1",2020-12-10,2020-12-11 09:45:00,0,1.5,-903723,"Not a frog",0.959,0,0,0,0.041,0,0,0,"[0.96  0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.041 0.   ]"
+"48",87735,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Gooseneck_AM1/5DE231E8.WAV","Gooseneck_AM1",2019-11-29,2019-11-30 20:10:00,91,92.5,13204,"Perons Tree Frog",0.402,0.07,0.03,0.061,0.004,0.402,0.001,0.038,"[0.39  0.    0.    0.07  0.038 0.    0.001 0.03  0.061 0.001 0.001 0.402
+ 0.    0.001 0.    0.004 0.   ]"
+"49",136571,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hughs Crossing_AM2/20201230_094500.WAV","Hughs Crossing_AM2",2020-12-29,2020-12-30 09:45:00,0,1.5,-903723,"Not a frog",0.974,0,0,0.006,0.006,0.002,0,0.012,"[0.974 0.    0.    0.    0.012 0.    0.    0.    0.006 0.    0.    0.002
+ 0.    0.    0.    0.006 0.   ]"
+"50",79894,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM1/20201004_140000.WAV","Cucumber Gully_AM1",NA,2020-10-04 14:00:00,20,21.5,13063,"Spotted Marsh Frog (race unknown)",0.495,0,0.001,0.001,0,0.053,0,0.495,"[0.45  0.    0.    0.    0.495 0.    0.    0.001 0.001 0.    0.    0.053
+ 0.    0.    0.    0.    0.   ]"
+"51",5507,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Little Rushy Swamp_AM1/20201117_091500.WAV","Little Rushy Swamp_AM1",2020-11-16,2020-11-17 09:15:00,36,37.5,13204,"Perons Tree Frog",0.625,0,0,0,0.207,0.625,0,0.135,"[0.002 0.    0.    0.    0.135 0.    0.    0.    0.    0.    0.    0.625
+ 0.    0.    0.    0.207 0.031]"
+"52",4371,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Barmah Creek BI_AM2/20201125_093000.WAV","Barmah Creek BI_AM2",2020-11-24,2020-11-25 09:30:00,55,56.5,13063,"Spotted Marsh Frog (race unknown)",0.338,0.023,0.001,0.007,0.231,0.061,0,0.338,"[0.33  0.    0.    0.023 0.338 0.    0.    0.001 0.007 0.001 0.    0.061
+ 0.003 0.    0.002 0.231 0.001]"
+"53",12955,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201215_143000.WAV","Pinchgut Lagoon_AM2",2020-12-14,2020-12-15 14:30:00,7,8.5,13204,"Perons Tree Frog",0.592,0,0,0.006,0.209,0.592,0,0.087,"[0.024 0.    0.    0.    0.087 0.    0.001 0.    0.006 0.    0.006 0.592
+ 0.006 0.    0.001 0.209 0.068]"
+"54",117977,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Mannions_AM2/5D76C6B0.WAV","Mannions_AM2",2019-09-09,2019-09-10 07:40:00,72,73.5,13134,"Common Froglet",0.379,0.004,0.01,0.379,0.304,0.002,0.002,0.021,"[0.229 0.002 0.006 0.004 0.021 0.001 0.001 0.01  0.379 0.003 0.005 0.002
+ 0.01  0.002 0.004 0.304 0.016]"
+"55",52708,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Tarma Lagoon_AM1/20210102_104500.WAV","Tarma Lagoon_AM1",2021-01-01,2021-01-02 10:45:00,0,1.5,-903723,"Not a frog",0.636,0.001,0,0,0.299,0,0.034,0.029,"[0.636 0.    0.    0.001 0.029 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.034 0.    0.299 0.   ]"
+"56",81606,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Two Mile Sandridge_AM1/20201202_090000.WAV","Two Mile Sandridge_AM1",2020-12-01,2020-12-02 09:00:00,0,1.5,-903723,"Not a frog",0.798,0,0,0,0.202,0,0,0,"[0.798 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.202 0.   ]"
+"57",123465,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Horseshoe Lagoon_AM1/20210224_093000.WAV","Horseshoe Lagoon_AM1",2021-02-23,2021-02-24 09:30:00,0,1.5,-903723,"Not a frog",0.693,0.001,0,0,0.306,0,0,0,"[0.693 0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.306 0.   ]"
+"58",26796,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Black Swamp_AM2/5D6FA998.WAV","Black Swamp_AM2",2019-09-04,2019-09-04 22:10:00,0,1.5,-903723,"Not a frog",0.737,0,0,0,0.206,0.03,0.001,0.024,"[0.737 0.    0.001 0.    0.024 0.    0.    0.    0.    0.    0.    0.03
+ 0.    0.001 0.001 0.206 0.   ]"
+"59",4601,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Barmah Creek BI_AM2/5D6FFDF8.WAV","Barmah Creek BI_AM2",2019-09-04,2019-09-05 04:10:00,0,1.5,-903723,"Not a frog",0.624,0,0.001,0,0.334,0.02,0,0.018,"[0.624 0.    0.    0.    0.018 0.    0.    0.001 0.    0.    0.001 0.02
+ 0.    0.    0.    0.334 0.   ]"
+"60",12233,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Lowries Pump_AM1/20201022_144500.WAV","Lowries Pump_AM1",2020-10-21,2020-10-22 14:45:00,56,57.5,13086,"Common Spadefoot Toad",0.398,0.001,0,0,0.398,0.187,0,0.037,"[0.369 0.    0.    0.001 0.037 0.    0.    0.    0.    0.    0.    0.187
+ 0.007 0.    0.    0.398 0.   ]"
+"61",121872,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Mannions_AM2/5E06FFC8.WAV","Mannions_AM2",2019-12-27,2019-12-28 18:10:00,13,14.5,13063,"Spotted Marsh Frog (race unknown)",0.239,0.054,0.001,0.002,0.23,0.055,0,0.239,"[0.173 0.    0.    0.054 0.239 0.042 0.002 0.001 0.002 0.    0.001 0.055
+ 0.199 0.    0.    0.23  0.001]"
+"62",154339,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Two Mile Bunyip_AM2/5D702A80.WAV","Two Mile Bunyip_AM2",2019-09-04,2019-09-05 07:20:00,0,1.5,-903723,"Not a frog",0.744,0,0.001,0,0.214,0.001,0.034,0.002,"[0.744 0.    0.    0.    0.002 0.    0.    0.001 0.    0.    0.    0.001
+ 0.001 0.034 0.002 0.214 0.001]"
+"63",131580,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hughs Crossing_AM1/20210105_100000.WAV","Hughs Crossing_AM1",2021-01-04,2021-01-05 10:00:00,0,1.5,-903723,"Not a frog",0.791,0,0,0,0.21,0,0,0,"[0.79 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+ 0.   0.21 0.  ]"
+"64",12303,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201118_133000.WAV","Pinchgut Lagoon_AM2",2020-11-17,2020-11-18 13:30:00,39,40.5,13204,"Perons Tree Frog",0.415,0.187,0,0,0.26,0.415,0,0.011,"[0.117 0.    0.    0.187 0.011 0.    0.    0.    0.    0.001 0.    0.415
+ 0.004 0.    0.    0.26  0.004]"
+"65",166491,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Two Mile Sandridge_AM2/5DF12090.WAV","Two Mile Sandridge_AM2",2019-12-11,2019-12-12 04:00:00,61,62.5,13059,"Barking Marsh Frog",0.391,0.391,0.002,0.002,0.291,0.009,0.004,0.076,"[0.224 0.    0.    0.391 0.076 0.001 0.    0.002 0.002 0.    0.    0.009
+ 0.    0.004 0.    0.291 0.   ]"
+"66",119182,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Mannions_AM2/5D91AEF8.WAV","Mannions_AM2",2019-09-29,2019-09-30 17:30:00,61,62.5,13063,"Spotted Marsh Frog (race unknown)",0.536,0.011,0,0.002,0.4,0.013,0.001,0.536,"[0.034 0.    0.    0.011 0.536 0.001 0.    0.    0.002 0.    0.    0.013
+ 0.001 0.001 0.    0.4   0.   ]"
+"67",121830,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Mannions_AM2/5E05D878.WAV","Mannions_AM2",2019-12-26,2019-12-27 21:10:00,28,29.5,13063,"Spotted Marsh Frog (race unknown)",0.445,0.006,0.003,0.009,0.208,0.032,0.009,0.445,"[0.276 0.    0.    0.006 0.445 0.009 0.    0.003 0.009 0.001 0.    0.032
+ 0.    0.009 0.    0.208 0.001]"
+"68",113031,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Gooseneck_AM1/20210208_113000.WAV","Gooseneck_AM1",2021-02-07,2021-02-08 11:30:00,9,10.5,13063,"Spotted Marsh Frog (race unknown)",0.4,0,0,0,0.223,0.001,0,0.4,"[0.374 0.    0.    0.    0.4   0.    0.    0.    0.    0.    0.    0.001
+ 0.    0.    0.    0.223 0.001]"
+"69",81925,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM1/20201228_114500.WAV","Cucumber Gully_AM1",2020-12-27,2020-12-28 11:45:00,0,1.5,-903723,"Not a frog",0.783,0,0,0,0.211,0,0.004,0.003,"[0.782 0.    0.    0.    0.003 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.004 0.    0.211 0.   ]"
+"70",61393,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Bunyip Waterhole_AM1/5DF9CC18.WAV","Bunyip Waterhole_AM1",2019-12-17,2019-12-18 17:50:00,43,44.5,13086,"Common Spadefoot Toad",0.366,0.002,0,0,0.366,0.007,0,0.021,"[0.363 0.    0.    0.002 0.021 0.    0.    0.    0.    0.    0.    0.007
+ 0.24  0.    0.    0.366 0.   ]"
+"71",70748,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Bunyip Waterhole_AM1/20201102_130000.WAV","Bunyip Waterhole_AM1",2020-11-01,2020-11-02 13:00:00,38,39.5,13063,"Spotted Marsh Frog (race unknown)",0.555,0.013,0,0.001,0.247,0.074,0,0.554,"[0.074 0.    0.    0.013 0.554 0.    0.    0.    0.001 0.    0.001 0.074
+ 0.031 0.    0.001 0.247 0.002]"
+"72",15906,"S:/SoundData/FrogCalls/TLM_2018-19_Barmah-Millewa/Little Rushy Swamp/5C3DCB7C.WAV","Little Rushy Swamp_AM1",2019-01-15,2019-01-15 23:01:00,88,89.5,13086,"Common Spadefoot Toad",0.37,0.142,0.001,0.004,0.37,0.123,0,0.031,"[0.321 0.    0.    0.142 0.031 0.    0.    0.001 0.004 0.001 0.001 0.123
+ 0.003 0.    0.002 0.37  0.   ]"
+"73",11613,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201021_090000.WAV","Pinchgut Lagoon_AM2",2020-10-20,2020-10-21 09:00:00,58,59.5,13204,"Perons Tree Frog",0.662,0,0,0,0.322,0.662,0,0.001,"[0.005 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.662
+ 0.003 0.    0.001 0.322 0.004]"
+"74",7841,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20201120_141500.WAV","Pinchgut Lagoon_AM1",2020-11-19,2020-11-20 14:15:00,22,23.5,13204,"Perons Tree Frog",0.522,0.002,0,0,0.269,0.522,0,0.008,"[0.196 0.    0.    0.002 0.008 0.    0.    0.    0.    0.    0.    0.522
+ 0.001 0.    0.    0.269 0.001]"
+"75",4079,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Little Rushy Swamp_AM1/20200918_121500.WAV","Little Rushy Swamp_AM1",2020-09-17,2020-09-18 12:15:00,18,19.5,13063,"Spotted Marsh Frog (race unknown)",0.287,0.001,0,0,0.258,0.124,0,0.287,"[0.223 0.    0.001 0.001 0.287 0.    0.    0.    0.    0.    0.    0.124
+ 0.106 0.    0.    0.258 0.   ]"
+"76",7908,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20201123_130000.WAV","Pinchgut Lagoon_AM1",2020-11-22,2020-11-23 13:00:00,37,38.5,13063,"Spotted Marsh Frog (race unknown)",0.578,0.004,0,0.001,0.226,0.1,0,0.578,"[0.087 0.    0.    0.004 0.578 0.    0.    0.    0.001 0.    0.    0.1
+ 0.    0.    0.    0.226 0.002]"
+"77",121450,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Horseshoe Lagoon_AM1/20201202_094500.WAV","Horseshoe Lagoon_AM1",2020-12-01,2020-12-02 09:45:00,0,1.5,-903723,"Not a frog",0.792,0.002,0,0,0.206,0,0,0,"[0.792 0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.206 0.   ]"
+"78",77533,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Two Mile Bunyip_AM2/20210117_113000.WAV","Two Mile Bunyip_AM2",2021-01-16,2021-01-17 11:30:00,0,1.5,-903723,"Not a frog",0.771,0,0,0.001,0.205,0.018,0.001,0,"[0.772 0.    0.    0.    0.    0.    0.    0.    0.001 0.001 0.001 0.018
+ 0.    0.001 0.    0.205 0.   ]"
+"79",22387,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Reed Bed Swamp_AM2/20210101_140000.WAV","Reed Bed Swamp_AM2",2020-12-31,2021-01-01 14:00:00,21,22.5,13204,"Perons Tree Frog",0.373,0.033,0.001,0.002,0.331,0.373,0.001,0.005,"[0.206 0.    0.002 0.033 0.005 0.    0.    0.001 0.002 0.034 0.    0.373
+ 0.001 0.001 0.    0.331 0.009]"
+"80",72623,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Doctors Point_AM1/5D701568.WAV","Doctors Point_AM1",2019-09-04,2019-09-05 05:50:00,0,1.5,-903723,"Not a frog",0.613,0,0.001,0,0.227,0.01,0.136,0.011,"[0.613 0.    0.    0.    0.011 0.    0.    0.001 0.    0.    0.    0.01
+ 0.001 0.136 0.    0.227 0.   ]"
+"81",14402,"S:/SoundData/FrogCalls/TLM_2018-19_Barmah-Millewa/Little Rushy Swamp/5C14C77C.WAV","Little Rushy Swamp_AM1",2018-12-14,2018-12-15 20:21:00,23,24.5,13204,"Perons Tree Frog",0.638,0,0,0,0.353,0.638,0,0.001,"[0.005 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.638
+ 0.001 0.    0.    0.353 0.002]"
+"82",82484,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Two Mile Sandridge_AM1/20210107_123000.WAV","Two Mile Sandridge_AM1",2021-01-06,2021-01-07 12:30:00,0,1.5,-903723,"Not a frog",0.792,0,0,0,0.207,0,0,0,"[0.792 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.207 0.   ]"
+"83",11216,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201004_114500.WAV","Pinchgut Lagoon_AM2",2020-10-03,2020-10-04 11:45:00,14,15.5,13086,"Common Spadefoot Toad",0.341,0.196,0,0,0.34,0.001,0,0.001,"[0.304 0.    0.    0.196 0.001 0.    0.    0.    0.    0.003 0.    0.001
+ 0.001 0.    0.154 0.34  0.001]"
+"84",91379,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20201119_094500.WAV","Wathours_AM1",2020-11-18,2020-11-19 09:45:00,0,1.5,-903723,"Not a frog",0.716,0,0,0.001,0.214,0.001,0,0.058,"[0.716 0.    0.    0.    0.058 0.    0.    0.    0.001 0.    0.001 0.001
+ 0.008 0.    0.    0.214 0.   ]"
+"85",12406,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Lowries Pump_AM1/20201030_100000.WAV","Lowries Pump_AM1",2020-10-29,2020-10-30 10:00:00,29,30.5,13086,"Common Spadefoot Toad",0.379,0,0,0,0.379,0.199,0,0.082,"[0.334 0.    0.    0.    0.082 0.    0.    0.    0.    0.    0.    0.199
+ 0.    0.    0.    0.379 0.005]"
+"86",1756,"S:/SoundData/FrogCalls/TLM_2018-19_Barmah-Millewa/Bunyip Gully Gowers/5C0CE7DC.WAV","Bunyip Gully Gowers_AM1",2018-12-08,2018-12-09 21:01:00,40,41.5,13936,"Large Brown Tree Frog",0.743,0.001,0,0,0.209,0.007,0,0.005,"[0.031 0.    0.    0.001 0.005 0.    0.    0.    0.    0.001 0.003 0.007
+ 0.742 0.    0.    0.209 0.001]"
+"87",12427,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201123_143000.WAV","Pinchgut Lagoon_AM2",2020-11-22,2020-11-23 14:30:00,19,20.5,13204,"Perons Tree Frog",0.459,0.001,0,0,0.338,0.459,0,0.015,"[0.183 0.    0.    0.001 0.015 0.    0.    0.    0.    0.    0.    0.459
+ 0.001 0.    0.002 0.338 0.001]"
+"88",53112,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Tarma Lagoon_AM1/20210119_094500.WAV","Tarma Lagoon_AM1",2021-01-18,2021-01-19 09:45:00,0,1.5,-903723,"Not a frog",0.494,0.08,0,0.001,0.317,0.004,0.001,0.102,"[0.494 0.    0.    0.08  0.102 0.    0.    0.    0.001 0.    0.    0.004
+ 0.    0.001 0.    0.317 0.   ]"
+"89",11373,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201011_090000.WAV","Pinchgut Lagoon_AM2",2020-10-10,2020-10-11 09:00:00,25,26.5,13086,"Common Spadefoot Toad",0.397,0,0,0,0.397,0.354,0,0.007,"[0.017 0.    0.    0.    0.007 0.    0.    0.    0.    0.    0.    0.354
+ 0.221 0.    0.    0.397 0.004]"
+"90",21838,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Reed Bed Swamp_AM2/20201209_144500.WAV","Reed Bed Swamp_AM2",2020-12-08,2020-12-09 14:45:00,14,15.5,13204,"Perons Tree Frog",0.642,0.008,0,0.001,0.227,0.642,0.001,0.006,"[0.068 0.    0.    0.008 0.006 0.    0.    0.    0.001 0.012 0.    0.642
+ 0.001 0.001 0.002 0.227 0.032]"
+"91",103430,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Whores Creek_AM1/20210313_101500.WAV","Whores Creek_AM1",2021-03-12,2021-03-13 10:15:00,0,1.5,-903723,"Not a frog",0.783,0,0,0,0.204,0.004,0.001,0.007,"[0.783 0.    0.    0.    0.007 0.    0.    0.    0.    0.    0.    0.004
+ 0.    0.001 0.    0.204 0.   ]"
+"92",67942,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Cucumber Gully_AM1/5D7D5980.WAV","Cucumber Gully_AM1",2019-09-14,2019-09-15 07:20:00,115,116.5,13204,"Perons Tree Frog",0.374,0.004,0,0,0.205,0.374,0,0.152,"[0.263 0.    0.    0.004 0.152 0.    0.    0.    0.    0.    0.    0.374
+ 0.001 0.    0.    0.205 0.001]"
+"93",77222,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Two Mile Bunyip_AM2/20210104_114500.WAV","Two Mile Bunyip_AM2",2021-01-03,2021-01-04 11:45:00,0,1.5,-903723,"Not a frog",0.784,0,0.002,0,0.21,0.001,0.002,0,"[0.784 0.    0.    0.    0.    0.    0.    0.002 0.    0.    0.    0.001
+ 0.    0.002 0.    0.21  0.   ]"
+"94",77779,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Two Mile Bunyip_AM2/20210127_130000.WAV","Two Mile Bunyip_AM2",2021-01-26,2021-01-27 13:00:00,0,1.5,-903723,"Not a frog",0.63,0,0,0,0.235,0,0.13,0.001,"[0.63  0.001 0.001 0.    0.001 0.    0.    0.    0.    0.    0.001 0.
+ 0.    0.13  0.    0.235 0.   ]"
+"95",142764,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20210211_100000.WAV","Hut Lake_AM1",2021-02-10,2021-02-11 10:00:00,0,1.5,-903723,"Not a frog",0.591,0.014,0.002,0,0.359,0.019,0,0.003,"[0.592 0.    0.    0.014 0.003 0.    0.    0.002 0.    0.001 0.    0.019
+ 0.002 0.    0.007 0.359 0.   ]"
+"96",7962,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20201125_143000.WAV","Pinchgut Lagoon_AM1",2020-11-24,2020-11-25 14:30:00,7,8.5,13204,"Perons Tree Frog",0.616,0.005,0,0,0.206,0.616,0,0.035,"[0.125 0.    0.    0.005 0.035 0.    0.    0.    0.    0.    0.    0.616
+ 0.01  0.    0.001 0.206 0.001]"
+"97",101158,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Hut Lake_AM1/5DD67088.WAV","Hut Lake_AM1",2019-11-20,2019-11-21 22:10:00,66,67.5,13063,"Spotted Marsh Frog (race unknown)",0.506,0.046,0,0.001,0.26,0.015,0.001,0.506,"[0.145 0.    0.    0.046 0.506 0.    0.    0.    0.001 0.    0.001 0.015
+ 0.022 0.001 0.    0.26  0.001]"
+"98",87296,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM2/20210105_101500.WAV","Cucumber Gully_AM2",2021-01-04,2021-01-05 10:15:00,0,1.5,-903723,"Not a frog",0.705,0,0,0,0.295,0,0,0,"[0.704 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.295 0.   ]"
+"99",81003,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM1/20201120_091500.WAV","Cucumber Gully_AM1",2020-11-19,2020-11-20 09:15:00,0,1.5,-903723,"Not a frog",0.781,0,0,0.001,0.216,0,0,0.002,"[0.781 0.    0.    0.    0.002 0.    0.    0.    0.001 0.    0.    0.
+ 0.    0.    0.    0.216 0.001]"
+"100",141493,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20201220_101500.WAV","Hut Lake_AM1",2020-12-19,2020-12-20 10:15:00,7,8.5,13204,"Perons Tree Frog",0.395,0.002,0,0,0.211,0.395,0,0.164,"[0.049 0.    0.    0.002 0.164 0.    0.    0.    0.    0.    0.    0.395
+ 0.178 0.    0.    0.211 0.   ]"
+"101",6127,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20200910_114500.WAV","Pinchgut Lagoon_AM1",2020-09-09,2020-09-10 11:45:00,33,34.5,13086,"Common Spadefoot Toad",0.506,0,0,0,0.506,0.014,0,0.276,"[0.202 0.    0.    0.    0.276 0.    0.    0.    0.    0.    0.    0.014
+ 0.    0.    0.    0.506 0.002]"
+"102",12234,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Lowries Pump_AM1/20201023_090000.WAV","Lowries Pump_AM1",2020-10-22,2020-10-23 09:00:00,58,59.5,13086,"Common Spadefoot Toad",0.466,0,0,0.001,0.466,0.106,0,0.334,"[0.077 0.    0.    0.    0.334 0.    0.    0.    0.001 0.    0.    0.106
+ 0.001 0.    0.    0.466 0.015]"
+"103",90281,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20201004_111500.WAV","Wathours_AM1",2020-10-03,2020-10-04 11:15:00,49,50.5,13086,"Common Spadefoot Toad",0.489,0.001,0,0,0.489,0.003,0.001,0.019,"[0.479 0.    0.001 0.001 0.019 0.    0.    0.    0.    0.    0.002 0.003
+ 0.001 0.001 0.    0.489 0.003]"
+"104",93257,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20210205_111500.WAV","Wathours_AM1",2021-02-04,2021-02-05 11:15:00,5,6.5,13086,"Common Spadefoot Toad",0.521,0.006,0,0,0.522,0.001,0,0.002,"[0.458 0.    0.    0.006 0.002 0.    0.    0.    0.    0.    0.    0.001
+ 0.01  0.    0.    0.522 0.   ]"
+"105",141731,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20201230_094500.WAV","Hut Lake_AM1",2020-12-29,2020-12-30 09:45:00,31,32.5,13086,"Common Spadefoot Toad",0.547,0.004,0.001,0.003,0.547,0.004,0,0.099,"[0.318 0.    0.001 0.004 0.099 0.    0.    0.001 0.003 0.001 0.001 0.004
+ 0.011 0.    0.009 0.547 0.002]"
+"106",141161,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20201206_111500.WAV","Hut Lake_AM1",2020-12-05,2020-12-06 11:15:00,40,41.5,13086,"Common Spadefoot Toad",0.515,0.001,0,0,0.514,0.001,0,0.02,"[0.434 0.    0.    0.001 0.02  0.    0.    0.    0.    0.    0.    0.001
+ 0.029 0.    0.    0.514 0.   ]"
+"107",6032,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20200906_120000.WAV","Pinchgut Lagoon_AM1",2020-09-05,2020-09-06 12:00:00,28,29.5,13086,"Common Spadefoot Toad",0.504,0.009,0.001,0.001,0.504,0.044,0.002,0.134,"[0.278 0.    0.001 0.009 0.134 0.005 0.    0.001 0.001 0.    0.    0.044
+ 0.001 0.002 0.    0.504 0.021]"
+"108",51447,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Bucks Crossing_AM1/20201225_120000.WAV","Bucks Crossing_AM1",2020-12-24,2020-12-25 12:00:00,0,1.5,13086,"Common Spadefoot Toad",0.513,0.008,0.016,0.005,0.512,0.029,0.004,0.017,"[0.327 0.001 0.007 0.008 0.017 0.001 0.001 0.016 0.005 0.005 0.004 0.029
+ 0.004 0.004 0.033 0.512 0.026]"
+"109",12003,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201106_103000.WAV","Pinchgut Lagoon_AM2",2020-11-05,2020-11-06 10:30:00,5,6.5,13086,"Common Spadefoot Toad",0.505,0,0,0,0.505,0,0,0.002,"[0.492 0.    0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.505 0.   ]"
+"110",15529,"S:/SoundData/FrogCalls/TLM_2018-19_Barmah-Millewa/Little Rushy Swamp/5C334FE4.WAV","Little Rushy Swamp_AM1",2019-01-07,2019-01-08 00:11:00,27,28.5,13086,"Common Spadefoot Toad",0.541,0.093,0,0,0.54,0.003,0,0.004,"[0.355 0.    0.    0.093 0.004 0.    0.    0.    0.    0.004 0.    0.003
+ 0.001 0.    0.    0.54  0.   ]"
+"111",20849,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Big Bog_AM1/5E05BA00.WAV","Big Bog_AM1",2019-12-26,2019-12-27 19:00:00,114,115.5,13086,"Common Spadefoot Toad",0.486,0.01,0.001,0,0.486,0.029,0,0.003,"[0.439 0.    0.    0.01  0.003 0.    0.    0.001 0.    0.    0.    0.029
+ 0.03  0.    0.    0.486 0.   ]"
+"112",57408,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Tarma Lagoon_AM2/20201214_093000.WAV","Tarma Lagoon_AM2",2020-12-13,2020-12-14 09:30:00,27,28.5,13086,"Common Spadefoot Toad",0.487,0.013,0,0,0.487,0.001,0,0.001,"[0.469 0.    0.    0.013 0.001 0.    0.    0.    0.    0.    0.    0.001
+ 0.029 0.    0.    0.487 0.   ]"
+"113",57694,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Tarma Lagoon_AM2/20201226_090000.WAV","Tarma Lagoon_AM2",2020-12-25,2020-12-26 09:00:00,52,53.5,13086,"Common Spadefoot Toad",0.498,0.007,0,0,0.498,0.002,0,0.001,"[0.43  0.    0.    0.007 0.001 0.    0.    0.    0.    0.    0.    0.002
+ 0.062 0.    0.    0.498 0.   ]"
+"114",112896,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Gooseneck_AM1/20210202_134500.WAV","Gooseneck_AM1",2021-02-01,2021-02-02 13:45:00,14,15.5,13086,"Common Spadefoot Toad",0.576,0,0,0,0.576,0.002,0,0.033,"[0.388 0.    0.    0.    0.033 0.    0.    0.    0.    0.    0.    0.002
+ 0.001 0.    0.    0.576 0.   ]"
+"115",139045,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Tarma Lagoon_AM2/5DF690C0.WAV","Tarma Lagoon_AM2",2019-12-15,2019-12-16 07:00:00,116,117.5,13086,"Common Spadefoot Toad",0.408,0.001,0,0,0.408,0.103,0,0.155,"[0.298 0.    0.001 0.001 0.155 0.    0.    0.    0.    0.002 0.    0.103
+ 0.002 0.    0.    0.408 0.028]"
+"116",11527,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201017_113000.WAV","Pinchgut Lagoon_AM2",2020-10-16,2020-10-17 11:30:00,1,2.5,13086,"Common Spadefoot Toad",0.453,0.002,0,0,0.453,0.186,0,0.002,"[0.346 0.    0.001 0.002 0.002 0.    0.    0.    0.    0.    0.    0.186
+ 0.01  0.    0.    0.453 0.001]"
+"117",93563,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20210218_094500.WAV","Wathours_AM1",2021-02-17,2021-02-18 09:45:00,17,18.5,13086,"Common Spadefoot Toad",0.475,0.191,0,0,0.475,0.001,0,0.002,"[0.327 0.    0.    0.191 0.002 0.    0.    0.    0.    0.    0.    0.001
+ 0.003 0.    0.    0.475 0.001]"
+"118",8906,"S:/SoundData/FrogCalls/TLM_2018-19_Barmah-Millewa/Gooseneck_AM2/5C064954.WAV","Gooseneck_AM2",2018-12-03,2018-12-04 20:31:00,19,20.5,13086,"Common Spadefoot Toad",0.542,0,0,0,0.542,0.198,0,0,"[0.088 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.198
+ 0.172 0.    0.    0.542 0.   ]"
+"119",7687,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20201114_114500.WAV","Pinchgut Lagoon_AM1",2020-11-13,2020-11-14 11:45:00,3,4.5,13086,"Common Spadefoot Toad",0.537,0.002,0,0,0.536,0.208,0,0.004,"[0.224 0.    0.    0.002 0.004 0.    0.    0.    0.    0.    0.    0.208
+ 0.025 0.    0.    0.536 0.   ]"
+"120",37541,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/St Helena Swamp_AM1/20210121_101500.WAV","St Helena Swamp_AM1",2021-01-20,2021-01-21 10:15:00,0,1.5,13086,"Common Spadefoot Toad",0.509,0.001,0,0,0.509,0,0,0,"[0.49  0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.509 0.   ]"
+"121",169987,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Whores Creek_AM1/5DF54648.WAV","Whores Creek_AM1",2019-12-14,2019-12-15 07:30:00,33,34.5,13086,"Common Spadefoot Toad",0.45,0.009,0.001,0.004,0.45,0.25,0,0.036,"[0.242 0.    0.    0.009 0.036 0.    0.    0.001 0.004 0.    0.    0.25
+ 0.003 0.    0.003 0.45  0.002]"
+"122",900,"S:/SoundData/FrogCalls/TLM_2018-19_Barmah-Millewa/Black Swamp/5C1E844C.WAV","Black Swamp_AM1",2018-12-22,2018-12-23 05:37:00,11,12.5,13086,"Common Spadefoot Toad",0.498,0.005,0,0,0.498,0.008,0,0.08,"[0.388 0.    0.    0.005 0.08  0.    0.    0.    0.    0.    0.    0.008
+ 0.019 0.    0.    0.498 0.001]"
+"123",9036,"S:/SoundData/FrogCalls/TLM_2018-19_Barmah-Millewa/Gooseneck_AM2/5C096EA4.WAV","Gooseneck_AM2",2018-12-06,2018-12-07 05:47:00,49,50.5,13086,"Common Spadefoot Toad",0.469,0.209,0.001,0.001,0.469,0.006,0,0.03,"[0.264 0.    0.    0.209 0.03  0.    0.    0.001 0.001 0.014 0.    0.006
+ 0.002 0.    0.004 0.469 0.   ]"
+"124",93646,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20210221_123000.WAV","Wathours_AM1",2021-02-20,2021-02-21 12:30:00,43,44.5,13086,"Common Spadefoot Toad",0.598,0,0,0,0.598,0.003,0,0.02,"[0.378 0.    0.    0.    0.02  0.    0.    0.    0.    0.    0.    0.003
+ 0.    0.    0.    0.598 0.   ]"
+"125",12141,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201112_090000.WAV","Pinchgut Lagoon_AM2",2020-11-11,2020-11-12 09:00:00,25,26.5,13086,"Common Spadefoot Toad",0.567,0.071,0,0,0.568,0,0,0,"[0.354 0.    0.    0.071 0.    0.    0.    0.    0.    0.006 0.    0.
+ 0.001 0.    0.001 0.568 0.   ]"
+"126",7984,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20201126_140000.WAV","Pinchgut Lagoon_AM1",2020-11-25,2020-11-26 14:00:00,43,44.5,13086,"Common Spadefoot Toad",0.424,0.003,0,0.001,0.424,0.164,0,0.225,"[0.181 0.    0.    0.003 0.225 0.    0.    0.    0.001 0.    0.    0.164
+ 0.    0.    0.    0.424 0.001]"
+"127",141073,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20201202_131500.WAV","Hut Lake_AM1",2020-12-01,2020-12-02 13:15:00,38,39.5,13086,"Common Spadefoot Toad",0.548,0.015,0,0,0.548,0.002,0,0.004,"[0.398 0.    0.    0.015 0.004 0.    0.    0.    0.    0.    0.    0.002
+ 0.03  0.    0.001 0.548 0.001]"
+"128",14448,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20210216_094500.WAV","Pinchgut Lagoon_AM2",2021-02-15,2021-02-16 09:45:00,19,20.5,13086,"Common Spadefoot Toad",0.538,0.042,0,0,0.538,0.004,0,0.002,"[0.403 0.    0.    0.042 0.002 0.    0.    0.    0.    0.    0.    0.004
+ 0.011 0.    0.    0.538 0.   ]"
+"129",141421,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20201217_101500.WAV","Hut Lake_AM1",2020-12-16,2020-12-17 10:15:00,32,33.5,13086,"Common Spadefoot Toad",0.515,0,0,0,0.514,0.001,0,0.003,"[0.482 0.    0.    0.    0.003 0.    0.    0.    0.    0.    0.    0.001
+ 0.    0.    0.    0.514 0.   ]"
+"130",119297,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Horseshoe Lagoon_AM1/20200903_113000.WAV","Horseshoe Lagoon_AM1",2020-09-02,2020-09-03 11:30:00,58,59.5,13086,"Common Spadefoot Toad",0.579,0,0,0,0.578,0.393,0,0.016,"[0.006 0.    0.    0.    0.016 0.    0.    0.    0.    0.    0.    0.393
+ 0.001 0.    0.    0.578 0.005]"
+"131",12595,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Lowries Pump_AM1/20201107_091500.WAV","Lowries Pump_AM1",2020-11-06,2020-11-07 09:15:00,10,11.5,13086,"Common Spadefoot Toad",0.45,0,0.003,0.001,0.45,0.04,0,0.051,"[0.343 0.    0.    0.    0.051 0.    0.    0.003 0.001 0.004 0.    0.04
+ 0.021 0.    0.074 0.45  0.012]"
+"132",85432,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Gooseneck_AM1/5D6F8670.WAV","Gooseneck_AM1",2019-09-03,2019-09-04 19:40:00,20,21.5,13086,"Common Spadefoot Toad",0.585,0.001,0,0,0.585,0.001,0,0.003,"[0.405 0.    0.    0.001 0.003 0.    0.    0.    0.    0.    0.    0.001
+ 0.001 0.    0.003 0.585 0.001]"
+"133",121882,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Horseshoe Lagoon_AM1/20201220_094500.WAV","Horseshoe Lagoon_AM1",2020-12-19,2020-12-20 09:45:00,28,29.5,13086,"Common Spadefoot Toad",0.583,0.001,0,0,0.582,0,0,0,"[0.415 0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.    0.
+ 0.001 0.    0.    0.582 0.   ]"
+"134",93299,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20210207_094500.WAV","Wathours_AM1",2021-02-06,2021-02-07 09:45:00,52,53.5,13086,"Common Spadefoot Toad",0.577,0.003,0.003,0,0.577,0.001,0,0.007,"[0.406 0.    0.    0.003 0.007 0.    0.    0.003 0.    0.    0.    0.001
+ 0.002 0.    0.001 0.577 0.001]"
+"135",76771,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Bunyip Waterhole_AM2/20201211_140000.WAV","Bunyip Waterhole_AM2",2020-12-10,2020-12-11 14:00:00,41,42.5,13086,"Common Spadefoot Toad",0.508,0,0,0,0.508,0.03,0,0.002,"[0.412 0.    0.    0.    0.002 0.    0.    0.    0.    0.001 0.    0.03
+ 0.003 0.    0.    0.508 0.043]"
+"136",122618,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Horseshoe Lagoon_AM1/20210119_134500.WAV","Horseshoe Lagoon_AM1",2021-01-18,2021-01-19 13:45:00,48,49.5,13086,"Common Spadefoot Toad",0.479,0.012,0,0,0.479,0.003,0,0.043,"[0.462 0.    0.    0.012 0.043 0.    0.    0.    0.    0.001 0.    0.003
+ 0.001 0.    0.    0.479 0.   ]"
+"137",103280,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Whores Creek_AM1/20210306_144500.WAV","Whores Creek_AM1",2021-03-05,2021-03-06 14:45:00,0,1.5,-903723,"Not a frog",0.539,0,0.001,0,0.44,0.009,0.001,0.007,"[0.539 0.    0.001 0.    0.007 0.    0.    0.001 0.    0.    0.    0.009
+ 0.    0.001 0.001 0.44  0.   ]"
+"138",121858,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Horseshoe Lagoon_AM1/20201219_094500.WAV","Horseshoe Lagoon_AM1",2020-12-18,2020-12-19 09:45:00,44,45.5,13086,"Common Spadefoot Toad",0.561,0,0,0,0.561,0,0,0,"[0.438 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.001 0.    0.    0.561 0.   ]"
+"139",16041,"S:/SoundData/FrogCalls/TLM_2018-19_Barmah-Millewa/Little Rushy Swamp/5C41AAE4.WAV","Little Rushy Swamp_AM1",2019-01-17,2019-01-18 21:31:00,54,55.5,13086,"Common Spadefoot Toad",0.459,0.204,0,0.001,0.459,0.13,0.001,0.065,"[0.133 0.    0.    0.204 0.065 0.    0.    0.    0.001 0.    0.    0.13
+ 0.005 0.001 0.    0.459 0.001]"
+"140",83246,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM1/20210221_120000.WAV","Cucumber Gully_AM1",2021-02-20,2021-02-21 12:00:00,35,36.5,13086,"Common Spadefoot Toad",0.528,0,0,0,0.528,0.116,0,0.006,"[0.201 0.    0.    0.    0.006 0.    0.    0.    0.    0.    0.    0.116
+ 0.009 0.    0.001 0.528 0.138]"
+"141",140528,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20201110_090000.WAV","Hut Lake_AM1",2020-11-09,2020-11-10 09:00:00,16,17.5,13086,"Common Spadefoot Toad",0.52,0.036,0,0,0.52,0.001,0,0.005,"[0.436 0.    0.    0.036 0.005 0.    0.    0.    0.    0.    0.    0.001
+ 0.001 0.    0.    0.52  0.   ]"
+"142",74667,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Two Mile Bunyip_AM2/20200920_090000.WAV","Two Mile Bunyip_AM2",2020-09-19,2020-09-20 09:00:00,42,43.5,13086,"Common Spadefoot Toad",0.569,0.01,0,0,0.57,0.018,0,0.168,"[0.228 0.    0.    0.01  0.168 0.    0.    0.    0.    0.001 0.    0.018
+ 0.    0.    0.    0.57  0.004]"
+"143",82739,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM1/20210131_111500.WAV","Cucumber Gully_AM1",2021-01-30,2021-01-31 11:15:00,39,40.5,13086,"Common Spadefoot Toad",0.442,0.001,0,0,0.442,0.09,0,0.196,"[0.262 0.    0.001 0.001 0.196 0.    0.    0.    0.    0.    0.    0.09
+ 0.001 0.    0.    0.442 0.007]"
+"144",92945,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20210123_111500.WAV","Wathours_AM1",2021-01-22,2021-01-23 11:15:00,58,59.5,13086,"Common Spadefoot Toad",0.443,0.002,0,0,0.443,0,0,0,"[0.437 0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.    0.
+ 0.117 0.    0.    0.443 0.   ]"
+"145",142890,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20210216_113000.WAV","Hut Lake_AM1",2021-02-15,2021-02-16 11:30:00,57,58.5,13086,"Common Spadefoot Toad",0.528,0.001,0.001,0,0.528,0.001,0.001,0.007,"[0.456 0.    0.001 0.001 0.007 0.    0.    0.001 0.    0.    0.001 0.001
+ 0.001 0.001 0.001 0.528 0.001]"
+"146",81293,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM1/20201202_094500.WAV","Cucumber Gully_AM1",2020-12-01,2020-12-02 09:45:00,20,21.5,13086,"Common Spadefoot Toad",0.542,0,0,0,0.542,0,0,0,"[0.458 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.542 0.   ]"
+"147",82592,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM1/20210125_103000.WAV","Cucumber Gully_AM1",2021-01-24,2021-01-25 10:30:00,7,8.5,13086,"Common Spadefoot Toad",0.425,0.033,0,0.001,0.424,0.001,0,0.049,"[0.182 0.    0.001 0.033 0.049 0.    0.    0.    0.001 0.    0.001 0.001
+ 0.305 0.    0.001 0.424 0.001]"
+"148",92360,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20201230_090000.WAV","Wathours_AM1",2020-12-29,2020-12-30 09:00:00,28,29.5,13086,"Common Spadefoot Toad",0.57,0,0,0,0.57,0.001,0,0.001,"[0.427 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.001
+ 0.    0.    0.    0.57  0.   ]"
+"149",13260,"S:/SoundData/FrogCalls/TLM_2018-19_Barmah-Millewa/Hut Lake/5C3A3624.WAV","Hut Lake_AM1",2019-01-12,2019-01-13 05:47:00,25,26.5,13086,"Common Spadefoot Toad",0.434,0.001,0,0,0.434,0.002,0,0.001,"[0.425 0.    0.    0.001 0.001 0.    0.    0.    0.    0.    0.    0.002
+ 0.135 0.    0.    0.434 0.   ]"
+"150",61836,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Bunyip Gully Gowers_AM1/20201231_111500.WAV","Bunyip Gully Gowers_AM1",2020-12-30,2020-12-31 11:15:00,5,6.5,13086,"Common Spadefoot Toad",0.578,0,0,0,0.578,0,0,0.001,"[0.42  0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.578 0.001]"
+"151",122010,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Mannions_AM2/5E09CCF8.WAV","Mannions_AM2",2019-12-29,2019-12-30 21:10:00,0,1.5,13086,"Common Spadefoot Toad",0.792,0.185,0,0,0.792,0.004,0,0.001,"[0.002 0.    0.    0.185 0.001 0.    0.    0.    0.    0.    0.001 0.004
+ 0.002 0.    0.014 0.792 0.   ]"
+"152",10360,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20200829_134500.WAV","Pinchgut Lagoon_AM2",2020-08-28,2020-08-29 13:45:00,10,11.5,13086,"Common Spadefoot Toad",0.669,0.001,0.001,0,0.669,0.002,0,0.012,"[0.312 0.    0.    0.001 0.012 0.    0.    0.001 0.    0.    0.    0.002
+ 0.    0.    0.    0.669 0.002]"
+"153",4044,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Barmah Creek BI_AM2/20201111_114500.WAV","Barmah Creek BI_AM2",2020-11-10,2020-11-11 11:45:00,31,32.5,13086,"Common Spadefoot Toad",0.617,0,0,0,0.617,0.2,0,0,"[0.012 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.2
+ 0.169 0.    0.    0.617 0.   ]"
+"154",8,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Barmah Creek BI_AM1/5D6F9DE0.WAV","Barmah Creek BI_AM1",2019-09-03,2019-09-04 21:20:00,70,71.5,13086,"Common Spadefoot Toad",0.675,0,0,0,0.675,0,0,0.002,"[0.319 0.    0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.002 0.675 0.002]"
+"155",83043,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Cucumber Gully_AM1/20210213_091500.WAV","Cucumber Gully_AM1",2021-02-12,2021-02-13 09:15:00,54,55.5,13086,"Common Spadefoot Toad",0.608,0.001,0,0,0.608,0.02,0,0.041,"[0.326 0.    0.    0.001 0.041 0.    0.    0.    0.    0.    0.    0.02
+ 0.003 0.    0.    0.608 0.001]"
+"156",230,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Barmah Creek BI_AM1/20200822_121500.WAV","Barmah Creek BI_AM1",2020-08-21,2020-08-22 12:15:00,18,19.5,13086,"Common Spadefoot Toad",0.74,0,0,0.001,0.74,0.003,0.001,0.01,"[0.207 0.    0.001 0.    0.01  0.    0.    0.    0.001 0.001 0.    0.003
+ 0.    0.001 0.001 0.74  0.034]"
+"157",142184,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20210118_090000.WAV","Hut Lake_AM1",2021-01-17,2021-01-18 09:00:00,37,38.5,13086,"Common Spadefoot Toad",0.642,0.001,0,0,0.642,0.001,0,0.022,"[0.321 0.    0.009 0.001 0.022 0.    0.    0.    0.    0.    0.001 0.001
+ 0.002 0.    0.    0.642 0.   ]"
+"158",138914,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Tarma Lagoon_AM2/5DF2BAB8.WAV","Tarma Lagoon_AM2",2019-12-12,2019-12-13 09:10:00,56,57.5,13086,"Common Spadefoot Toad",0.791,0.001,0,0,0.79,0.009,0,0.005,"[0.191 0.    0.    0.001 0.005 0.    0.    0.    0.    0.    0.    0.009
+ 0.003 0.    0.    0.79  0.   ]"
+"159",6018,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20200905_143000.WAV","Pinchgut Lagoon_AM1",2020-09-04,2020-09-05 14:30:00,22,23.5,13086,"Common Spadefoot Toad",0.748,0,0,0,0.748,0.005,0,0.052,"[0.19  0.    0.    0.    0.052 0.    0.    0.    0.    0.    0.    0.005
+ 0.    0.    0.    0.748 0.005]"
+"160",141225,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20201209_091500.WAV","Hut Lake_AM1",2020-12-08,2020-12-09 09:15:00,57,58.5,13086,"Common Spadefoot Toad",0.696,0.011,0.001,0.004,0.696,0.02,0,0.004,"[0.228 0.    0.026 0.011 0.004 0.    0.    0.001 0.004 0.    0.    0.02
+ 0.007 0.    0.001 0.696 0.   ]"
+"161",7646,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20201112_133000.WAV","Pinchgut Lagoon_AM1",2020-11-11,2020-11-12 13:30:00,34,35.5,13086,"Common Spadefoot Toad",0.646,0.002,0,0,0.646,0.259,0,0.039,"[0.046 0.    0.    0.002 0.039 0.    0.    0.    0.    0.    0.    0.259
+ 0.005 0.    0.    0.646 0.001]"
+"162",93754,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20210226_093000.WAV","Wathours_AM1",2021-02-25,2021-02-26 09:30:00,40,41.5,13086,"Common Spadefoot Toad",0.741,0,0,0,0.741,0.043,0,0.011,"[0.204 0.    0.    0.    0.011 0.    0.    0.    0.    0.    0.    0.043
+ 0.    0.    0.    0.741 0.   ]"
+"163",11901,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201102_090000.WAV","Pinchgut Lagoon_AM2",2020-11-01,2020-11-02 09:00:00,34,35.5,13086,"Common Spadefoot Toad",0.76,0.082,0,0.001,0.76,0.002,0.004,0.014,"[0.113 0.    0.    0.082 0.014 0.    0.    0.    0.001 0.019 0.    0.002
+ 0.003 0.004 0.002 0.76  0.   ]"
+"164",142049,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20210112_111500.WAV","Hut Lake_AM1",2021-01-11,2021-01-12 11:15:00,44,45.5,13086,"Common Spadefoot Toad",0.692,0.002,0,0,0.692,0.001,0,0.005,"[0.299 0.    0.    0.002 0.005 0.    0.    0.    0.    0.    0.    0.001
+ 0.    0.    0.    0.692 0.   ]"
+"165",7100,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20201021_090000.WAV","Pinchgut Lagoon_AM1",2020-10-20,2020-10-21 09:00:00,6,7.5,13086,"Common Spadefoot Toad",0.798,0,0,0,0.798,0.024,0,0.021,"[0.155 0.    0.    0.    0.021 0.    0.    0.    0.    0.    0.    0.024
+ 0.    0.    0.    0.798 0.   ]"
+"166",65498,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Bunyip Waterhole_AM2/5DEDD728.WAV","Bunyip Waterhole_AM2",2019-12-08,2019-12-09 16:10:00,39,40.5,13086,"Common Spadefoot Toad",0.611,0.154,0,0.001,0.611,0.005,0,0.001,"[0.228 0.    0.    0.154 0.001 0.    0.    0.    0.001 0.    0.    0.005
+ 0.    0.    0.    0.611 0.   ]"
+"167",11637,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201022_090000.WAV","Pinchgut Lagoon_AM2",2020-10-21,2020-10-22 09:00:00,34,35.5,13086,"Common Spadefoot Toad",0.778,0,0,0,0.778,0.081,0,0.001,"[0.024 0.    0.    0.    0.001 0.    0.    0.    0.    0.001 0.    0.081
+ 0.099 0.    0.    0.778 0.015]"
+"168",90163,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20200929_114500.WAV","Wathours_AM1",2020-09-28,2020-09-29 11:45:00,43,44.5,13086,"Common Spadefoot Toad",0.671,0.006,0,0,0.672,0.001,0,0.001,"[0.317 0.    0.    0.006 0.001 0.    0.    0.    0.    0.    0.    0.001
+ 0.003 0.    0.    0.672 0.   ]"
+"169",4083,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Barmah Creek BI_AM2/20201113_093000.WAV","Barmah Creek BI_AM2",2020-11-12,2020-11-13 09:30:00,21,22.5,13086,"Common Spadefoot Toad",0.67,0.006,0,0,0.67,0.131,0,0.054,"[0.077 0.    0.    0.006 0.054 0.    0.    0.    0.    0.    0.    0.131
+ 0.06  0.    0.    0.67  0.002]"
+"170",7754,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20201117_103000.WAV","Pinchgut Lagoon_AM1",2020-11-16,2020-11-17 10:30:00,50,51.5,13086,"Common Spadefoot Toad",0.763,0,0,0,0.762,0.201,0,0.011,"[0.025 0.    0.    0.    0.011 0.    0.    0.    0.    0.    0.    0.201
+ 0.    0.    0.    0.762 0.001]"
+"171",6067,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20200907_144500.WAV","Pinchgut Lagoon_AM1",2020-09-06,2020-09-07 14:45:00,34,35.5,13086,"Common Spadefoot Toad",0.767,0,0,0,0.766,0.016,0,0.05,"[0.165 0.    0.    0.    0.05  0.    0.    0.    0.    0.    0.    0.016
+ 0.001 0.    0.    0.766 0.001]"
+"172",1909,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Barmah Creek BI_AM1/5DD6F878.WAV","Barmah Creek BI_AM1",2019-11-21,2019-11-22 07:50:00,74,75.5,13086,"Common Spadefoot Toad",0.622,0,0,0,0.622,0,0,0.001,"[0.376 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.622 0.   ]"
+"173",39140,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Boals Deadwoods_AM2/5DF55200.WAV","Boals Deadwoods_AM2",2019-12-14,2019-12-15 08:20:00,114,115.5,13086,"Common Spadefoot Toad",0.652,0.027,0,0,0.652,0.002,0,0.003,"[0.307 0.    0.    0.027 0.003 0.    0.    0.    0.    0.002 0.    0.002
+ 0.006 0.    0.    0.652 0.   ]"
+"174",12204,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201114_124500.WAV","Pinchgut Lagoon_AM2",2020-11-13,2020-11-14 12:45:00,40,41.5,13086,"Common Spadefoot Toad",0.606,0,0,0,0.606,0.311,0,0.028,"[0.037 0.    0.    0.    0.028 0.    0.    0.    0.    0.001 0.    0.311
+ 0.001 0.    0.    0.606 0.015]"
+"175",92072,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Wathours_AM1/20201218_090000.WAV","Wathours_AM1",2020-12-17,2020-12-18 09:00:00,9,10.5,13086,"Common Spadefoot Toad",0.62,0.007,0,0,0.62,0.004,0,0.009,"[0.36  0.    0.    0.007 0.009 0.    0.    0.    0.    0.    0.    0.004
+ 0.001 0.    0.    0.62  0.   ]"
+"176",97518,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Hughs Crossing_AM2/5DEE0860.WAV","Hughs Crossing_AM2",2019-12-08,2019-12-09 19:40:00,31,32.5,13086,"Common Spadefoot Toad",0.83,0.006,0,0,0.83,0.003,0,0,"[0.155 0.    0.    0.006 0.    0.    0.    0.    0.    0.    0.    0.003
+ 0.006 0.    0.    0.83  0.   ]"
+"177",12172,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM2/20201113_104500.WAV","Pinchgut Lagoon_AM2",2020-11-12,2020-11-13 10:45:00,21,22.5,13086,"Common Spadefoot Toad",0.845,0.001,0,0,0.844,0.031,0,0.008,"[0.112 0.    0.    0.001 0.008 0.    0.    0.    0.    0.    0.    0.031
+ 0.003 0.    0.    0.844 0.001]"
+"178",7655,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Pinchgut Lagoon_AM1/20201113_094500.WAV","Pinchgut Lagoon_AM1",2020-11-12,2020-11-13 09:45:00,23,24.5,13086,"Common Spadefoot Toad",0.991,0,0,0,0.99,0.002,0,0.001,"[0.007 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.002
+ 0.    0.    0.    0.99  0.   ]"
+"179",3167,"S:/SoundData/FrogCalls/TLM_2019-20_Barmah-Millewa/Barmah Creek BI_AM1/5DF9F198.WAV","Barmah Creek BI_AM1",2019-12-17,2019-12-18 20:30:00,4,5.5,13086,"Common Spadefoot Toad",0.889,0,0,0,0.889,0.088,0,0.001,"[0.012 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.088
+ 0.008 0.    0.    0.889 0.002]"
+"180",141206,"S:/SoundData/FrogCalls/TLM_2020-21_Barmah-Millewa/Hut Lake_AM1/20201208_103000.WAV","Hut Lake_AM1",2020-12-07,2020-12-08 10:30:00,43,44.5,13086,"Common Spadefoot Toad",0.84,0.012,0,0,0.84,0.001,0,0.009,"[0.131 0.    0.    0.012 0.009 0.    0.    0.    0.    0.    0.    0.001
+ 0.007 0.    0.    0.84  0.   ]"
