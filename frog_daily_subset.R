@@ -110,7 +110,7 @@ for(i in 1:nspecies) {
     #        TopPredictionCounts = sum(Predict_TaxonId == species_list[i]),
     #        CountsPerDay = TopPredictionCounts/as.numeric(DaysDep)) %>%
     group_by(ProbGrp) %>%
-    slice(sample(n(), min(100, n()))) %>%
+    slice(sample(n(), min(50, n()))) %>%
     ungroup() %>%
     select(-ProbGrp) %>%
     distinct()
