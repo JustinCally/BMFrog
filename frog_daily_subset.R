@@ -130,3 +130,27 @@ for(i in 1:nspecies) {
             file = paste0(dir_daily_data, year, "daily_max_", names(species_list)[i], ".csv"))
 }
 
+
+#### Check validated records ####
+files_to_read <- list.files("data/validated_calls")
+sp_read_order <- stringr::str_remove(files_to_read, "_validation.csv")
+
+validated_calls <- list()
+for(i in 1:nspecies) {
+  validated_calls[[sp_read_order[i]]] <- readr::read_csv(paste0("data/validated_calls/", files_to_read[i])) %>%
+    mutate(Validated_Grp = as.character(species_list[[sp_read_order[i]]]),
+           Validation_Species = sp_read_order[i],
+           Validated_Grp_score = !!sym(sp_read_order[i]))
+}
+
+validated_calls_combined <- bind_rows(validated_calls) %>%
+  rowwise() %>%
+  # mutate(Validation_Labels = str_replace_all(Validation_Labels, "Perons", "Peron's"),
+  #        Validation_Labels = str_remove_all(Validation_Labels, " [(]race unknown[)]"),
+  #        Validated_Grp_score = str_remove_all(Validated_Grp_score, " [(]race unknown[)]")) %>%
+  mutate(Detected = stringr::str_detect(Validation_TaxonIDs, Validated_Grp))
+
+validated_calls_combined %>%
+  ggplot() +
+  geom_density(aes(x = Validated_Grp_score, fill = Detected, colour = Detected), position = "jitter", alpha = 0.25) +
+  facet_wrap(~Validation_Species)
