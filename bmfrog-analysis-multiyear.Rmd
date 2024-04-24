@@ -1,0 +1,547 @@
+---
+title: "BMFrog Analysis"
+output: html_document
+date: "2024-03-07"
+---
+
+```{r setup}
+library(tidyverse)
+library(sf)
+library(mapview)
+library(terra)
+library(readr)
+library(readxl)
+library(cmdstanr)
+library(bayesplot)
+library(httr)
+library(VicmapR)
+check_cmdstan_toolchain(fix = TRUE, quiet = TRUE)
+options(mc.cores=4)
+register_knitr_engine(override = FALSE)
+```
+
+# Load Site Data  
+
+```{r}
+site_metadata <- read_excel("data/TLM_Barmah-Millewa_AM_deployment_metadata_all_years.xlsx")
+site_metadata_sf <- site_metadata %>% 
+  st_as_sf(coords = c("X", "Y"), crs = 28355) %>%
+  mutate(`Site name` = case_when(`Site` == "Warri" ~ "Warri Yards", 
+                                 `Site` == "Hughes Crossing" ~ "Hughs Crossing",
+                                 Site == "Little Rushy Swamp" ~ "Little Rushy",
+                                 Site == "Reed Beds Swamp" ~ "Reed Bed Swamp",
+                                 Site == "Wathours Lagoon" ~ "Wathours",
+                                 TRUE ~ `Site`), 
+         Site = paste(`Site name`, AM, sep = "_AM"), 
+         Site_Year = paste(Site, `Monitoring year`, sep = "_"),
+         Year = factor(`Monitoring year`) %>% as.integer(),
+         Cluster = factor(`Site name`) %>% as.integer(),
+         Loc = factor(Site) %>% as.integer(),
+         No_survey_nights = as.numeric(No_PAM_nts)) %>%
+  # arrange(`Site`) %>%
+  filter(!is.na(No_survey_nights) & No_survey_nights > 0)
+
+unique_sites <- site_metadata_sf %>% 
+  group_by(Site) %>%
+  slice(1) %>%
+  select(Site)
+
+#nights deployed 
+nights_dep <- list()
+for(i in 1:nrow(site_metadata_sf)) {
+  nights_dep[[i]] <- data.frame(Site = site_metadata_sf$Site[i], 
+                                Site_Year = site_metadata_sf$Site_Year[i], 
+                           Date = seq.Date(from = as.Date(site_metadata_sf$`Date start`[i]), 
+                                           by = "1 day", 
+                                           length.out = site_metadata_sf$No_survey_nights[i])) #site_metadata_sf$No_survey_nights[i]))
+}
+nights_dep_joined <- bind_rows(nights_dep)
+```
+
+```{r hull, eval = F}
+site_hull <- st_convex_hull(unique_sites %>% st_combine()) %>% 
+  st_transform(3577) %>%
+  st_buffer(5000)
+hydro_data <- vicmap_query("open-data-platform:hy_water_area_polygon") %>%
+  filter(BBOX(site_hull)) %>%
+  collect()
+
+mapview(hydro_data, zcol = "feature_type_code") + mapview(site_metadata_sf)
+
+sf::st_write(site_hull, "data/barmah_hull/barmah_hull.shp")
+sf::st_write(unique_sites %>% st_transform(3577) %>% st_buffer(100), "data/site_metadata_sf/site_metadata_sf.shp", overwrite = T)
+```
+
+```{r hydro, message = F, warning = F, eval = F}
+# load in csv files of hydro conditions 
+# list.files("https://github.com/JustinCally/dea-barmah/tree/main/output")
+# req <- GET("https://api.github.com/repos/JustinCally/dea-barmah/git/trees/main?recursive=1")
+# stop_for_status(req)
+# filelist <- unlist(lapply(content(req)$tree, "[", "path"), use.names = F)
+# csv_files <- paste0("https://raw.githubusercontent.com/JustinCally/dea-barmah/main/",
+#                          grep("output/", filelist, value = TRUE, fixed = TRUE))
+# csv_files <- grep(".ipynb_checkpoints", x = csv)
+# 
+# sapply(function_files, source, verbose = F)
+
+#paste
+csv_files <- paste0("https://raw.githubusercontent.com/JustinCally/dea-barmah/main/output/", site_metadata_sf$Site, ".csv")
+csv_files <- stringr::str_replace_all(csv_files, pattern = " ", replacement = "%20")
+hydryo_data <- list()
+for(i in 1:length(csv_files)) {
+  hydryo_data[[i]] <- readr::read_csv(csv_files[i], show_col_types = F) %>%
+    mutate(Site = site_metadata_sf$Site[i])
+}
+
+hydro_data_combined <- bind_rows(hydryo_data)
+```
+
+```{r interpolation, eval = F}
+#hydro interpolation 
+
+new_df_raw <- data.frame(date = seq(from = min(hydro_data_combined$date),
+                                to = max(hydro_data_combined$date),
+                                by="day"))
+
+interpolate_data <- list()
+
+for(i in 1:length(csv_files)) {
+  
+  hd <- hydryo_data[[i]]
+  
+  mod_pv <- loess(pv ~ as.numeric(date), data = hd, span = 0.075)
+  mod_npv <- loess(npv ~ as.numeric(date), data = hd, span = 0.075)
+  mod_bs <- loess(bs ~ as.numeric(date), data = hd, span = 0.075)
+  mod_wet <- loess(wet ~ as.numeric(date), data = hd, span = 0.075)
+  mod_water <- loess(water ~ as.numeric(date), data = hd, span = 0.075)
+  mod_veg_areas <- loess(veg_areas ~ as.numeric(date), data = hd, span = 0.075)
+
+
+interpolate_data[[i]] <- new_df_raw %>%
+  mutate(Site = site_metadata_sf$Site[i],
+         pv = predict(mod_pv, newdata = new_df_raw),
+         npv = predict(mod_npv, newdata = new_df_raw),
+         bs = predict(mod_bs, newdata = new_df_raw),
+         wet = predict(mod_wet, newdata = new_df_raw),
+         water = predict(mod_water, newdata = new_df_raw),
+         veg_areas = predict(mod_veg_areas, newdata = new_df_raw)) %>%
+  mutate(across(.cols = c(pv,npv,bs, wet, water, veg_areas), 
+                .fns = ~ case_when(.x > 1 ~ 1, 
+                                   .x < 0 ~ 0,
+                                   TRUE ~ .x)))
+
+}
+
+interpolate_combined <- bind_rows(interpolate_data) %>%
+  mutate(Date = as.Date(date)) %>%
+  select(-date)
+
+interpolate_data[[1]] %>%
+  ggplot() +
+  geom_point(aes(x = date, y = pv)) +
+  ylim(c(0,1))
+```
+
+
+```{r precip, eval = F}
+# load in daily precip 
+# https://psl.noaa.gov/data/gridded/data.cpc.globalprecip.html
+precipitation_daily <- c(terra::rast("data/climate/precip_2018.nc"), 
+                         terra::rast("data/climate/precip_2019.nc"), 
+                         terra::rast("data/climate/precip_2020.nc"),
+                         terra::rast("data/climate/precip_2021.nc"), 
+                         terra::rast("data/climate/precip_2022.nc"), 
+                         terra::rast("data/climate/precip_2023.nc"))
+precipitation_daily_df <- bind_cols(site_metadata_sf$Site_Year, 
+                                    extract(precipitation_daily, vect(site_metadata_sf)))
+colnames(precipitation_daily_df) <- c("Site_Year","ID", as.character(seq.Date(from = as.Date("2018-01-01"), 
+                                                     to = as.Date("2023-12-31"), by = "day")))
+
+precipitation_daily_long <- pivot_longer(precipitation_daily_df, 
+                                         cols = 3:2193, names_to = "Date", values_to = "Precipitation") %>%
+  select(-ID) %>%
+  mutate(Date = as.Date(Date)) %>%
+  right_join(nights_dep_joined, by = join_by(Site_Year, Date))
+```
+
+```{r temp, eval = F}
+# load in daily precip 
+# https://psl.noaa.gov/data/gridded/data.cpc.globalprecip.html
+tmin_daily <- c(terra::rast("data/climate/precip_2018.nc"), 
+                         terra::rast("data/climate/tmin_2019.nc"), 
+                         terra::rast("data/climate/tmin_2020.nc"),
+                         terra::rast("data/climate/tmin_2021.nc"), 
+                         terra::rast("data/climate/tmin_2022.nc"), 
+                         terra::rast("data/climate/tmin_2023.nc"))
+tmin_daily_df <- bind_cols(site_metadata_sf$Site_Year, 
+                                    extract(tmin_daily, vect(site_metadata_sf)))
+colnames(tmin_daily_df) <- c("Site_Year","ID", as.character(seq.Date(from = as.Date("2018-01-01"), 
+                                                     to = as.Date("2023-12-31"), by = "day")))
+
+tmin_daily_long <- pivot_longer(tmin_daily_df, 
+                                cols = 3:2193, 
+                                names_to = "Date", 
+                                values_to = "tmin") %>%
+  select(-ID) %>%
+  mutate(Date = as.Date(Date)) %>%
+  right_join(nights_dep_joined, by = join_by(Site_Year, Date))
+```
+
+```{r dailyvars, eval = F}
+daily_vars <- left_join(precipitation_daily_long, 
+                        tmin_daily_long) %>%
+  mutate(Day = lubridate::yday(Date)-243, 
+         Day = case_when(Day < 1 ~ Day + 243 + (365-243), 
+                         TRUE ~ Day),
+         cosDay = 2*pi*Day/365, 
+         sinDay = 2*pi*Day/365) %>% 
+  left_join(interpolate_combined, by = c("Site", "Date")) %>%
+  distinct()
+
+saveRDS(daily_vars, "data/intermediate/daily_vars.rds")
+```
+
+```{r}
+# read in daily vars
+daily_vars <- readRDS("data/intermediate/daily_vars.rds")
+```
+
+
+# All site records 
+```{r}
+site_year <- nights_dep_joined %>% select(Site, Site_Year, Date) %>% 
+  unique() %>% 
+  left_join(site_metadata_sf %>% st_drop_geometry() %>% select(Site_Year, Year, Cluster, Loc), by = join_by(Site_Year))
+
+species_list <- c(`Barking Marsh Frog` = 13059,
+                  `Eastern Sign-bearing Froglet` = 13131,
+                  `Common Froglet` = 13134,
+                  # `Sloane's Froglet` = 13135,
+                  `Common Spadefoot Toad` = 13086,
+                  `Peron's Tree Frog` = 13204,
+                  `Pobblebonk Frog` = 63913,
+                  `Spotted Marsh Frog (race unknown)` = 13063)
+
+nspecies <- length(species_list)
+
+sp_l_col <- paste0("sp_", species_list)
+
+species_cols <- str_extract_all(last(colnames(site_records)), "[-+]?[0-9]+")[[1]] 
+
+site_records_all <- list()
+daily_files <- list.files("data/daily_data/OtherYears/", full.names = T)
+files_to_read <- list.files("data/daily_data/OtherYears/")
+sp_read_order <- stringr::str_remove_all(files_to_read, c("daily_max_|.csv"))
+
+for(i in 1:length(daily_files)) {
+  site_records_all[[i]] <- read_csv(daily_files[i], show_col_types = F) %>% 
+    select(-1) %>% 
+    mutate(DateTime = as.POSIXct(DateTime, tz = Sys.timezone()), 
+           Date = coalesce(Date, as.Date(DateTime - hours(12)))) %>%
+    mutate(`Site` = case_when(Site == "Little Rushy Swamp_AM1" ~ "Little Rushy_AM1",
+                              Site == "Little Rushy Swamp_AM2" ~ "Little Rushy_AM2",
+                              TRUE ~ `Site`)) %>%
+    mutate(Validated_Grp = as.character(species_list[[sp_read_order[i]]]),
+           Validation_Species = sp_read_order[i],
+           Validated_Grp_score = !!sym(sp_read_order[i])) %>%
+    select(FileId, Filename, Site, Date, DateTime, Orig_Start, Orig_End, 
+           Validated_Grp, Validation_Species, Validated_Grp_score) %>% 
+    left_join(site_year) %>%
+    filter(!is.na(Year))
+}
+
+names(site_records_all) <- sp_read_order
+ 
+#### 2023 ####
+site_records_2023 <- list()
+daily_files <- list.files("data/daily_data/2023/", full.names = T)
+files_to_read <- list.files("data/daily_data/2023/")
+sp_read_order <- stringr::str_remove_all(files_to_read, c("daily_max_|.csv"))
+
+for(i in 1:length(daily_files)) {
+  site_records_2023[[i]] <- read_csv(daily_files[i], show_col_types = F) %>% 
+    select(-1) %>% 
+    mutate(Validated_Grp = as.character(species_list[[sp_read_order[i]]]),
+           Validation_Species = sp_read_order[i],
+           Validated_Grp_score = !!sym(sp_read_order[i])) %>% 
+    select(FileId, Filename, Site, Date, DateTime, Orig_Start, Orig_End, 
+           Validated_Grp, Validation_Species, Validated_Grp_score) %>% 
+    left_join(site_year) %>%
+    filter(!is.na(Year))
+}
+
+names(site_records_2023) <- sp_read_order
+
+site_records_combined <- list()
+
+for(x in names(species_list)) {
+  site_records_combined[[x]] <- bind_rows(site_records_all[[x]], site_records_2023[[x]]) %>%
+    mutate(SnippetID = paste(FileId, Site, Date, Orig_Start, Orig_End, sep = "_"))
+}
+
+
+
+```
+
+# Validated site records 
+
+```{r}
+# site_validation <- read_excel("data/TLM_Barmah-Millewa_2022-23_validations_ALL.xlsx") %>%
+#  mutate(Site = case_when(Site == "Warri" ~ "Warri Yards", 
+#                          TRUE ~ Site),
+#         Site = paste(Site, AM, sep = "_AM"))
+
+files_to_read <- list.files("data/validated_calls")
+sp_read_order <- stringr::str_remove(files_to_read, "_validation.csv")
+
+validated_calls <- list()
+for(i in 1:nspecies) {
+  validated_calls[[sp_read_order[i]]] <- readr::read_csv(paste0("data/validated_calls/", files_to_read[i]), 
+                                                         show_col_types = F) %>%
+    mutate(Validated_Grp = as.character(species_list[[sp_read_order[i]]]),
+           Validation_Species = sp_read_order[i],
+           Validated_Grp_score = !!sym(sp_read_order[i]), 
+           Date = as.Date(Date, "%d/%m/%Y")) %>%
+    mutate(Detected = as.integer(stringr::str_detect(Validation_TaxonIDs, Validated_Grp)), 
+           SnippetID = paste(FileId, Site, Date, Orig_Start = Orig_Start_Time, Orig_End = Orig_End_Time, sep = "_")) %>%
+    select(Validated_Grp, Validation_Species, Validated_Grp_score, SnippetID, Detected) 
+    
+}
+
+records_validated <- list()
+
+for(x in names(species_list)) {
+  records_validated[[x]] <- left_join(site_records_combined[[x]], validated_calls[[x]]) %>%
+    mutate(Detected = coalesce(Detected, 2L))
+}
+
+```
+
+```{r}
+# Generate STAN data 
+species_list_cleaned <- species_list[-4]
+
+nspecies_cleaned <- length(species_list_cleaned)
+
+sp_l_col_cleaned <- paste0("sp_", species_list_cleaned)
+
+# joined data
+joined_data <- list()
+site_data <- list()
+
+# indexes for species
+nsites <- length(unique(records_validated[[1]]$Site_Year))
+
+empty_array <- array(dim = c(nsites, length(species_list_cleaned)))
+start_idx_0 <- empty_array
+end_idx_0 <- empty_array
+start_idx_1 <- empty_array
+end_idx_1 <- empty_array
+start_idx_2 <- empty_array
+end_idx_2 <- empty_array
+any_seen <- empty_array
+site_idx_start <- empty_array
+site_idx_end <- empty_array
+
+
+call_rate_matrix <- list()
+
+for(i in 1:length(species_list_cleaned)) {
+
+joined_data[[i]] <- records_validated[[i]] %>%
+  inner_join(daily_vars) %>%
+  mutate(Prob_One = Validated_Grp_score,
+         Site_f = as.integer(factor(Site_Year)), 
+         Prob_f = case_when(Prob_One == 1 ~ 0.999, 
+                            Prob_One == 0 ~ 0.001, 
+                            TRUE ~ Prob_One),
+         Prob_One_M = qlogis(Prob_f)) %>%
+  group_by(Site_f) %>%
+  mutate(any_seen = case_when(any(Detected == 1) ~ 1, 
+                              TRUE ~ 0)) %>%
+  ungroup() %>%
+  arrange(Site_f, Detected) 
+
+site_data[[i]] <- joined_data[[i]] %>%
+  mutate(Loc = as.factor(Site) %>% as.integer(), 
+         Cluster = as.factor(str_remove_all(Site, "_AM1|_AM2")) %>% as.integer()) %>%
+  select(Site_f, Loc, Cluster, Year) %>%
+  distinct() %>%
+  arrange(Site_f)
+
+# Daily precipitation matrix
+theta_form <- ~ scale(Precipitation) + scale(tmin) + scale(wet) + scale(water) + scale(pv) + cosDay + sinDay
+call_rate_matrix[[i]] <- model.matrix(theta_form, data = joined_data[[i]])
+
+for(j in 1:nsites) {
+  start_idx_0[j,i] <- min(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 0))
+  end_idx_0[j,i] <- max(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 0))
+  
+  start_idx_1[j,i] <- min(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 1))
+  end_idx_1[j,i] <- max(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 1))
+  
+  start_idx_2[j,i] <- min(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 2))
+  end_idx_2[j,i] <- max(which(joined_data[[i]]$Site_f == j & joined_data[[i]]$Detected == 2))
+    
+  site_idx_start[j,i] <- min(which(joined_data[[i]]$Site_f == j))
+  site_idx_end[j,i] <- max(which(joined_data[[i]]$Site_f == j))
+}
+
+start_idx_0[is.infinite(start_idx_0[,i]),i] <- 0
+start_idx_1[is.infinite(start_idx_1[,i]),i] <- 0
+start_idx_2[is.infinite(start_idx_2[,i]),i] <- 0
+
+end_idx_0[is.infinite(end_idx_0[,i]),i] <- 0
+end_idx_1[is.infinite(end_idx_1[,i]),i] <- 0
+end_idx_2[is.infinite(end_idx_2[,i]),i] <- 0
+
+any_seen[,i] <- as.integer(start_idx_1[,i] != 0)
+}
+```
+
+
+```{r}
+nfiles <- nrow(joined_data[[1]])
+scores <- lapply(joined_data, function(x) pull(x, Prob_f)) 
+site_list <- lapply(joined_data, function(x) pull(x, Site_f)) 
+loc_code <- lapply(site_data, function(x) pull(x, Loc)) 
+cluster_code <- lapply(site_data, function(x) pull(x, Cluster)) 
+year_code <- lapply(site_data, function(x) pull(x, Year)) 
+
+nyear <- length(unique(unlist(year_code)))
+nloc <- length(unique(unlist(loc_code)))
+nclusters <- length(unique(unlist(cluster_code)))
+
+
+stan_data <- list(nfiles = nfiles, 
+                  nsites = nsites, 
+                  nspec = nspecies_cleaned,
+                  nyear = nyear, 
+                  nloc = nloc, 
+                  nclusters = nclusters,
+                  score = array(unlist(scores),dim=c(nfiles,nspecies_cleaned)), 
+                  loc_code = array(unlist(loc_code),dim=c(nsites,nspecies_cleaned)), 
+                  cluster_code = array(unlist(cluster_code),dim=c(nsites,nspecies_cleaned)), 
+                  year_code = array(unlist(year_code),dim=c(nsites,nspecies_cleaned)), 
+                  site_idx_start = site_idx_start, 
+                  site_idx_end = site_idx_end,
+                  start_idx_0 = start_idx_0, 
+                  end_idx_0 = end_idx_0,
+                  start_idx_1 = start_idx_1, 
+                  end_idx_1 = end_idx_1, 
+                  start_idx_2 = start_idx_2, 
+                  end_idx_2 = end_idx_2, 
+                  any_seen = any_seen, 
+                  theta_mm = call_rate_matrix, 
+                  theta_nc = ncol(call_rate_matrix[[1]]))
+
+stan_data$year_code[stan_data$year_code == 5] <- 4
+
+saveRDS(stan_data, "data/stan_data.rds")
+
+```
+
+
+```{r}
+# cont_model <- cmdstan_model("stan/continuous_model.stan")
+# cont_model_ms <- cmdstan_model("stan/continuous_model_ms.stan")
+# cont_model_ms_beta <- cmdstan_model("stan/continuous_model_ms_beta.stan")
+cont_model_ms_beta <- cmdstan_model("stan/continuous_model_ms_my_beta.stan")
+```
+
+```{r modelparams}
+ni <- 400 #samples
+nw <- 400 #warmups
+nc <- 8 #chains
+```
+
+```{r, eval = F}
+# fit <- cont_model_ms$sample(data = stan_data,
+#                          chains = nc,
+#                          parallel_chains = nc,
+#                          show_messages = TRUE,
+#                          save_warmup = FALSE,
+#                          iter_sampling = ni,
+#                          iter_warmup = nw, adapt_delta = 0.95)
+
+fit <- cont_model_ms_beta$sample(data = stan_data,
+                         chains = nc,
+                         parallel_chains = nc,
+                         show_messages = TRUE,
+                         save_warmup = FALSE,
+                         iter_sampling = ni,
+                         iter_warmup = nw, adapt_delta = 0.90, refresh = 10)
+
+fit$save_object("outputs/fit.rds")
+```
+
+```{r}
+fit <- readRDS("outputs/fit.rds")
+```
+
+
+```{r}
+psi_summary <- fit$summary("psi")
+psi_summary_sp <- list()
+for(i in 1:nspecies_cleaned) {
+  var_names <- paste0("psi[",1:nsites, ",", i, "]")
+  psi_summary_sp[[i]] <- psi_summary %>% 
+    filter(variable %in% var_names) %>%
+    mutate(species = names(species_list)[i], 
+           any_seen = stan_data$any_seen[,i])
+}
+psi_summary <- bind_rows(psi_summary_sp)
+
+psi_summary %>%
+  group_by(any_seen, species) %>%
+  summarise(psi = mean(mean))
+```
+
+```{r}
+# phenology summary 
+theta_phen <- fit$summary("theta_phen") 
+
+theta_phen_spec <- list()
+
+for(i in 1:nspecies_cleaned) {
+  theta_phen_spec[[i]] <- theta_phen %>%
+  filter(str_detect(variable, paste0(",",i,"]"))) %>%
+    mutate(Species = names(species_list)[i], 
+           Day = 1:365, 
+           Date = seq.Date(from = as.Date("2022-09-01"), to = as.Date("2023-08-30"), length.out = 365))
+}
+
+theta_phen_joined <- bind_rows(theta_phen_spec)
+
+theta_phen_joined %>% ggplot(aes(x = Day, 
+                                 y = mean, 
+                                 colour = Species)) +
+  geom_line() +
+  scale_x_continuous(limits = c(min(daily_vars$Day), max(daily_vars$Day)))
+```
+
+```{r}
+nbeta_theta <- ncol(call_rate_matrix[[1]])
+beta_theta_names <- labels(call_rate_matrix[[1]])[[2]]
+theta_summary <- fit$summary("beta_theta")
+theta_summary_sp <- list()
+for(i in 1:nspecies_cleaned) {
+  var_names <- paste0("beta_theta[",i, ",", 1:nbeta_theta, "]")
+  theta_summary_sp[[i]] <- theta_summary %>% 
+    filter(variable %in% var_names) %>%
+    mutate(species = names(species_list)[i], 
+           param = beta_theta_names)
+}
+theta_summary_combined <- bind_rows(theta_summary_sp)
+
+
+theta_summary_combined %>% 
+  ggplot(aes(x = param, y = mean, colour = species)) +
+  geom_pointrange(aes(ymin = q5, ymax = q95), position = position_dodge2(width = 0.5, padding = 0.5))
+```
+
+```{r, fig.height = 8}
+mu_summary <- fit$draws("mu_pred")
+mcmc_areas(mu_summary, prob_outer = 0.9)
+```
+

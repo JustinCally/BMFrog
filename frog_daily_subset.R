@@ -19,38 +19,48 @@ sp_l_col <- paste0("sp_", species_list)
 #   tidyr::separate_wider_delim(cols = "Filename", delim = "/",
 #                               names = c(NA,NA,NA,"Site", NA))
 
-site_records <- read_csv("data/model_results/TLM_Barmah_Frogs_March2024.csv") %>%
-  # rename(Site_prefix = Site) %>%
-  tidyr::separate_wider_delim(cols = "Filename", delim = "/",
-                              names = c(NA,NA,NA,NA, "Site", "HexDate"), too_many = "debug")
+# site_records <- read_csv("data/model_results/TLM_Barmah_Frogs_March2024.csv") %>%
+#   # rename(Site_prefix = Site) %>%
+#   tidyr::separate_wider_delim(cols = "Filename", delim = "/",
+#                               names = c(NA,NA,NA,NA, "Site", "HexDate"), too_many = "debug")
+
+site_records <- read_csv("data/TLM_2022-23_Barmah-Millewa_FrogsEnsemble1_2023.csv") %>%
+  rename(Site_prefix = Site) %>%
+  mutate(Filename1 = Filename) %>%
+  tidyr::separate_wider_delim(cols = "Filename1", delim = "/",
+                              names = c(NA,NA,NA,"Site", NA))
 
 site_records_cleaned <- site_records %>%
-  filter(HexDate != "NOISE") %>%
-  mutate(HexDate = stringr::str_remove_all(HexDate, ".WAV"),
-         Site = case_when(stringr::str_detect(Site, "_AM") ~ Site,
-                          TRUE ~ paste0(Site, "_AM1"))) #%>%
-  # sample_n(10000)
+  mutate(Date = as.Date(Date_evening_of, "%d/%m/%Y"),
+         DateTime = as.POSIXct(paste(Date, Time)))
 
-underscores <- stringr::str_detect(site_records_cleaned$HexDate, "_")
+# site_records_cleaned <- site_records %>%
+#   filter(HexDate != "NOISE") %>%
+#   mutate(HexDate = stringr::str_remove_all(HexDate, ".WAV"),
+#          Site = case_when(stringr::str_detect(Site, "_AM") ~ Site,
+#                           TRUE ~ paste0(Site, "_AM1"))) #%>%
+#   # sample_n(10000)
+#
+# underscores <- stringr::str_detect(site_records_cleaned$HexDate, "_")
+#
+# site_records_cleaned$DateTime <- NA_POSIXct_
+#
+# site_records_cleaned$DateTime[underscores] <- as.POSIXct(site_records_cleaned$HexDate[underscores],
+#                                                             format = c("%Y%m%d_%H%M%OS"), tz = Sys.timezone())
+#
+# site_records_cleaned$DateTime[!underscores] <- as.POSIXct(as.numeric(as.hexmode(site_records_cleaned$HexDate[!underscores])),
+#                                                              origin = "1970-01-01", tz = "UTC")
+#
+# site_records_cleaned$DateTime <- as.POSIXct(site_records_cleaned$DateTime, tz = "Australia/Melbourne")
 
-site_records_cleaned$DateTime <- NA_POSIXct_
-
-site_records_cleaned$DateTime[underscores] <- as.POSIXct(site_records_cleaned$HexDate[underscores],
-                                                            format = c("%Y%m%d_%H%M%OS"), tz = Sys.timezone())
-
-site_records_cleaned$DateTime[!underscores] <- as.POSIXct(as.numeric(as.hexmode(site_records_cleaned$HexDate[!underscores])),
-                                                             origin = "1970-01-01", tz = "UTC")
-
-site_records_cleaned$DateTime <- as.POSIXct(site_records_cleaned$DateTime, tz = "Australia/Melbourne")
-
-times <- lubridate::hour(site_records_cleaned$DateTime)
-hist(times[!underscores])
+# times <- lubridate::hour(site_records_cleaned$DateTime)
+# hist(times[!underscores])
 #list all of species codes and names (Is this all the classes in the model currently?)
 class_list<-read_csv("data/ClassList.csv")
 
 #data with column containing string of category probabilities from the AI
-site_records_cleaned$probvec <- site_records_cleaned[[13]]
-probcolname <- names(site_records_cleaned)[13]
+site_records_cleaned$probvec <- site_records_cleaned[[16]]
+probcolname <- names(site_records_cleaned)[16]
 
 #clean and split the probabilities
 probs <- site_records_cleaned %>% select(probvec) %>%
@@ -67,7 +77,7 @@ frog_probs <- probs %>%
   `colnames<-`(names(species_list))
 
 site_records_date <- site_records_cleaned %>%
-  mutate(Date = as.Date(DateTime - hours(12))) %>%
+  # mutate(Date = as.Date(DateTime - hours(12))) %>%
   bind_cols(frog_probs)
 
 daily_max_record <- list()
@@ -118,7 +128,7 @@ for(i in 1:nspecies) {
 
 dir_write_path <- "data/for_validation/"
 dir_daily_data <- "data/daily_data/"
-year <- "OtherYears/"
+year <- "2023/"
 
 for(i in 1:nspecies) {
  write.csv(records_to_validate[[i]],
