@@ -39,7 +39,9 @@ site_metadata_sf <- site_metadata %>%
          Loc = factor(Site) %>% as.integer(),
          No_survey_nights = as.numeric(No_PAM_nts)) %>%
   # arrange(`Site`) %>%
-  filter(!is.na(No_survey_nights) & No_survey_nights > 0)
+  filter(!is.na(No_survey_nights) & No_survey_nights > 0) %>%
+  arrange(Site_Year) %>%
+  filter(!(Site_Year %in% c("Rookery_AM1_2022-23", "Two Mile Bunyip_AM2_2021-22")))
 
 unique_sites <- site_metadata_sf %>% 
   group_by(Site) %>%
@@ -85,12 +87,12 @@ sf::st_write(unique_sites %>% st_transform(3577) %>% st_buffer(100), "data/site_
 # sapply(function_files, source, verbose = F)
 
 #paste
-csv_files <- paste0("https://raw.githubusercontent.com/JustinCally/dea-barmah/main/output/", site_metadata_sf$Site, ".csv")
+csv_files <- paste0("https://raw.githubusercontent.com/JustinCally/dea-barmah/main/output/", unique(site_metadata_sf$Site), ".csv")
 csv_files <- stringr::str_replace_all(csv_files, pattern = " ", replacement = "%20")
 hydryo_data <- list()
 for(i in 1:length(csv_files)) {
   hydryo_data[[i]] <- readr::read_csv(csv_files[i], show_col_types = F) %>%
-    mutate(Site = site_metadata_sf$Site[i])
+    mutate(Site = unique(site_metadata_sf$Site)[i])
 }
 
 hydro_data_combined <- bind_rows(hydryo_data)
@@ -118,7 +120,7 @@ for(i in 1:length(csv_files)) {
 
 
 interpolate_data[[i]] <- new_df_raw %>%
-  mutate(Site = site_metadata_sf$Site[i],
+  mutate(Site = unique(site_metadata_sf$Site)[i],
          pv = predict(mod_pv, newdata = new_df_raw),
          npv = predict(mod_npv, newdata = new_df_raw),
          bs = predict(mod_bs, newdata = new_df_raw),
@@ -136,7 +138,7 @@ interpolate_combined <- bind_rows(interpolate_data) %>%
   mutate(Date = as.Date(date)) %>%
   select(-date)
 
-interpolate_data[[1]] %>%
+interpolate_data[[62]] %>%
   ggplot() +
   geom_point(aes(x = date, y = pv)) +
   ylim(c(0,1))
@@ -151,14 +153,15 @@ precipitation_daily <- c(terra::rast("data/climate/precip_2018.nc"),
                          terra::rast("data/climate/precip_2020.nc"),
                          terra::rast("data/climate/precip_2021.nc"), 
                          terra::rast("data/climate/precip_2022.nc"), 
-                         terra::rast("data/climate/precip_2023.nc"))
+                         terra::rast("data/climate/precip_2023.nc"),
+                         terra::rast("data/climate/precip_2024.nc"))
 precipitation_daily_df <- bind_cols(site_metadata_sf$Site_Year, 
                                     extract(precipitation_daily, vect(site_metadata_sf)))
 colnames(precipitation_daily_df) <- c("Site_Year","ID", as.character(seq.Date(from = as.Date("2018-01-01"), 
-                                                     to = as.Date("2023-12-31"), by = "day")))
+                                                     to = as.Date("2024-05-13"), by = "day")))
 
 precipitation_daily_long <- pivot_longer(precipitation_daily_df, 
-                                         cols = 3:2193, names_to = "Date", values_to = "Precipitation") %>%
+                                         cols = 3:2327, names_to = "Date", values_to = "Precipitation") %>%
   select(-ID) %>%
   mutate(Date = as.Date(Date)) %>%
   right_join(nights_dep_joined, by = join_by(Site_Year, Date))
@@ -172,14 +175,15 @@ tmin_daily <- c(terra::rast("data/climate/precip_2018.nc"),
                          terra::rast("data/climate/tmin_2020.nc"),
                          terra::rast("data/climate/tmin_2021.nc"), 
                          terra::rast("data/climate/tmin_2022.nc"), 
-                         terra::rast("data/climate/tmin_2023.nc"))
+                         terra::rast("data/climate/tmin_2023.nc"),
+                         terra::rast("data/climate/tmin_2024.nc"))
 tmin_daily_df <- bind_cols(site_metadata_sf$Site_Year, 
                                     extract(tmin_daily, vect(site_metadata_sf)))
 colnames(tmin_daily_df) <- c("Site_Year","ID", as.character(seq.Date(from = as.Date("2018-01-01"), 
-                                                     to = as.Date("2023-12-31"), by = "day")))
+                                                     to = as.Date("2024-05-13"), by = "day")))
 
 tmin_daily_long <- pivot_longer(tmin_daily_df, 
-                                cols = 3:2193, 
+                                cols = 3:2327, 
                                 names_to = "Date", 
                                 values_to = "tmin") %>%
   select(-ID) %>%
@@ -195,7 +199,7 @@ daily_vars <- left_join(precipitation_daily_long,
                          TRUE ~ Day),
          cosDay = 2*pi*Day/365, 
          sinDay = 2*pi*Day/365) %>% 
-  left_join(interpolate_combined, by = c("Site", "Date")) %>%
+  inner_join(interpolate_combined, by = c("Site", "Date")) %>%
   distinct()
 
 saveRDS(daily_vars, "data/intermediate/daily_vars.rds")
@@ -226,7 +230,7 @@ nspecies <- length(species_list)
 
 sp_l_col <- paste0("sp_", species_list)
 
-species_cols <- str_extract_all(last(colnames(site_records)), "[-+]?[0-9]+")[[1]] 
+# species_cols <- str_extract_all(last(colnames(site_records)), "[-+]?[0-9]+")[[1]] 
 
 site_records_all <- list()
 daily_files <- list.files("data/daily_data/OtherYears/", full.names = T)
@@ -252,10 +256,10 @@ for(i in 1:length(daily_files)) {
 
 names(site_records_all) <- sp_read_order
  
-#### 2023 ####
+#### 2021-24 ####
 site_records_2023 <- list()
-daily_files <- list.files("data/daily_data/2023/", full.names = T)
-files_to_read <- list.files("data/daily_data/2023/")
+daily_files <- list.files("data/daily_data/2021-2024/", full.names = T)
+files_to_read <- list.files("data/daily_data/2021-2024/")
 sp_read_order <- stringr::str_remove_all(files_to_read, c("daily_max_|.csv"))
 
 for(i in 1:length(daily_files)) {
@@ -291,12 +295,12 @@ for(x in names(species_list)) {
 #                          TRUE ~ Site),
 #         Site = paste(Site, AM, sep = "_AM"))
 
-files_to_read <- list.files("data/validated_calls")
+files_to_read <- list.files("data/validated_calls/OtherYears")
 sp_read_order <- stringr::str_remove(files_to_read, "_validation.csv")
 
 validated_calls <- list()
 for(i in 1:nspecies) {
-  validated_calls[[sp_read_order[i]]] <- readr::read_csv(paste0("data/validated_calls/", files_to_read[i]), 
+  validated_calls[[sp_read_order[i]]] <- readr::read_csv(paste0("data/validated_calls/OtherYears/", files_to_read[i]), 
                                                          show_col_types = F) %>%
     mutate(Validated_Grp = as.character(species_list[[sp_read_order[i]]]),
            Validation_Species = sp_read_order[i],
@@ -308,16 +312,36 @@ for(i in 1:nspecies) {
     
 }
 
+
+
+files_to_read_2 <- list.files("data/validated_calls/2021-2024")
+sp_read_order_2 <- stringr::str_remove(files_to_read_2, "_validation.csv")
+
+validated_calls_2 <- list()
+for(i in 1:nspecies) {
+  validated_calls_2[[sp_read_order_2[i]]] <- validated_calls[[sp_read_order_2[i]]] %>% bind_rows(readr::read_csv(paste0("data/validated_calls/2021-2024/", files_to_read_2[i]), 
+                                                         show_col_types = F) %>%
+    mutate(Validated_Grp = as.character(species_list[[sp_read_order_2[i]]]),
+           Validation_Species = sp_read_order_2[i],
+           Validated_Grp_score = !!sym(sp_read_order_2[i]), 
+           Date = as.Date(Date, "%d/%m/%Y")) %>%
+    mutate(Detected = as.integer(stringr::str_detect(Validation_TaxonIDs, Validated_Grp)), 
+           SnippetID = paste(FileId, Site, Date, Orig_Start = Orig_Start_Time, Orig_End = Orig_End_Time, sep = "_")) %>%
+    select(Validated_Grp, Validation_Species, Validated_Grp_score, SnippetID, Detected))
+    
+}
+
 records_validated <- list()
 
 for(x in names(species_list)) {
-  records_validated[[x]] <- left_join(site_records_combined[[x]], validated_calls[[x]]) %>%
-    mutate(Detected = coalesce(Detected, 2L))
+  records_validated[[x]] <- left_join(site_records_combined[[x]], validated_calls_2[[x]]) %>%
+    mutate(Detected = coalesce(Detected, 2L)) %>%
+    arrange(Site_Year)
 }
 
 ```
 
-```{r}
+```{r, message = F, warning = F}
 # Generate STAN data 
 species_list_cleaned <- species_list[-4]
 
@@ -330,6 +354,7 @@ joined_data <- list()
 site_data <- list()
 
 # indexes for species
+site_names <- unique(records_validated[[1]]$Site_Year)
 nsites <- length(unique(records_validated[[1]]$Site_Year))
 
 empty_array <- array(dim = c(nsites, length(species_list_cleaned)))
@@ -349,7 +374,7 @@ call_rate_matrix <- list()
 for(i in 1:length(species_list_cleaned)) {
 
 joined_data[[i]] <- records_validated[[i]] %>%
-  inner_join(daily_vars) %>%
+  inner_join(daily_vars %>% na.omit()) %>%
   mutate(Prob_One = Validated_Grp_score,
          Site_f = as.integer(factor(Site_Year)), 
          Prob_f = case_when(Prob_One == 1 ~ 0.999, 
@@ -365,7 +390,7 @@ joined_data[[i]] <- records_validated[[i]] %>%
 site_data[[i]] <- joined_data[[i]] %>%
   mutate(Loc = as.factor(Site) %>% as.integer(), 
          Cluster = as.factor(str_remove_all(Site, "_AM1|_AM2")) %>% as.integer()) %>%
-  select(Site_f, Loc, Cluster, Year) %>%
+  select(Site_f, Loc, Cluster, Year, Site_Year) %>%
   distinct() %>%
   arrange(Site_f)
 
@@ -397,6 +422,33 @@ end_idx_2[is.infinite(end_idx_2[,i]),i] <- 0
 
 any_seen[,i] <- as.integer(start_idx_1[,i] != 0)
 }
+```
+
+```{r}
+# read in updated any seen validations 
+any_seen_add <- readr::read_csv("data/any_seen/sp_detect_per_site_per_year.csv") %>% 
+      mutate(`Site_AM` = case_when(Site_AM == "Little Rushy Swamp_AM1" ~ "Little Rushy_AM1",
+                              Site_AM == "Little Rushy Swamp_AM2" ~ "Little Rushy_AM2",
+                              Site_AM ==  "Hughes Crossing_AM1" ~ "Hughs Crossing_AM1",
+                              Site_AM ==  "Hughes Crossing_AM2" ~ "Hughs Crossing_AM2",
+                              Site_AM == "Reed Beds Swamp_AM1" ~ "Reed Bed Swamp_AM1",
+                              Site_AM == "Reed Beds Swamp_AM2" ~ "Reed Bed Swamp_AM2",
+                              Site_AM == "Wathours Lagoon_AM1" ~ "Wathours_AM1",
+                              Site_AM == "Wathours Lagoon_AM2" ~ "Wathours_AM2",
+                              TRUE ~ `Site_AM`)) %>%
+  mutate(Site_Year = paste(Site_AM, Year, sep = "_")) %>%
+  arrange(Site_Year) 
+
+setdiff(site_names, any_seen_add$Site_Year) %>% paste(collapse = "\n") %>% cat()
+
+any_seen_clean <- any_seen_add %>% filter(Site_Year %in% site_names) %>%
+  select(`Barking Marsh Frog`,
+         `Eastern Sign-bearing Froglet` = `Eastern Sign-Bearing Froglet`,
+         `Common Froglet`, 
+         `Peron's Tree Frog`, 
+         `Pobblebonk Frog` = Pobblebonk, 
+         `Spotted Marsh Frog (race unknown)` = `Spotted Marsh Frog`) %>%
+  as.matrix()
 ```
 
 
@@ -431,11 +483,11 @@ stan_data <- list(nfiles = nfiles,
                   end_idx_1 = end_idx_1, 
                   start_idx_2 = start_idx_2, 
                   end_idx_2 = end_idx_2, 
-                  any_seen = any_seen, 
+                  any_seen = any_seen_clean, 
                   theta_mm = call_rate_matrix, 
                   theta_nc = ncol(call_rate_matrix[[1]]))
 
-stan_data$year_code[stan_data$year_code == 5] <- 4
+# stan_data$year_code[stan_data$year_code == 5] <- 4
 
 saveRDS(stan_data, "data/stan_data.rds")
 
@@ -450,8 +502,8 @@ cont_model_ms_beta <- cmdstan_model("stan/continuous_model_ms_my_beta.stan")
 ```
 
 ```{r modelparams}
-ni <- 400 #samples
-nw <- 400 #warmups
+ni <- 150 #samples
+nw <- 150 #warmups
 nc <- 8 #chains
 ```
 
@@ -470,7 +522,7 @@ fit <- cont_model_ms_beta$sample(data = stan_data,
                          show_messages = TRUE,
                          save_warmup = FALSE,
                          iter_sampling = ni,
-                         iter_warmup = nw, adapt_delta = 0.90, refresh = 10)
+                         iter_warmup = nw, refresh = 10)
 
 fit$save_object("outputs/fit.rds")
 ```

@@ -1,0 +1,442 @@
+FileId,Filename,Site,Date,DateTime,Start_Time,End_Time,Orig_Start_Time,Orig_End_Time,Observed_TaxonId,Observed_Label,Predict_TaxonId,Predict_Label,Probability,Barking Marsh Frog,Eastern Sign-bearing Froglet,Common Froglet,Common Spadefoot Toad,Peron's Tree Frog,Pobblebonk Frog,Spotted Marsh Frog (race unknown),"[-903723   13033   13042   13059   13063   13120   13125   13131   13134
+   13135   13182   13204   13936   63913   13207   13086  525739]",Validation_TaxonIDs,Validation_Labels,Validation_User,Validation_Time,Valdiation_Progress_Index
+90544,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Lowries Pump_AM1/20220301_131500.WAV,Lowries Pump_AM1,1/03/2022,2/03/2022 0:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.805,0.002,0.002,0.008,0,0.156,0.002,0.024,"[0.804 0.    0.    0.002 0.024 0.    0.    0.002 0.008 0.    0.    0.156
+ 0.    0.002 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:16,0
+52923,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Horseshoe Lagoon_AM2/20230916_204500.WAV,Horseshoe Lagoon_AM2,16/09/2023,17/09/2023 6:45,20,21.5,20,21.5,13059,Barking Marsh Frog,13059,Barking Marsh Frog,0.464,0.464,0.055,0.11,0.001,0.017,0.003,0.018,"[0.314 0.006 0.    0.464 0.018 0.001 0.001 0.055 0.11  0.001 0.004 0.017
+ 0.003 0.003 0.001 0.001 0.001]",-903723,Not A Frog,LD,14/05/2024 16:16,1
+175106,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Whores Creek_AM2/20220116_123000.WAV,Whores Creek_AM2,16/01/2022,16/01/2022 23:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.888,0.001,0.001,0.018,0.001,0.074,0,0.017,"[0.888 0.    0.    0.001 0.017 0.    0.    0.001 0.018 0.    0.001 0.074
+ 0.    0.    0.    0.001 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:16,2
+48967,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Horseshoe Lagoon_AM1/20230208_201500.WAV,Horseshoe Lagoon_AM1,8/02/2023,9/02/2023 7:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.901,0.002,0.032,0.001,0.002,0.031,0.001,0.01,"[0.901 0.    0.    0.002 0.01  0.002 0.    0.032 0.001 0.014 0.    0.031
+ 0.001 0.001 0.    0.002 0.002]",-903723,Not A Frog,LD,14/05/2024 16:16,3
+82434,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Pinchgut Lagoon_AM2/20231216_003000.WAV,Pinchgut Lagoon_AM2,15/12/2023,16/12/2023 11:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.644,0.342,0.001,0.001,0.001,0,0.003,0.002,"[0.644 0.001 0.    0.342 0.002 0.    0.    0.001 0.001 0.003 0.001 0.
+ 0.    0.003 0.001 0.001 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:16,4
+96634,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM1/20211017_114500.WAV,Mannions_AM1,16/10/2021,17/10/2021 22:45,31,32.5,31,32.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.441,0,0.441,0.126,0,0,0.001,0.002,"[0.431 0.    0.    0.    0.002 0.    0.    0.441 0.126 0.    0.    0.
+ 0.    0.001 0.    0.    0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:16,5
+72928,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Pinchgut Lagoon_AM2/20221019_223000.WAV,Pinchgut Lagoon_AM2,19/10/2022,20/10/2022 9:30,4,5.5,4,5.5,525739,Frogs Galore,525739,Frogs Galore,0.33,0.002,0.113,0.121,0.01,0.004,0.03,0.067,"[0.28  0.009 0.    0.002 0.067 0.    0.001 0.113 0.121 0.005 0.022 0.004
+ 0.003 0.03  0.004 0.01  0.33 ]",13131; 13204; 525739,Eastern Sign-bearing Froglet; Perons Tree Frog; Frogs,LD,14/05/2024 16:16,6
+21631,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bucks Crossing_AM2/20221130_201500.WAV,Bucks Crossing_AM2,30/11/2022,1/12/2022 7:15,7,8.5,7,8.5,13936,Large Brown Tree Frog,13936,Large Brown Tree Frog,0.424,0.006,0.001,0.004,0.018,0.384,0.003,0.006,"[0.029 0.004 0.002 0.006 0.006 0.005 0.001 0.001 0.004 0.003 0.101 0.384
+ 0.424 0.003 0.002 0.018 0.007]",13204; 525739,Perons Tree Frog; Frogs,LD,14/05/2024 16:16,7
+18121,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Black Swamp_AM1/20211218_090000.WAV,Black Swamp_AM1,17/12/2021,18/12/2021 20:00,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.802,0.001,0.001,0.06,0,0.016,0.011,0.101,"[0.802 0.    0.    0.001 0.101 0.007 0.    0.001 0.06  0.    0.    0.016
+ 0.    0.011 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:16,8
+70708,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Pinchgut Lagoon_AM1/20230114_193000.WAV,Pinchgut Lagoon_AM1,14/01/2023,15/01/2023 6:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.799,0.01,0.016,0.079,0.001,0.058,0.001,0.018,"[0.799 0.001 0.001 0.01  0.018 0.003 0.    0.016 0.079 0.004 0.007 0.058
+ 0.001 0.001 0.    0.001 0.002]",-903723,Not A Frog,LD,14/05/2024 16:16,9
+9152,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM2/20231109_234500.WAV,Black Gate Lagoon_AM2,9/11/2023,10/11/2023 10:45,3,4.5,3,4.5,13204,Perons Tree Frog,13204,Perons Tree Frog,0.485,0,0,0,0,0.485,0.021,0.012,"[0.473 0.    0.    0.    0.012 0.    0.    0.    0.    0.001 0.002 0.485
+ 0.002 0.021 0.003 0.    0.   ]",13204; -3,Perons Tree Frog; Do not use,LD,14/05/2024 16:16,10
+74131,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Hut Lake_AM1/20211203_140000.WAV,Hut Lake_AM1,3/12/2021,4/12/2021 1:00,31,32.5,31,32.5,13063,Spotted Marsh Frog (race unknown),13063,Spotted Marsh Frog (race unknown),0.396,0,0,0.001,0.004,0.012,0.01,0.396,"[0.358 0.002 0.    0.    0.396 0.    0.001 0.    0.001 0.001 0.206 0.012
+ 0.006 0.01  0.    0.004 0.002]",13063; -3,Spotted Marsh Frog (race unknown); Do not use,LD,14/05/2024 16:16,11
+118822,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Rookery_AM1/20211120_113000.WAV,Rookery_AM1,19/11/2021,20/11/2021 22:30,47,48.5,47,48.5,13063,Spotted Marsh Frog (race unknown),13063,Spotted Marsh Frog (race unknown),0.562,0.001,0.002,0.001,0.008,0.026,0.008,0.562,"[0.388 0.    0.    0.001 0.562 0.    0.    0.002 0.001 0.    0.001 0.026
+ 0.002 0.008 0.    0.008 0.   ]",13204; -3,Perons Tree Frog; Do not use,LD,14/05/2024 16:17,12
+12959,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Black Gate Lagoon_AM2/20211114_143000.WAV,Black Gate Lagoon_AM2,14/11/2021,15/11/2021 1:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.998,0,0.001,0,0,0,0,0.001,"[0.998 0.    0.    0.    0.001 0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.    0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:17,13
+2209,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Big Bog_AM1/20230111_190000.WAV,Big Bog_AM1,11/01/2023,12/01/2023 6:00,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.647,0,0.024,0.003,0.011,0,0.2,0.113,"[0.647 0.    0.    0.    0.113 0.    0.    0.024 0.003 0.    0.    0.
+ 0.    0.2   0.    0.011 0.001]",-903723,Not A Frog,LD,14/05/2024 16:17,14
+87674,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Reed Bed Swamp_AM2/20230117_190000.WAV,Reed Bed Swamp_AM2,17/01/2023,18/01/2023 6:00,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.833,0.018,0.021,0.033,0,0.055,0.001,0.035,"[0.833 0.    0.    0.018 0.035 0.    0.    0.021 0.033 0.001 0.001 0.055
+ 0.001 0.001 0.    0.    0.001]",-903723,Not A Frog,LD,14/05/2024 16:17,15
+8810,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM2/20231026_221500.WAV,Black Gate Lagoon_AM2,26/10/2023,27/10/2023 9:15,34,35.5,34,35.5,13063,Spotted Marsh Frog (race unknown),13063,Spotted Marsh Frog (race unknown),0.574,0.024,0.003,0.024,0.058,0.002,0.049,0.574,"[0.263 0.    0.    0.024 0.574 0.    0.    0.003 0.024 0.    0.001 0.002
+ 0.001 0.049 0.    0.058 0.001]",-903723,Not A Frog,LD,14/05/2024 16:17,16
+62554,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Lowries Pump_AM2/20230318_210000.WAV,Lowries Pump_AM2,18/03/2023,19/03/2023 8:00,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.936,0,0.001,0,0,0,0.061,0.001,"[0.936 0.    0.    0.    0.001 0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.061 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:17,17
+51023,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Horseshoe Lagoon_AM1/20231004_214500.WAV,Horseshoe Lagoon_AM1,4/10/2023,5/10/2023 8:45,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.898,0.002,0,0.002,0.001,0.001,0.087,0.001,"[0.898 0.    0.    0.002 0.001 0.    0.    0.    0.002 0.004 0.    0.001
+ 0.    0.087 0.001 0.001 0.001]",-903723,Not A Frog,LD,14/05/2024 16:17,18
+87828,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Lowries Pump_AM1/20211108_121500.WAV,Lowries Pump_AM1,8/11/2021,8/11/2021 23:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.977,0,0,0,0,0.013,0.008,0.002,"[0.976 0.    0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.013
+ 0.    0.008 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:17,19
+72509,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Pinchgut Lagoon_AM1/20230330_194500.WAV,Pinchgut Lagoon_AM1,30/03/2023,31/03/2023 6:45,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.858,0.022,0.009,0.003,0,0.031,0.002,0.071,"[0.858 0.    0.    0.022 0.071 0.002 0.    0.009 0.003 0.    0.001 0.031
+ 0.    0.002 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:17,20
+59198,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Hughes Crossing_AM2/20231119_233000.WAV,Hughes Crossing_AM2,19/11/2023,20/11/2023 10:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.827,0,0,0.005,0,0.003,0,0.001,"[0.827 0.    0.    0.    0.001 0.    0.    0.    0.005 0.163 0.    0.003
+ 0.    0.    0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:18,21
+175290,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Whores Creek_AM2/20220124_103000.WAV,Whores Creek_AM2,23/01/2022,24/01/2022 21:30,30,31.5,30,31.5,13204,Perons Tree Frog,13204,Perons Tree Frog,0.513,0.001,0,0,0,0.513,0.011,0.05,"[0.417 0.    0.    0.001 0.05  0.001 0.    0.    0.    0.    0.003 0.513
+ 0.004 0.011 0.    0.    0.   ]",13204,Perons Tree Frog,LD,14/05/2024 16:18,22
+107507,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Warri Yards_AM2/20230203_211500.WAV,Warri Yards_AM2,3/02/2023,4/02/2023 8:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.632,0.002,0.026,0.003,0.001,0.002,0.14,0.193,"[0.632 0.    0.    0.002 0.193 0.001 0.    0.026 0.003 0.001 0.    0.002
+ 0.    0.14  0.    0.001 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:18,23
+24439,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bunyip Gully Gowers_AM1/20221202_201500.WAV,Bunyip Gully Gowers_AM1,2/12/2022,3/12/2022 7:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.928,0.001,0.002,0.005,0.001,0.023,0.001,0.002,"[0.928 0.001 0.002 0.001 0.002 0.    0.    0.002 0.005 0.003 0.022 0.023
+ 0.005 0.001 0.001 0.001 0.001]",-903723,Not A Frog,LD,14/05/2024 16:18,24
+31211,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM2/20231201_004500.WAV,Burial Lagoon_AM2,30/11/2023,1/12/2023 11:45,27,28.5,27,28.5,525739,Frogs Galore,525739,Frogs Galore,0.428,0,0.001,0.001,0.004,0.045,0.2,0.001,"[0.218 0.    0.    0.    0.001 0.    0.    0.001 0.001 0.081 0.001 0.045
+ 0.    0.2   0.021 0.004 0.428]",13059; 13063,Barking Marsh Frog; Spotted Marsh Frog (race unknown),LD,14/05/2024 16:19,25
+18660,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Bucks Crossing_AM2/20231210_003000.WAV,Bucks Crossing_AM2,9/12/2023,10/12/2023 11:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.983,0,0.001,0,0.005,0,0.009,0.001,"[0.983 0.    0.    0.    0.001 0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.009 0.    0.005 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:19,26
+141982,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Towrong Creek_AM1/20211229_113000.WAV,Towrong Creek_AM1,28/12/2021,29/12/2021 22:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.977,0,0,0.001,0.005,0,0.002,0.01,"[0.976 0.    0.    0.    0.01  0.    0.    0.    0.001 0.    0.    0.
+ 0.    0.002 0.    0.005 0.005]",-903723,Not A Frog,LD,14/05/2024 16:19,27
+128469,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Steamer Plain_AM1/20211222_111500.WAV,Steamer Plain_AM1,21/12/2021,22/12/2021 22:15,42,43.5,42,43.5,13204,Perons Tree Frog,13204,Perons Tree Frog,0.554,0.001,0.001,0.001,0.001,0.554,0.001,0.013,"[0.184 0.029 0.001 0.001 0.013 0.    0.001 0.001 0.001 0.004 0.198 0.554
+ 0.007 0.001 0.    0.001 0.004]",13204; -3,Perons Tree Frog; Do not use,LD,14/05/2024 16:19,28
+80169,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Pinchgut Lagoon_AM1/20231220_221500.WAV,Pinchgut Lagoon_AM1,20/12/2023,21/12/2023 9:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.98,0,0.002,0.001,0,0.011,0.001,0.005,"[0.98  0.    0.    0.    0.005 0.    0.    0.002 0.001 0.    0.    0.011
+ 0.    0.001 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:19,29
+44078,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Waterhole_AM1/20211119_124500.WAV,Bunyip Waterhole_AM1,19/11/2021,19/11/2021 23:45,58,59.5,58,59.5,525739,Frogs Galore,525739,Frogs Galore,0.338,0,0.109,0.001,0.001,0.036,0.006,0.238,"[0.268 0.    0.    0.    0.238 0.001 0.    0.109 0.001 0.001 0.    0.036
+ 0.001 0.006 0.    0.001 0.338]",13063; 13131; 13204,Spotted Marsh Frog (race unknown); Eastern Sign-bearing Froglet; Perons Tree Frog,LD,14/05/2024 16:19,30
+45212,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Waterhole_AM1/20220105_141500.WAV,Bunyip Waterhole_AM1,5/01/2022,6/01/2022 1:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.994,0,0,0,0.004,0,0,0.002,"[0.994 0.    0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.    0.    0.004 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:19,31
+81917,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Little Rushy Swamp_AM1/20211210_103000.WAV,Little Rushy Swamp_AM1,9/12/2021,10/12/2021 21:30,6,7.5,6,7.5,13204,Perons Tree Frog,13204,Perons Tree Frog,0.464,0.003,0.008,0.009,0.017,0.464,0.003,0.064,"[0.096 0.033 0.006 0.003 0.064 0.008 0.018 0.008 0.009 0.016 0.09  0.464
+ 0.146 0.003 0.004 0.017 0.015]",13059; 13063; 525739,Barking Marsh Frog; Spotted Marsh Frog (race unknown); Frogs,LD,14/05/2024 16:19,32
+64258,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Mannions_AM1/20221207_210000.WAV,Mannions_AM1,7/12/2022,8/12/2022 8:00,2,3.5,2,3.5,13204,Perons Tree Frog,13204,Perons Tree Frog,0.439,0.001,0.001,0.002,0.006,0.439,0.003,0.002,"[0.068 0.004 0.005 0.001 0.002 0.002 0.003 0.001 0.002 0.002 0.094 0.439
+ 0.161 0.003 0.004 0.006 0.203]",13204,Perons Tree Frog,LD,14/05/2024 16:19,33
+1088,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Big Bog_AM1/20230922_234500.WAV,Big Bog_AM1,22/09/2023,23/09/2023 9:45,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.851,0.002,0.001,0.003,0.001,0.001,0.087,0.009,"[0.85  0.001 0.001 0.002 0.009 0.    0.    0.001 0.003 0.003 0.001 0.001
+ 0.    0.087 0.038 0.001 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:19,34
+65182,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20211002_144500.WAV,Horseshoe Lagoon_AM1,2/10/2021,3/10/2021 0:45,18,19.5,18,19.5,13204,Perons Tree Frog,13204,Perons Tree Frog,0.7,0,0,0,0,0.7,0.106,0.008,"[0.093 0.001 0.    0.    0.008 0.    0.    0.    0.    0.    0.013 0.7
+ 0.002 0.106 0.    0.    0.077]",13134; 13204; 63913,Common Froglet; Perons Tree Frog; Pobblebonk Frog,LD,14/05/2024 16:20,35
+40281,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Duck Lagoon_AM1/20221101_204500.WAV,Duck Lagoon_AM1,1/11/2022,2/11/2022 7:45,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.957,0.003,0.001,0.001,0.001,0.002,0.001,0.029,"[0.957 0.    0.    0.003 0.029 0.    0.    0.001 0.001 0.002 0.    0.002
+ 0.001 0.001 0.    0.001 0.001]",-903723,Not A Frog,LD,14/05/2024 16:20,36
+7873,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Big Bog_AM1/20210816_090000.WAV,Big Bog_AM1,15/08/2021,16/08/2021 19:00,19,20.5,19,20.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.636,0.003,0.636,0,0.003,0.002,0.002,0.019,"[0.334 0.    0.    0.003 0.019 0.    0.    0.636 0.    0.    0.    0.002
+ 0.    0.002 0.    0.003 0.001]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:21,37
+8867,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM2/20231029_003000.WAV,Black Gate Lagoon_AM2,28/10/2023,29/10/2023 11:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.948,0.003,0,0,0,0.002,0.044,0.003,"[0.948 0.    0.    0.003 0.003 0.    0.    0.    0.    0.    0.    0.002
+ 0.    0.044 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:21,38
+59242,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Gooseneck_AM1/20211031_114500.WAV,Gooseneck_AM1,30/10/2021,31/10/2021 22:45,19,20.5,19,20.5,13063,Spotted Marsh Frog (race unknown),13063,Spotted Marsh Frog (race unknown),0.469,0,0,0,0,0,0.111,0.47,"[0.418 0.    0.    0.    0.47  0.    0.    0.    0.    0.    0.    0.
+ 0.    0.111 0.    0.    0.   ]",13063,Spotted Marsh Frog (race unknown),LD,14/05/2024 16:21,39
+118934,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Warri_AM2/20230926_233000.WAV,Warri_AM2,26/09/2023,27/09/2023 9:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.69,0,0.114,0.066,0,0.004,0.123,0.002,"[0.69  0.    0.    0.    0.002 0.    0.    0.114 0.066 0.    0.    0.004
+ 0.    0.123 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:21,40
+68972,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM2/20211026_141500.WAV,Horseshoe Lagoon_AM2,26/10/2021,27/10/2021 1:15,0,1.5,0,1.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.562,0,0.562,0,0,0,0.19,0.001,"[0.246 0.    0.    0.    0.001 0.    0.    0.562 0.    0.    0.    0.
+ 0.    0.19  0.    0.    0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:21,41
+1538,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Barmah Creek Corrys_AM1/20211013_091500.WAV,Barmah Creek Corrys_AM1,12/10/2021,13/10/2021 20:15,55,56.5,55,56.5,13936,Large Brown Tree Frog,13936,Large Brown Tree Frog,0.337,0.001,0.019,0.302,0.002,0.008,0.001,0.004,"[0.277 0.003 0.001 0.001 0.004 0.001 0.001 0.019 0.302 0.    0.007 0.008
+ 0.338 0.001 0.001 0.002 0.034]",13134,Common Froglet,LD,14/05/2024 16:21,42
+59436,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Gooseneck_AM1/20211108_121500.WAV,Gooseneck_AM1,8/11/2021,8/11/2021 23:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.91,0,0.009,0,0,0,0.08,0,"[0.91  0.    0.    0.    0.    0.    0.    0.009 0.    0.    0.    0.
+ 0.    0.08  0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:21,43
+74636,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Pinchgut Lagoon_AM2/20221229_233000.WAV,Pinchgut Lagoon_AM2,29/12/2022,30/12/2022 10:30,53,54.5,53,54.5,13059,Barking Marsh Frog,13059,Barking Marsh Frog,0.507,0.507,0.022,0.118,0.004,0.002,0.04,0.067,"[0.238 0.    0.    0.507 0.067 0.001 0.    0.022 0.118 0.    0.    0.002
+ 0.    0.04  0.    0.004 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:22,44
+34072,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Gully Gowers_AM1/20210820_131500.WAV,Bunyip Gully Gowers_AM1,20/08/2021,20/08/2021 23:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.806,0.005,0.006,0.002,0,0.155,0.001,0.021,"[0.806 0.    0.    0.005 0.021 0.004 0.    0.006 0.002 0.    0.    0.155
+ 0.    0.001 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:22,45
+67976,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20220127_111500.WAV,Horseshoe Lagoon_AM1,26/01/2022,27/01/2022 22:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.966,0,0.029,0,0,0.004,0.001,0.001,"[0.966 0.    0.    0.    0.001 0.    0.    0.029 0.    0.    0.    0.004
+ 0.    0.001 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:22,46
+135679,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Tarma Lagoon_AM1/20211129_134500.WAV,Tarma Lagoon_AM1,29/11/2021,30/11/2021 0:45,31,32.5,31,32.5,525739,Frogs Galore,525739,Frogs Galore,0.253,0.012,0.204,0.018,0.006,0.136,0.011,0.232,"[0.084 0.002 0.003 0.012 0.232 0.003 0.002 0.204 0.018 0.008 0.018 0.136
+ 0.004 0.011 0.003 0.006 0.253]",525739,Frogs,LD,14/05/2024 16:22,47
+88972,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Lowries Pump_AM1/20211226_101500.WAV,Lowries Pump_AM1,25/12/2021,26/12/2021 21:15,4,5.5,4,5.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.532,0.009,0.532,0.016,0.007,0.038,0.003,0.003,"[0.338 0.001 0.003 0.009 0.003 0.002 0.012 0.532 0.016 0.008 0.006 0.038
+ 0.003 0.003 0.017 0.007 0.004]",-903723,Not A Frog,LD,14/05/2024 16:26,48
+98310,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Steamer Plain_AM2/20221219_213000.WAV,Steamer Plain_AM2,19/12/2022,20/12/2022 8:30,8,9.5,8,9.5,13204,Perons Tree Frog,13204,Perons Tree Frog,0.497,0.001,0.002,0.002,0.001,0.497,0.001,0.015,"[0.43  0.    0.    0.001 0.015 0.    0.    0.002 0.002 0.046 0.002 0.497
+ 0.001 0.001 0.    0.001 0.001]",-903723,Not A Frog,LD,14/05/2024 16:26,49
+30086,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM2/20231015_193000.WAV,Burial Lagoon_AM2,15/10/2023,16/10/2023 6:30,12,13.5,12,13.5,525739,Frogs Galore,525739,Frogs Galore,0.576,0.002,0.047,0.017,0.011,0.001,0.219,0.001,"[0.12  0.    0.    0.002 0.001 0.    0.    0.047 0.017 0.004 0.    0.001
+ 0.    0.219 0.002 0.011 0.576]",13063; 63913; 525739,Spotted Marsh Frog (race unknown); Pobblebonk Frog; Frogs,LD,14/05/2024 16:26,50
+33846,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Gully Gowers_AM1/20210811_104500.WAV,Bunyip Gully Gowers_AM1,10/08/2021,11/08/2021 20:45,2,3.5,2,3.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.569,0,0.57,0.002,0,0,0.272,0.002,"[0.155 0.    0.    0.    0.002 0.    0.    0.57  0.002 0.    0.    0.
+ 0.    0.272 0.    0.    0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:26,51
+36341,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Gully Gowers_AM1/20211123_103000.WAV,Bunyip Gully Gowers_AM1,22/11/2021,23/11/2021 21:30,33,34.5,33,34.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.32,0,0,0,0,0.137,0.32,0.264,"[0.271 0.    0.    0.    0.264 0.    0.    0.    0.    0.    0.    0.137
+ 0.    0.32  0.    0.    0.007]",13204; -3,Perons Tree Frog; Do not use,LD,14/05/2024 16:26,52
+27153,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM1/20230920_001500.WAV,Burial Lagoon_AM1,19/09/2023,20/09/2023 10:15,38,39.5,38,39.5,525739,Frogs Galore,525739,Frogs Galore,0.45,0,0.04,0.013,0.002,0.007,0.251,0.018,"[0.218 0.    0.    0.    0.018 0.    0.    0.04  0.013 0.    0.    0.007
+ 0.    0.251 0.    0.002 0.45 ]",13063; 13131; 13134; 63913; 525739,Spotted Marsh Frog (race unknown); Eastern Sign-bearing Froglet; Common Froglet; Pobblebonk Frog; Frogs,LD,14/05/2024 16:26,53
+90713,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Rookery_AM1/20221130_224500.WAV,Rookery_AM1,30/11/2022,1/12/2022 9:45,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.679,0.001,0.002,0.005,0,0.002,0.276,0.022,"[0.678 0.    0.    0.001 0.022 0.003 0.005 0.002 0.005 0.    0.002 0.002
+ 0.    0.276 0.001 0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:27,54
+117870,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Rookery_AM1/20211011_133000.WAV,Rookery_AM1,11/10/2021,12/10/2021 0:30,3,4.5,3,4.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.392,0,0.392,0,0,0,0.333,0.008,"[0.267 0.    0.    0.    0.008 0.    0.    0.392 0.    0.    0.    0.
+ 0.    0.333 0.    0.    0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:27,55
+34044,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Gully Gowers_AM1/20210819_121500.WAV,Bunyip Gully Gowers_AM1,19/08/2021,19/08/2021 22:15,33,34.5,33,34.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.531,0,0.531,0.014,0,0,0.235,0.056,"[0.156 0.    0.    0.    0.056 0.008 0.    0.531 0.014 0.    0.    0.
+ 0.    0.235 0.    0.    0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:27,56
+83724,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Little Rushy Swamp_AM2/20210913_121500.WAV,Little Rushy Swamp_AM2,13/09/2021,13/09/2021 22:15,29,30.5,29,30.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.618,0,0.618,0,0,0,0.214,0.005,"[0.162 0.    0.    0.    0.005 0.    0.    0.618 0.    0.    0.    0.
+ 0.    0.214 0.    0.    0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:27,57
+84376,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Little Rushy Swamp_AM2/20211010_131500.WAV,Little Rushy Swamp_AM2,10/10/2021,11/10/2021 0:15,11,12.5,11,12.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.612,0,0.612,0,0,0,0.289,0.002,"[0.096 0.    0.    0.    0.002 0.    0.    0.612 0.    0.    0.    0.
+ 0.    0.289 0.    0.    0.001]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:27,58
+51499,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Cucumber Gully_AM1/20211101_140000.WAV,Cucumber Gully_AM1,1/11/2021,2/11/2021 1:00,19,20.5,19,20.5,13063,Spotted Marsh Frog (race unknown),13063,Spotted Marsh Frog (race unknown),0.694,0,0.003,0.001,0,0.001,0.201,0.694,"[0.022 0.    0.    0.    0.694 0.02  0.    0.003 0.001 0.    0.    0.001
+ 0.    0.201 0.    0.    0.059]",13063; 13131,Spotted Marsh Frog (race unknown); Eastern Sign-bearing Froglet,LD,14/05/2024 16:27,59
+15999,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Boals Deadwoods_AM2/20221121_221500.WAV,Boals Deadwoods_AM2,21/11/2022,22/11/2022 9:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.763,0.003,0.017,0.003,0.001,0.002,0.208,0.001,"[0.762 0.    0.    0.003 0.001 0.002 0.    0.017 0.003 0.001 0.    0.002
+ 0.    0.208 0.    0.001 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:27,60
+38941,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Duck Hole Plain_AM2/20230921_191500.WAV,Duck Hole Plain_AM2,21/09/2023,22/09/2023 5:15,36,37.5,36,37.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.533,0.002,0.533,0.006,0.008,0.002,0.255,0.001,"[0.088 0.002 0.001 0.002 0.001 0.    0.    0.533 0.006 0.003 0.002 0.002
+ 0.001 0.255 0.002 0.008 0.093]",13134; 525739,Common Froglet; Frogs,LD,14/05/2024 16:27,61
+6975,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231116_193000.WAV,Black Gate Lagoon_AM1,16/11/2023,17/11/2023 6:30,38,39.5,38,39.5,13207,Growling Grass Frog,13207,Growling Grass Frog,0.39,0,0,0,0,0,0.225,0,"[0.375 0.    0.    0.    0.    0.004 0.003 0.    0.    0.    0.001 0.
+ 0.    0.225 0.39  0.    0.002]",-903723,Not A Frog,LD,14/05/2024 16:27,62
+81093,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Pinchgut Lagoon_AM2/20231021_191500.WAV,Pinchgut Lagoon_AM2,21/10/2023,22/10/2023 6:15,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.601,0.004,0,0.004,0.001,0,0.207,0.001,"[0.6   0.    0.    0.004 0.001 0.    0.    0.    0.004 0.    0.    0.
+ 0.    0.207 0.154 0.001 0.028]",-903723,Not A Frog,LD,14/05/2024 16:27,63
+127427,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Whores Creek_AM2/20230915_224500.WAV,Whores Creek_AM2,15/09/2023,16/09/2023 8:45,39,40.5,39,40.5,525739,Frogs Galore,525739,Frogs Galore,0.385,0,0.241,0.006,0,0.003,0.261,0.003,"[0.096 0.    0.    0.    0.003 0.    0.    0.241 0.006 0.001 0.    0.003
+ 0.001 0.261 0.001 0.    0.386]",13063; 13131; 525739,Spotted Marsh Frog (race unknown); Eastern Sign-bearing Froglet; Frogs,LD,14/05/2024 16:27,64
+148162,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Two Mile Bunyip_AM1/20211103_143000.WAV,Two Mile Bunyip_AM1,3/11/2021,4/11/2021 1:30,12,13.5,12,13.5,13120,Dendys Toadlet,13120,Dendys Toadlet,0.497,0,0.001,0.002,0,0.006,0.35,0.023,"[0.119 0.    0.    0.    0.023 0.497 0.001 0.001 0.002 0.    0.    0.006
+ 0.    0.35  0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:27,65
+69066,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM2/20211030_134500.WAV,Horseshoe Lagoon_AM2,30/10/2021,31/10/2021 0:45,14,15.5,14,15.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.382,0,0.382,0.001,0,0,0.246,0.005,"[0.364 0.    0.    0.    0.005 0.002 0.    0.382 0.001 0.    0.    0.
+ 0.    0.246 0.    0.    0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:27,66
+84018,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Little Rushy Swamp_AM2/20210925_134500.WAV,Little Rushy Swamp_AM2,25/09/2021,25/09/2021 23:45,9,10.5,9,10.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.34,0,0.34,0,0,0,0.241,0.18,"[0.238 0.    0.    0.    0.18  0.    0.    0.34  0.    0.    0.    0.
+ 0.    0.241 0.    0.    0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:27,67
+103894,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Warri Yards_AM1/20230228_000000.WAV,Warri Yards_AM1,27/02/2023,28/02/2023 11:00,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.674,0,0.001,0,0.003,0,0.267,0,"[0.674 0.001 0.052 0.    0.    0.    0.    0.001 0.    0.    0.001 0.
+ 0.    0.267 0.001 0.003 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:27,68
+87274,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Reed Bed Swamp_AM1/20230914_223000.WAV,Reed Bed Swamp_AM1,14/09/2023,15/09/2023 8:30,22,23.5,22,23.5,525739,Frogs Galore,525739,Frogs Galore,0.297,0,0.167,0,0.002,0.103,0.242,0.078,"[0.107 0.    0.    0.    0.078 0.    0.    0.167 0.    0.003 0.    0.103
+ 0.    0.242 0.    0.002 0.297]",13063; 13131; 13134; 525739,Spotted Marsh Frog (race unknown); Eastern Sign-bearing Froglet; Common Froglet; Frogs,LD,14/05/2024 16:27,69
+30915,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM2/20231118_224500.WAV,Burial Lagoon_AM2,18/11/2023,19/11/2023 9:45,19,20.5,19,20.5,525739,Frogs Galore,525739,Frogs Galore,0.215,0,0,0,0.001,0.016,0.203,0,"[0.2   0.    0.    0.    0.    0.    0.    0.    0.    0.165 0.    0.016
+ 0.    0.203 0.2   0.001 0.215]",13059; 13204; 525739,Barking Marsh Frog; Perons Tree Frog; Frogs,LD,14/05/2024 16:28,70
+34927,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Gully Gowers_AM1/20210925_110000.WAV,Bunyip Gully Gowers_AM1,24/09/2021,25/09/2021 21:00,42,43.5,42,43.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.411,0,0.411,0.001,0,0,0.245,0.004,"[0.338 0.    0.    0.    0.004 0.    0.    0.411 0.001 0.    0.    0.
+ 0.    0.245 0.    0.    0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:28,71
+75699,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Mannions_AM2/20230922_204500.WAV,Mannions_AM2,22/09/2023,23/09/2023 6:45,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.768,0,0.002,0.009,0,0.01,0.204,0.004,"[0.768 0.    0.001 0.    0.004 0.    0.    0.002 0.009 0.    0.    0.01
+ 0.    0.204 0.    0.    0.001]",-903723,Not A Frog,LD,14/05/2024 16:28,72
+117200,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Rookery_AM1/20210913_140000.WAV,Rookery_AM1,13/09/2021,14/09/2021,12,13.5,12,13.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.593,0,0.594,0,0,0,0.244,0.042,"[0.115 0.    0.    0.    0.042 0.    0.    0.594 0.    0.    0.    0.
+ 0.    0.244 0.    0.    0.005]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:28,73
+127628,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Whores Creek_AM2/20230924_190000.WAV,Whores Creek_AM2,24/09/2023,25/09/2023 5:00,42,43.5,42,43.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.261,0.001,0.214,0.006,0.018,0.004,0.261,0.006,"[0.18  0.001 0.001 0.001 0.006 0.001 0.    0.214 0.006 0.    0.001 0.004
+ 0.002 0.261 0.144 0.018 0.16 ]",13063; 13131,Spotted Marsh Frog (race unknown); Eastern Sign-bearing Froglet,LD,14/05/2024 16:28,74
+28858,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM1/20231130_003000.WAV,Burial Lagoon_AM1,29/11/2023,30/11/2023 11:30,32,33.5,32,33.5,525739,Frogs Galore,525739,Frogs Galore,0.219,0,0,0,0.001,0.02,0.209,0,"[0.207 0.    0.    0.    0.    0.    0.    0.    0.    0.139 0.    0.02
+ 0.    0.209 0.203 0.001 0.22 ]",-903723,Not A Frog,LD,14/05/2024 16:28,75
+1476,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Big Bog_AM1/20221211_214500.WAV,Big Bog_AM1,11/12/2022,12/12/2022 8:45,7,8.5,7,8.5,13207,Growling Grass Frog,13207,Growling Grass Frog,0.405,0,0,0.002,0.002,0,0.292,0.001,"[0.278 0.    0.006 0.    0.001 0.    0.001 0.    0.002 0.    0.003 0.
+ 0.007 0.292 0.405 0.002 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:28,76
+492,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Big Bog_AM1/20221031_214500.WAV,Big Bog_AM1,31/10/2022,1/11/2022 8:45,33,34.5,33,34.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.471,0,0.471,0.002,0,0,0.217,0.027,"[0.196 0.    0.    0.    0.027 0.001 0.    0.471 0.002 0.    0.    0.
+ 0.    0.217 0.    0.    0.085]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:28,77
+127745,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Whores Creek_AM2/20230929_001500.WAV,Whores Creek_AM2,28/09/2023,29/09/2023 10:15,35,36.5,35,36.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.296,0,0.296,0.005,0.001,0.004,0.253,0.004,"[0.266 0.    0.    0.    0.004 0.    0.    0.296 0.005 0.002 0.    0.004
+ 0.    0.253 0.    0.001 0.17 ]",13063; 13131; 525739,Spotted Marsh Frog (race unknown); Eastern Sign-bearing Froglet; Frogs,LD,14/05/2024 16:28,78
+33965,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Gully Gowers_AM1/20210816_103000.WAV,Bunyip Gully Gowers_AM1,15/08/2021,16/08/2021 20:30,5,6.5,5,6.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.553,0.001,0.553,0.001,0.001,0,0.308,0.01,"[0.124 0.    0.    0.001 0.01  0.001 0.    0.553 0.001 0.    0.    0.
+ 0.    0.308 0.    0.001 0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:28,79
+7647,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231214_193000.WAV,Black Gate Lagoon_AM1,14/12/2023,15/12/2023 6:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.645,0.004,0.004,0.024,0.002,0.004,0.204,0.005,"[0.644 0.003 0.001 0.004 0.005 0.001 0.021 0.004 0.024 0.002 0.004 0.004
+ 0.003 0.204 0.071 0.002 0.003]",-903723,Not A Frog,LD,14/05/2024 16:28,80
+39529,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Duck Hole Plain_AM2/20231015_221500.WAV,Duck Hole Plain_AM2,15/10/2023,16/10/2023 9:15,40,41.5,40,41.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.264,0.002,0.264,0.003,0.011,0.001,0.264,0.001,"[0.243 0.001 0.    0.002 0.001 0.    0.    0.264 0.003 0.002 0.    0.001
+ 0.    0.264 0.003 0.011 0.207]",13063; 13134; 525739,Spotted Marsh Frog (race unknown); Common Froglet; Frogs,LD,14/05/2024 16:28,81
+39233,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Gully Gowers_AM2/20211011_133000.WAV,Bunyip Gully Gowers_AM2,11/10/2021,12/10/2021 0:30,1,2.5,1,2.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.405,0,0.405,0,0,0,0.242,0.005,"[0.347 0.    0.    0.    0.005 0.    0.    0.405 0.    0.    0.    0.
+ 0.    0.242 0.    0.    0.001]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:28,82
+27694,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bunyip Gully Gowers_AM2/20221222_000000.WAV,Bunyip Gully Gowers_AM2,21/12/2022,22/12/2022 11:00,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.719,0.003,0.033,0.003,0,0.006,0.219,0.007,"[0.719 0.    0.    0.003 0.007 0.006 0.    0.033 0.003 0.001 0.    0.006
+ 0.    0.219 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:28,83
+125734,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Whores Creek_AM1/20231012_193000.WAV,Whores Creek_AM1,12/10/2023,13/10/2023 6:30,57,58.5,57,58.5,525739,Frogs Galore,525739,Frogs Galore,0.446,0.001,0.184,0.003,0.003,0.002,0.256,0.002,"[0.093 0.007 0.    0.001 0.002 0.    0.    0.184 0.003 0.    0.    0.002
+ 0.001 0.256 0.002 0.003 0.446]",13131; 63913; 525739,Eastern Sign-bearing Froglet; Pobblebonk Frog; Frogs,LD,14/05/2024 16:28,84
+31468,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM2/20231211_230000.WAV,Burial Lagoon_AM2,11/12/2023,12/12/2023 10:00,25,26.5,25,26.5,13204,Perons Tree Frog,13204,Perons Tree Frog,0.366,0.002,0.004,0.005,0.004,0.366,0.202,0.036,"[0.26  0.026 0.011 0.002 0.036 0.005 0.055 0.004 0.005 0.003 0.009 0.366
+ 0.002 0.202 0.001 0.004 0.008]",13059; 13204,Barking Marsh Frog; Perons Tree Frog,LD,14/05/2024 16:28,85
+123202,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Wathours_AM2/20231005_223000.WAV,Wathours_AM2,5/10/2023,6/10/2023 9:30,57,58.5,57,58.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.402,0.001,0.402,0.008,0.003,0.004,0.201,0.01,"[0.212 0.    0.    0.001 0.01  0.001 0.    0.402 0.008 0.    0.    0.004
+ 0.001 0.201 0.001 0.003 0.155]",-903723,Not A Frog,LD,14/05/2024 16:29,86
+92617,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Rookery_AM2/20231015_201500.WAV,Rookery_AM2,15/10/2023,16/10/2023 7:15,31,32.5,31,32.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.283,0.001,0.269,0,0.007,0,0.283,0.001,"[0.246 0.    0.    0.001 0.001 0.    0.    0.269 0.    0.001 0.    0.
+ 0.    0.283 0.    0.007 0.192]",-903723,Not A Frog,LD,14/05/2024 16:29,87
+75452,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Pinchgut Lagoon_AM2/20230201_233000.WAV,Pinchgut Lagoon_AM2,1/02/2023,2/02/2023 10:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.757,0.01,0.002,0.001,0,0.006,0.206,0.017,"[0.757 0.    0.    0.01  0.017 0.    0.    0.002 0.001 0.    0.    0.006
+ 0.    0.206 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:29,88
+63850,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Mannions_AM1/20221120_210000.WAV,Mannions_AM1,20/11/2022,21/11/2022 8:00,54,55.5,54,55.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.414,0,0.414,0,0,0,0.227,0.003,"[0.356 0.    0.    0.    0.003 0.    0.    0.414 0.    0.    0.    0.
+ 0.    0.227 0.    0.    0.001]",-903723,Not A Frog,LD,14/05/2024 16:29,89
+87350,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Lowries Pump_AM1/20211019_124500.WAV,Lowries Pump_AM1,19/10/2021,19/10/2021 23:45,10,11.5,10,11.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.417,0,0.417,0.001,0,0.001,0.208,0.006,"[0.365 0.    0.    0.    0.006 0.    0.    0.417 0.001 0.    0.    0.001
+ 0.    0.208 0.    0.    0.002]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:29,90
+1351,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Big Bog_AM1/20221206_203000.WAV,Big Bog_AM1,6/12/2022,7/12/2022 7:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.298,0.001,0.008,0.016,0.006,0.005,0.201,0.136,"[0.298 0.001 0.002 0.001 0.136 0.    0.182 0.008 0.016 0.    0.006 0.005
+ 0.127 0.201 0.008 0.006 0.001]",-903723,Not A Frog,LD,14/05/2024 16:29,91
+29230,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM1/20231215_213000.WAV,Burial Lagoon_AM1,15/12/2023,16/12/2023 8:30,40,41.5,40,41.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.303,0.124,0.002,0,0.001,0,0.303,0.001,"[0.249 0.    0.    0.124 0.001 0.    0.    0.002 0.    0.002 0.    0.
+ 0.    0.303 0.276 0.001 0.043]",-903723,Not A Frog,LD,14/05/2024 16:29,92
+88,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Big Bog_AM1/20221014_224500.WAV,Big Bog_AM1,14/10/2022,15/10/2022 9:45,55,56.5,55,56.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.392,0,0.392,0.005,0.004,0,0.201,0.023,"[0.372 0.    0.    0.    0.023 0.    0.    0.392 0.005 0.    0.    0.
+ 0.    0.201 0.    0.004 0.001]",-903723,Not A Frog,LD,14/05/2024 16:29,93
+46622,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Horseshoe Lagoon_AM1/20221102_220000.WAV,Horseshoe Lagoon_AM1,2/11/2022,3/11/2022 9:00,11,12.5,11,12.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.407,0,0.407,0,0,0,0.203,0.001,"[0.389 0.    0.    0.    0.001 0.    0.    0.407 0.    0.    0.    0.
+ 0.    0.203 0.    0.    0.   ]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:29,94
+97653,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM1/20211128_143000.WAV,Mannions_AM1,28/11/2021,29/11/2021 1:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.746,0.001,0.001,0,0,0.003,0.247,0.002,"[0.746 0.    0.    0.001 0.002 0.    0.    0.001 0.    0.    0.    0.003
+ 0.    0.247 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:29,95
+34986,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Gully Gowers_AM1/20210927_134500.WAV,Bunyip Gully Gowers_AM1,27/09/2021,27/09/2021 23:45,18,19.5,18,19.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.508,0,0.508,0.001,0,0,0.206,0.006,"[0.277 0.    0.    0.    0.006 0.    0.    0.508 0.001 0.    0.    0.
+ 0.    0.206 0.    0.    0.002]",13131,Eastern Sign-bearing Froglet,LD,14/05/2024 16:29,96
+125621,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Whores Creek_AM1/20231007_211500.WAV,Whores Creek_AM1,7/10/2023,8/10/2023 8:15,51,52.5,51,52.5,525739,Frogs Galore,525739,Frogs Galore,0.397,0,0.255,0.003,0.001,0.001,0.223,0.002,"[0.116 0.    0.    0.    0.002 0.    0.    0.255 0.003 0.    0.    0.001
+ 0.001 0.223 0.    0.001 0.397]",13063; 13131; 525739,Spotted Marsh Frog (race unknown); Eastern Sign-bearing Froglet; Frogs,LD,14/05/2024 16:29,97
+39287,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Duck Hole Plain_AM2/20231005_214500.WAV,Duck Hole Plain_AM2,5/10/2023,6/10/2023 8:45,26,27.5,26,27.5,13131,Eastern Sign-bearing Froglet,13131,Eastern Sign-bearing Froglet,0.398,0.001,0.398,0,0.007,0,0.326,0,"[0.246 0.    0.    0.001 0.    0.    0.    0.398 0.    0.    0.    0.
+ 0.    0.326 0.001 0.007 0.022]",13063; 525739; -3,Spotted Marsh Frog (race unknown); Frogs; Do not use,LD,14/05/2024 16:29,98
+111742,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Two Mile Sandridge_AM1/20230922_193000.WAV,Two Mile Sandridge_AM1,22/09/2023,23/09/2023 5:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.669,0.003,0,0.006,0.001,0.008,0.24,0.057,"[0.669 0.002 0.001 0.003 0.057 0.003 0.003 0.    0.006 0.001 0.004 0.008
+ 0.    0.24  0.001 0.001 0.001]",-903723,Not A Frog,LD,14/05/2024 16:29,99
+64059,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Gooseneck_AM2/20211209_100000.WAV,Gooseneck_AM2,8/12/2021,9/12/2021 21:00,25,26.5,25,26.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.533,0,0.001,0,0,0,0.533,0,"[0.463 0.    0.    0.    0.    0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.533 0.    0.    0.002]",-903723,Not A Frog,LD,14/05/2024 16:29,100
+6997,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231117_190000.WAV,Black Gate Lagoon_AM1,17/11/2023,18/11/2023 6:00,48,49.5,48,49.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.517,0.001,0.001,0.013,0.007,0.002,0.516,0.003,"[0.363 0.003 0.003 0.001 0.003 0.003 0.011 0.001 0.013 0.002 0.006 0.002
+ 0.003 0.516 0.014 0.007 0.048]",-903723,Not A Frog,LD,14/05/2024 16:29,101
+60145,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Gooseneck_AM1/20211208_093000.WAV,Gooseneck_AM1,7/12/2021,8/12/2021 20:30,30,31.5,30,31.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.525,0,0.006,0,0,0,0.526,0,"[0.468 0.    0.    0.    0.    0.    0.    0.006 0.    0.    0.    0.
+ 0.    0.526 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:29,102
+69,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Big Bog_AM1/20221014_000000.WAV,Big Bog_AM1,13/10/2022,14/10/2022 11:00,54,55.5,54,55.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.404,0,0,0.003,0.058,0.002,0.404,0.024,"[0.377 0.    0.116 0.    0.024 0.001 0.001 0.    0.003 0.    0.007 0.002
+ 0.001 0.404 0.004 0.058 0.002]",-903723,Not A Frog,LD,14/05/2024 16:29,103
+80242,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Little Rushy Swamp_AM1/20211001_114500.WAV,Little Rushy Swamp_AM1,30/09/2021,1/10/2021 21:45,26,27.5,26,27.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.402,0,0.002,0.001,0.001,0,0.402,0.184,"[0.361 0.    0.    0.    0.184 0.    0.    0.002 0.001 0.001 0.    0.
+ 0.    0.402 0.002 0.001 0.047]",13204; 63913,Perons Tree Frog; Pobblebonk Frog,LD,14/05/2024 16:30,104
+10743,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Boals_AM1/20231103_193000.WAV,Boals_AM1,3/11/2023,4/11/2023 6:30,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.578,0,0,0,0.005,0,0.414,0,"[0.578 0.001 0.001 0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.414 0.    0.005 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:30,105
+115740,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Reed Bed Swamp_AM2/20220111_090000.WAV,Reed Bed Swamp_AM2,10/01/2022,11/01/2022 20:00,0,1.5,0,1.5,-903723,Not a frog,-903723,Not a frog,0.583,0,0.001,0,0,0.001,0.411,0.004,"[0.583 0.    0.    0.    0.004 0.    0.    0.001 0.    0.    0.    0.001
+ 0.    0.411 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:30,106
+110353,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Whores Creek_AM1/20221204_004500.WAV,Whores Creek_AM1,3/12/2022,4/12/2022 11:45,39,40.5,39,40.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.411,0.002,0.001,0.001,0,0.019,0.412,0.01,"[0.299 0.    0.    0.002 0.01  0.008 0.167 0.001 0.001 0.    0.078 0.019
+ 0.004 0.412 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:30,107
+30666,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bunyip Waterhole_AM2/20221229_230000.WAV,Bunyip Waterhole_AM2,29/12/2022,30/12/2022 10:00,38,39.5,38,39.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.598,0.001,0.003,0.002,0.004,0.003,0.598,0.004,"[0.376 0.001 0.001 0.001 0.004 0.002 0.    0.003 0.002 0.001 0.001 0.003
+ 0.    0.598 0.    0.004 0.003]",-903723,Not A Frog,LD,14/05/2024 16:30,108
+80245,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Little Rushy Swamp_AM1/20211001_123000.WAV,Little Rushy Swamp_AM1,1/10/2021,1/10/2021 22:30,16,17.5,16,17.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.498,0.001,0.008,0.001,0.002,0.003,0.498,0.044,"[0.085 0.    0.    0.001 0.044 0.    0.    0.008 0.001 0.    0.    0.003
+ 0.    0.498 0.    0.002 0.357]",13131; 63913,Eastern Sign-bearing Froglet; Pobblebonk Frog,LD,14/05/2024 16:30,109
+125231,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Whores Creek_AM1/20230921_194500.WAV,Whores Creek_AM1,21/09/2023,22/09/2023 5:45,0,1.5,0,1.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.433,0,0.077,0,0.002,0.001,0.433,0.001,"[0.206 0.    0.    0.    0.001 0.    0.    0.077 0.    0.    0.    0.001
+ 0.    0.433 0.    0.002 0.28 ]",13063; 13131; 525739,Spotted Marsh Frog (race unknown); Eastern Sign-bearing Froglet; Frogs,LD,14/05/2024 16:30,110
+6920,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231113_234500.WAV,Black Gate Lagoon_AM1,13/11/2023,14/11/2023 10:45,53,54.5,53,54.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.416,0,0,0.008,0.018,0.001,0.416,0.011,"[0.406 0.    0.    0.    0.011 0.    0.    0.    0.008 0.    0.    0.001
+ 0.    0.416 0.138 0.018 0.002]",-903723,Not A Frog,LD,14/05/2024 16:30,111
+30347,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM2/20231026_004500.WAV,Burial Lagoon_AM2,25/10/2023,26/10/2023 11:45,26,27.5,26,27.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.54,0,0,0,0.009,0,0.54,0.009,"[0.438 0.    0.    0.    0.009 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.54  0.    0.009 0.001]",-903723,Not A Frog,LD,14/05/2024 16:30,112
+80423,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Pinchgut Lagoon_AM2/20230923_194500.WAV,Pinchgut Lagoon_AM2,23/09/2023,24/09/2023 5:45,51,52.5,51,52.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.501,0,0.001,0,0.002,0,0.502,0.001,"[0.49  0.003 0.001 0.    0.001 0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.502 0.    0.002 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:30,113
+65897,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20211101_133000.WAV,Horseshoe Lagoon_AM1,1/11/2021,2/11/2021 0:30,6,7.5,6,7.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.475,0.004,0.043,0.003,0.001,0.001,0.475,0.006,"[0.462 0.    0.    0.004 0.006 0.002 0.    0.043 0.003 0.    0.    0.001
+ 0.    0.475 0.    0.001 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:30,114
+105436,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Towrong Creek_AM1/20231025_210000.WAV,Towrong Creek_AM1,25/10/2023,26/10/2023 8:00,8,9.5,8,9.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.458,0.129,0.025,0.003,0.006,0.001,0.458,0.006,"[0.366 0.    0.    0.129 0.006 0.004 0.    0.025 0.003 0.    0.    0.001
+ 0.    0.458 0.    0.006 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:30,115
+62698,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Lowries Pump_AM2/20230324_210000.WAV,Lowries Pump_AM2,24/03/2023,25/03/2023 8:00,44,45.5,44,45.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.544,0,0,0,0,0,0.544,0,"[0.456 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.544 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:30,116
+6299,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231019_003000.WAV,Black Gate Lagoon_AM1,18/10/2023,19/10/2023 11:30,2,3.5,2,3.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.587,0,0.004,0,0.001,0,0.587,0,"[0.198 0.    0.    0.    0.    0.    0.    0.004 0.    0.    0.    0.
+ 0.    0.587 0.    0.001 0.207]",63913,Pobblebonk Frog,LD,14/05/2024 16:30,117
+19609,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bucks Crossing_AM1/20221228_004500.WAV,Bucks Crossing_AM1,27/12/2022,28/12/2022 11:45,26,27.5,26,27.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.514,0.016,0.004,0,0.001,0.005,0.514,0.002,"[0.456 0.    0.    0.016 0.002 0.    0.    0.004 0.    0.    0.    0.005
+ 0.    0.514 0.    0.001 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:31,118
+69037,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM2/20211029_123000.WAV,Horseshoe Lagoon_AM2,29/10/2021,29/10/2021 23:30,50,51.5,50,51.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.595,0,0,0,0,0,0.594,0,"[0.405 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.594 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:31,119
+20089,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bucks Crossing_AM1/20230117_004500.WAV,Bucks Crossing_AM1,16/01/2023,17/01/2023 11:45,16,17.5,16,17.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.515,0,0,0,0,0,0.514,0,"[0.484 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.514 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:31,120
+5957,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231004_230000.WAV,Black Gate Lagoon_AM1,4/10/2023,5/10/2023 10:00,38,39.5,38,39.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.523,0,0.303,0.01,0.001,0.001,0.524,0.001,"[0.126 0.    0.    0.    0.001 0.    0.    0.303 0.01  0.    0.    0.001
+ 0.    0.524 0.004 0.001 0.029]",63913,Pobblebonk Frog,LD,14/05/2024 16:31,121
+29535,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM2/20230922_194500.WAV,Burial Lagoon_AM2,22/09/2023,23/09/2023 5:45,21,22.5,21,22.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.54,0,0.314,0.001,0,0,0.54,0,"[0.082 0.    0.    0.    0.    0.    0.    0.314 0.001 0.    0.    0.
+ 0.    0.54  0.    0.    0.063]",13059; 13131; 63913,Barking Marsh Frog; Eastern Sign-bearing Froglet; Pobblebonk Frog,LD,14/05/2024 16:51,122
+6442,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231025_001500.WAV,Black Gate Lagoon_AM1,24/10/2023,25/10/2023 11:15,34,35.5,34,35.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.563,0,0,0,0.007,0,0.564,0,"[0.401 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.564 0.027 0.007 0.001]",-903723,Not A Frog,LD,14/05/2024 16:51,123
+126083,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Steamer Plain_AM1/20210913_144500.WAV,Steamer Plain_AM1,13/09/2021,14/09/2021 0:45,24,25.5,24,25.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.513,0,0.002,0,0,0,0.512,0,"[0.484 0.    0.    0.    0.    0.    0.    0.002 0.    0.    0.    0.
+ 0.    0.512 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:51,124
+68250,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Mannions_AM2/20230130_230000.WAV,Mannions_AM2,30/01/2023,31/01/2023 10:00,43,44.5,43,44.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.469,0,0.001,0,0,0,0.47,0,"[0.352 0.    0.177 0.    0.    0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.47  0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:51,125
+122899,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Wathours_AM2/20230923_004500.WAV,Wathours_AM2,22/09/2023,23/09/2023 10:45,35,36.5,35,36.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.407,0,0.189,0,0,0,0.407,0,"[0.402 0.    0.    0.    0.    0.    0.    0.189 0.    0.    0.    0.
+ 0.    0.407 0.    0.    0.001]",-903723,Not A Frog,LD,14/05/2024 16:51,126
+101312,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20211119_111500.WAV,Mannions_AM2,18/11/2021,19/11/2021 22:15,19,20.5,19,20.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.54,0.001,0.006,0.015,0,0.005,0.54,0.007,"[0.408 0.    0.    0.001 0.007 0.001 0.    0.006 0.015 0.015 0.001 0.005
+ 0.    0.54  0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:51,127
+61723,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Hut Lake_AM1/20231126_004500.WAV,Hut Lake_AM1,25/11/2023,26/11/2023 11:45,21,22.5,21,22.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.5,0.02,0.005,0.002,0,0.003,0.5,0.004,"[0.467 0.    0.    0.02  0.004 0.    0.    0.005 0.002 0.    0.    0.003
+ 0.    0.5   0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:51,128
+102541,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20220109_123000.WAV,Mannions_AM2,9/01/2022,9/01/2022 23:30,11,12.5,11,12.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.577,0,0,0,0,0,0.577,0,"[0.423 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.577 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,129
+13517,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Black Gate Lagoon_AM2/20211208_100000.WAV,Black Gate Lagoon_AM2,7/12/2021,8/12/2021 21:00,10,11.5,10,11.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.532,0,0,0,0,0.001,0.532,0,"[0.466 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.001
+ 0.    0.532 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,130
+33362,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Boals Deadwoods_AM2/20220404_123000.WAV,Boals Deadwoods_AM2,4/04/2022,4/04/2022 22:30,27,28.5,27,28.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.49,0.004,0.036,0.004,0,0.002,0.49,0.003,"[0.46  0.    0.    0.004 0.003 0.001 0.    0.036 0.004 0.    0.    0.002
+ 0.    0.49  0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,131
+113544,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Reed Bed Swamp_AM2/20211011_120000.WAV,Reed Bed Swamp_AM2,11/10/2021,11/10/2021 23:00,22,23.5,22,23.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.579,0.001,0,0,0,0,0.579,0.001,"[0.419 0.    0.    0.001 0.001 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.579 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,132
+99574,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Steamer Plain_AM2/20230907_193000.WAV,Steamer Plain_AM2,7/09/2023,8/09/2023 5:30,29,30.5,29,30.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.6,0,0,0,0,0.001,0.6,0,"[0.398 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.001
+ 0.    0.6   0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,133
+14280,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Black Gate Lagoon_AM2/20220108_144500.WAV,Black Gate Lagoon_AM2,8/01/2022,9/01/2022 1:45,10,11.5,10,11.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.493,0.011,0.023,0.001,0,0.001,0.493,0.017,"[0.453 0.    0.    0.011 0.017 0.    0.    0.023 0.001 0.    0.    0.001
+ 0.    0.493 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,134
+59519,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Gooseneck_AM1/20211112_090000.WAV,Gooseneck_AM1,11/11/2021,12/11/2021 20:00,47,48.5,47,48.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.51,0,0,0,0,0,0.51,0,"[0.488 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.51  0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,135
+100907,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20211102_120000.WAV,Mannions_AM2,2/11/2021,2/11/2021 23:00,6,7.5,6,7.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.517,0,0.001,0,0.002,0,0.516,0,"[0.479 0.    0.    0.    0.    0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.516 0.    0.002 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,136
+149454,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Two Mile Bunyip_AM1/20211227_133000.WAV,Two Mile Bunyip_AM1,27/12/2021,28/12/2021 0:30,28,29.5,28,29.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.528,0.012,0.002,0.001,0,0.001,0.528,0.006,"[0.449 0.    0.    0.012 0.006 0.    0.    0.002 0.001 0.    0.    0.001
+ 0.    0.528 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,137
+66124,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20211111_101500.WAV,Horseshoe Lagoon_AM1,10/11/2021,11/11/2021 21:15,33,34.5,33,34.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.56,0,0.006,0.001,0,0.003,0.56,0.001,"[0.428 0.    0.    0.    0.001 0.001 0.    0.006 0.001 0.001 0.    0.003
+ 0.    0.56  0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,138
+64441,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Mannions_AM1/20221215_004500.WAV,Mannions_AM1,14/12/2022,15/12/2022 11:45,30,31.5,30,31.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.521,0.009,0.004,0.001,0.001,0.008,0.52,0.002,"[0.454 0.    0.    0.009 0.002 0.    0.    0.004 0.001 0.    0.    0.008
+ 0.    0.52  0.    0.001 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,139
+138897,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Tarma Lagoon_AM2/20211216_141500.WAV,Tarma Lagoon_AM2,16/12/2021,17/12/2021 1:15,16,17.5,16,17.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.5,0.001,0.001,0,0.002,0,0.5,0,"[0.493 0.    0.001 0.001 0.    0.    0.    0.001 0.    0.001 0.    0.
+ 0.    0.5   0.    0.002 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,140
+29577,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM2/20230924_001500.WAV,Burial Lagoon_AM2,23/09/2023,24/09/2023 10:15,43,44.5,43,44.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.519,0,0.152,0,0,0,0.519,0,"[0.074 0.    0.    0.    0.    0.    0.    0.152 0.    0.    0.    0.
+ 0.    0.519 0.001 0.    0.253]",13063; 13134; 63913; 525739,Spotted Marsh Frog (race unknown); Common Froglet; Pobblebonk Frog; Frogs,LD,14/05/2024 16:52,141
+8844,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM2/20231028_004500.WAV,Black Gate Lagoon_AM2,27/10/2023,28/10/2023 11:45,43,44.5,43,44.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.519,0,0,0,0,0.001,0.518,0.004,"[0.476 0.    0.    0.    0.004 0.    0.    0.    0.    0.    0.    0.001
+ 0.    0.518 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:52,142
+100405,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20211012_123000.WAV,Mannions_AM2,12/10/2021,12/10/2021 23:30,25,26.5,25,26.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.432,0,0.007,0.216,0,0,0.432,0.001,"[0.26  0.    0.    0.    0.001 0.    0.    0.007 0.216 0.    0.    0.
+ 0.    0.432 0.    0.    0.082]",13134; -3,Common Froglet; Do not use,LD,14/05/2024 16:52,143
+6900,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231113_004500.WAV,Black Gate Lagoon_AM1,12/11/2023,13/11/2023 11:45,28,29.5,28,29.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.449,0,0.001,0,0.004,0,0.449,0.061,"[0.302 0.    0.    0.    0.061 0.002 0.004 0.001 0.    0.    0.    0.
+ 0.    0.449 0.004 0.004 0.171]",-903723,Not A Frog,LD,14/05/2024 16:52,144
+18282,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bucks Crossing_AM1/20221102_230000.WAV,Bucks Crossing_AM1,2/11/2022,3/11/2022 10:00,43,44.5,43,44.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.497,0,0.001,0,0,0.03,0.496,0.016,"[0.456 0.    0.    0.    0.016 0.    0.    0.001 0.    0.    0.    0.03
+ 0.    0.496 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:53,145
+99620,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Steamer Plain_AM2/20230909_190000.WAV,Steamer Plain_AM2,9/09/2023,10/09/2023 5:00,29,30.5,29,30.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.574,0,0,0,0,0.006,0.574,0.002,"[0.312 0.    0.104 0.    0.002 0.    0.    0.    0.    0.    0.    0.006
+ 0.    0.574 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:53,146
+126005,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Whores Creek_AM1/20231023_211500.WAV,Whores Creek_AM1,23/10/2023,24/10/2023 8:15,49,50.5,49,50.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.533,0,0.003,0,0.001,0,0.533,0.002,"[0.46  0.    0.    0.    0.002 0.    0.    0.003 0.    0.    0.    0.
+ 0.    0.533 0.    0.001 0.001]",-903723,Not A Frog,LD,14/05/2024 16:53,147
+18962,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bucks Crossing_AM1/20221201_190000.WAV,Bucks Crossing_AM1,1/12/2022,2/12/2022 6:00,0,1.5,0,1.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.597,0,0,0,0,0,0.596,0,"[0.403 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.596 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:53,148
+61177,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Hut Lake_AM1/20231103_201500.WAV,Hut Lake_AM1,3/11/2023,4/11/2023 7:15,45,46.5,45,46.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.5,0,0.023,0,0,0,0.5,0.079,"[0.398 0.    0.    0.    0.079 0.    0.    0.023 0.    0.    0.    0.
+ 0.    0.5   0.    0.    0.   ]",13131; -3,Eastern Sign-bearing Froglet; Do not use,LD,14/05/2024 16:53,149
+63409,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Gooseneck_AM2/20211112_093000.WAV,Gooseneck_AM2,11/11/2021,12/11/2021 20:30,30,31.5,30,31.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.752,0,0,0,0,0,0.752,0.001,"[0.247 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.752 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:53,150
+9683,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Boals_AM1/20230920_003000.WAV,Boals_AM1,19/09/2023,20/09/2023 10:30,26,27.5,26,27.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.774,0,0,0,0,0,0.774,0,"[0.224 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.774 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:53,151
+101439,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20211124_130000.WAV,Mannions_AM2,24/11/2021,25/11/2021,11,12.5,11,12.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.787,0.008,0.001,0,0.003,0.001,0.787,0,"[0.199 0.    0.    0.008 0.    0.    0.    0.001 0.    0.    0.    0.001
+ 0.    0.787 0.    0.003 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:53,152
+23425,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bunyip Gully Gowers_AM1/20221021_004500.WAV,Bunyip Gully Gowers_AM1,20/10/2022,21/10/2022 11:45,28,29.5,28,29.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.771,0,0.016,0,0,0,0.771,0.001,"[0.209 0.    0.    0.    0.001 0.    0.    0.016 0.    0.    0.    0.
+ 0.    0.771 0.    0.    0.003]",-903723,Not A Frog,LD,14/05/2024 16:53,153
+30284,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM2/20231023_210000.WAV,Burial Lagoon_AM2,23/10/2023,24/10/2023 8:00,8,9.5,8,9.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.649,0,0,0,0,0,0.65,0,"[0.231 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.65  0.    0.    0.119]",63913,Pobblebonk Frog,LD,14/05/2024 16:53,154
+28688,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bunyip Waterhole_AM2/20221008_203000.WAV,Bunyip Waterhole_AM2,8/10/2022,9/10/2022 7:30,57,58.5,57,58.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.693,0,0,0,0,0,0.693,0.001,"[0.304 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.693 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:53,155
+101699,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20211205_120000.WAV,Mannions_AM2,5/12/2021,5/12/2021 23:00,11,12.5,11,12.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.643,0.016,0,0.001,0.01,0.001,0.642,0,"[0.328 0.    0.    0.016 0.    0.    0.    0.    0.001 0.002 0.    0.001
+ 0.    0.642 0.    0.01  0.   ]",-903723,Not A Frog,LD,14/05/2024 16:53,156
+102587,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20220111_120000.WAV,Mannions_AM2,11/01/2022,11/01/2022 23:00,3,4.5,3,4.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.789,0,0,0,0,0,0.789,0,"[0.211 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.789 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:53,157
+159522,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Two Mile Sandridge_AM2/20211023_103000.WAV,Two Mile Sandridge_AM2,22/10/2021,23/10/2021 21:30,18,19.5,18,19.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.742,0.001,0.004,0.001,0,0,0.742,0,"[0.251 0.    0.    0.001 0.    0.    0.    0.004 0.001 0.    0.    0.
+ 0.    0.742 0.    0.    0.001]",63913,Pobblebonk Frog,LD,14/05/2024 16:53,158
+5993,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231006_200000.WAV,Black Gate Lagoon_AM1,6/10/2023,7/10/2023 7:00,34,35.5,34,35.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.712,0,0.009,0,0,0,0.712,0.001,"[0.204 0.    0.    0.    0.001 0.    0.    0.009 0.    0.    0.    0.
+ 0.    0.712 0.041 0.    0.032]",13063; 63913; 525739,Spotted Marsh Frog (race unknown); Pobblebonk Frog; Frogs,LD,14/05/2024 16:53,159
+13553,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Black Gate Lagoon_AM2/20211209_130000.WAV,Black Gate Lagoon_AM2,9/12/2021,10/12/2021,40,41.5,40,41.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.728,0,0,0,0,0,0.728,0.005,"[0.249 0.    0.    0.    0.005 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.728 0.    0.    0.016]",-903723,Not A Frog,LD,14/05/2024 16:53,160
+6450,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231025_201500.WAV,Black Gate Lagoon_AM1,25/10/2023,26/10/2023 7:15,18,19.5,18,19.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.706,0,0,0,0.006,0.001,0.706,0.001,"[0.247 0.    0.    0.    0.001 0.    0.001 0.    0.    0.    0.    0.001
+ 0.    0.706 0.035 0.006 0.001]",-903723,Not A Frog,LD,14/05/2024 16:53,161
+6377,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231022_200000.WAV,Black Gate Lagoon_AM1,22/10/2023,23/10/2023 7:00,40,41.5,40,41.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.783,0,0,0,0.001,0,0.783,0,"[0.213 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.783 0.001 0.001 0.001]",13134; 63913,Common Froglet; Pobblebonk Frog,LD,14/05/2024 16:54,162
+19499,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bucks Crossing_AM1/20221223_211500.WAV,Bucks Crossing_AM1,23/12/2022,24/12/2022 8:15,38,39.5,38,39.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.641,0.016,0.016,0.007,0.01,0.004,0.64,0.013,"[0.292 0.    0.    0.016 0.013 0.    0.    0.016 0.007 0.    0.    0.004
+ 0.    0.64  0.    0.01  0.   ]",-903723,Not A Frog,LD,14/05/2024 16:54,163
+97310,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Steamer Plain_AM2/20221107_233000.WAV,Steamer Plain_AM2,7/11/2022,8/11/2022 10:30,13,14.5,13,14.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.68,0,0,0,0,0.002,0.68,0.002,"[0.313 0.    0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.002
+ 0.    0.68  0.    0.    0.003]",-903723,Not A Frog,LD,14/05/2024 16:54,164
+9926,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Boals_AM1/20230930_191500.WAV,Boals_AM1,30/09/2023,1/10/2023 6:15,31,32.5,31,32.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.653,0,0,0.001,0.051,0.001,0.654,0.005,"[0.286 0.    0.    0.    0.005 0.001 0.    0.    0.001 0.    0.    0.001
+ 0.    0.654 0.    0.051 0.001]",-903723,Not A Frog,LD,14/05/2024 16:54,165
+137404,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Tarma Lagoon_AM2/20211015_130000.WAV,Tarma Lagoon_AM2,15/10/2021,16/10/2021,26,27.5,26,27.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.709,0,0,0,0,0,0.71,0,"[0.29 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.71
+ 0.   0.   0.  ]",-903723,Not A Frog,LD,14/05/2024 16:54,166
+724,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Barmah Creek Corrys_AM1/20210909_094500.WAV,Barmah Creek Corrys_AM1,8/09/2021,9/09/2021 19:45,52,53.5,52,53.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.62,0,0,0,0,0,0.62,0.005,"[0.374 0.    0.    0.    0.005 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.62  0.    0.    0.   ]",63913,Pobblebonk Frog,LD,14/05/2024 16:54,167
+6165,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231013_210000.WAV,Black Gate Lagoon_AM1,13/10/2023,14/10/2023 8:00,31,32.5,31,32.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.796,0,0.001,0,0,0,0.796,0,"[0.202 0.    0.    0.    0.    0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.796 0.    0.    0.001]",63913,Pobblebonk Frog,LD,14/05/2024 16:54,168
+31242,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bunyip Waterhole_AM2/20230122_230000.WAV,Bunyip Waterhole_AM2,22/01/2023,23/01/2023 10:00,3,4.5,3,4.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.688,0,0.002,0,0.001,0,0.688,0,"[0.308 0.    0.    0.    0.    0.    0.    0.002 0.    0.    0.    0.
+ 0.    0.688 0.    0.001 0.001]",-903723,Not A Frog,LD,14/05/2024 16:54,169
+65198,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Mannions_AM1/20230115_220000.WAV,Mannions_AM1,15/01/2023,16/01/2023 9:00,32,33.5,32,33.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.794,0,0,0,0,0,0.794,0,"[0.206 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.794 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:54,170
+23852,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bunyip Gully Gowers_AM1/20221107_233000.WAV,Bunyip Gully Gowers_AM1,7/11/2022,8/11/2022 10:30,13,14.5,13,14.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.68,0,0,0,0,0.002,0.68,0.002,"[0.313 0.    0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.002
+ 0.    0.68  0.    0.    0.003]",-903723,Not A Frog,LD,14/05/2024 16:54,171
+100669,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20211023_123000.WAV,Mannions_AM2,23/10/2021,23/10/2021 23:30,4,5.5,4,5.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.665,0,0,0,0,0,0.664,0.007,"[0.326 0.    0.    0.    0.007 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.664 0.    0.    0.002]",-903723,Not A Frog,LD,14/05/2024 16:54,172
+99644,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Steamer Plain_AM2/20230910_190000.WAV,Steamer Plain_AM2,10/09/2023,11/09/2023 5:00,37,38.5,37,38.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.773,0,0,0,0,0,0.773,0,"[0.227 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.773 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:54,173
+118251,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Rookery_AM1/20211027_124500.WAV,Rookery_AM1,27/10/2021,27/10/2021 23:45,53,54.5,53,54.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.62,0.001,0.123,0.002,0,0.001,0.62,0.002,"[0.251 0.    0.    0.001 0.002 0.    0.    0.123 0.002 0.    0.    0.001
+ 0.    0.62  0.    0.    0.   ]",13063; 13131; -3,Spotted Marsh Frog (race unknown); Eastern Sign-bearing Froglet; Do not use,LD,14/05/2024 16:55,174
+6585,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231031_000000.WAV,Black Gate Lagoon_AM1,30/10/2023,31/10/2023 11:00,40,41.5,40,41.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.754,0,0,0,0.003,0,0.754,0,"[0.234 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.754 0.004 0.003 0.006]",-903723,Not A Frog,LD,14/05/2024 16:55,175
+139216,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Tarma Lagoon_AM2/20211230_100000.WAV,Tarma Lagoon_AM2,29/12/2021,30/12/2021 21:00,32,33.5,32,33.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.767,0,0,0,0,0,0.767,0.001,"[0.231 0.    0.    0.    0.001 0.001 0.    0.    0.    0.    0.    0.
+ 0.    0.767 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:55,176
+100202,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20211004_094500.WAV,Mannions_AM2,3/10/2021,4/10/2021 20:45,55,56.5,55,56.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.717,0,0,0,0,0,0.718,0,"[0.283 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.718 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:58,177
+29604,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM2/20230925_190000.WAV,Burial Lagoon_AM2,25/09/2023,26/09/2023 5:00,16,17.5,16,17.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.735,0,0.001,0,0,0,0.736,0.002,"[0.026 0.    0.    0.    0.002 0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.736 0.    0.    0.236]",13131; 13204; 63913; 525739,Eastern Sign-bearing Froglet; Perons Tree Frog; Pobblebonk Frog; Frogs,LD,14/05/2024 16:58,178
+6140,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231012_204500.WAV,Black Gate Lagoon_AM1,12/10/2023,13/10/2023 7:45,46,47.5,46,47.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.78,0,0.001,0,0.001,0,0.78,0,"[0.212 0.    0.    0.    0.    0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.78  0.001 0.001 0.004]",63913,Pobblebonk Frog,LD,14/05/2024 16:58,179
+96883,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Steamer Plain_AM2/20221021_004500.WAV,Steamer Plain_AM2,20/10/2022,21/10/2022 11:45,28,29.5,28,29.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.771,0,0.016,0,0,0,0.771,0.001,"[0.209 0.    0.    0.    0.001 0.    0.    0.016 0.    0.    0.    0.
+ 0.    0.771 0.    0.    0.003]",-903723,Not A Frog,LD,14/05/2024 16:58,180
+22425,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bucks Crossing_AM2/20230102_204500.WAV,Bucks Crossing_AM2,2/01/2023,3/01/2023 7:45,9,10.5,9,10.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.61,0,0.009,0,0.001,0,0.61,0.001,"[0.322 0.    0.001 0.    0.001 0.    0.    0.009 0.    0.    0.    0.
+ 0.    0.61  0.006 0.001 0.05 ]",-903723,Not A Frog,LD,14/05/2024 16:58,181
+66796,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20211209_101500.WAV,Horseshoe Lagoon_AM1,8/12/2021,9/12/2021 21:15,52,53.5,52,53.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.775,0,0,0,0,0,0.775,0,"[0.224 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.775 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 16:59,182
+68113,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20220202_093000.WAV,Horseshoe Lagoon_AM1,1/02/2022,2/02/2022 20:30,8,9.5,8,9.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.609,0.097,0.001,0.001,0.003,0.001,0.61,0.005,"[0.282 0.    0.    0.097 0.005 0.    0.    0.001 0.001 0.    0.    0.001
+ 0.    0.61  0.    0.003 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:59,183
+35182,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Gully Gowers_AM1/20211005_144500.WAV,Bunyip Gully Gowers_AM1,5/10/2021,6/10/2021 1:45,30,31.5,30,31.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.784,0,0.001,0,0,0,0.784,0.001,"[0.214 0.    0.    0.    0.001 0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.784 0.    0.    0.001]",63913,Pobblebonk Frog,LD,14/05/2024 16:59,184
+52606,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Horseshoe Lagoon_AM1/20231210_214500.WAV,Horseshoe Lagoon_AM1,10/12/2023,11/12/2023 8:45,44,45.5,44,45.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.665,0.001,0.001,0,0.001,0.001,0.665,0.007,"[0.319 0.    0.    0.001 0.007 0.    0.    0.001 0.    0.    0.    0.001
+ 0.    0.665 0.    0.001 0.004]",-903723,Not A Frog,LD,14/05/2024 16:59,185
+60888,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Gooseneck_AM1/20220108_091500.WAV,Gooseneck_AM1,7/01/2022,8/01/2022 20:15,53,54.5,53,54.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.704,0,0,0,0.001,0.001,0.704,0,"[0.29  0.    0.001 0.    0.    0.    0.    0.    0.    0.    0.001 0.001
+ 0.    0.704 0.    0.001 0.001]",-903723,Not A Frog,LD,14/05/2024 16:59,186
+66524,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20211127_141500.WAV,Horseshoe Lagoon_AM1,27/11/2021,28/11/2021 1:15,56,57.5,56,57.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.612,0.01,0.006,0.004,0.018,0.004,0.612,0.009,"[0.335 0.    0.    0.01  0.009 0.    0.    0.006 0.004 0.001 0.    0.004
+ 0.    0.612 0.    0.018 0.001]",-903723,Not A Frog,LD,14/05/2024 16:59,187
+64369,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Mannions_AM1/20221212_004500.WAV,Mannions_AM1,11/12/2022,12/12/2022 11:45,34,35.5,34,35.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.8,0,0,0,0,0,0.8,0,[0.2 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.8 0.  0.  0. ],-903723,Not A Frog,LD,14/05/2024 16:59,188
+66826,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20211210_114500.WAV,Horseshoe Lagoon_AM1,9/12/2021,10/12/2021 22:45,55,56.5,55,56.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.777,0.002,0.002,0,0.002,0,0.778,0.001,"[0.216 0.    0.    0.002 0.001 0.    0.    0.002 0.    0.    0.    0.
+ 0.    0.778 0.    0.002 0.   ]",-903723,Not A Frog,LD,14/05/2024 16:59,189
+19764,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bucks Crossing_AM1/20230103_213000.WAV,Bucks Crossing_AM1,3/01/2023,4/01/2023 8:30,12,13.5,12,13.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.694,0,0,0,0,0.001,0.694,0,"[0.306 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.001
+ 0.    0.694 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:00,190
+60897,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Hut Lake_AM1/20231022_221500.WAV,Hut Lake_AM1,22/10/2023,23/10/2023 9:15,5,6.5,5,6.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.778,0,0,0,0,0.004,0.778,0.078,"[0.14  0.    0.    0.    0.078 0.    0.    0.    0.    0.    0.    0.004
+ 0.    0.778 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:00,191
+6606,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231031_231500.WAV,Black Gate Lagoon_AM1,31/10/2023,1/11/2023 10:15,36,37.5,36,37.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.796,0,0.001,0,0.001,0.001,0.796,0.01,"[0.189 0.    0.    0.    0.01  0.    0.    0.001 0.    0.    0.    0.001
+ 0.    0.796 0.    0.001 0.001]",-903723,Not A Frog,LD,14/05/2024 17:00,192
+57272,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Hughes Crossing_AM1/20231207_220000.WAV,Hughes Crossing_AM1,7/12/2023,8/12/2023 9:00,40,41.5,40,41.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.693,0,0.001,0,0,0,0.693,0,"[0.304 0.    0.    0.    0.    0.    0.    0.001 0.    0.    0.    0.
+ 0.    0.693 0.001 0.    0.001]",-903723,Not A Frog,LD,14/05/2024 17:00,193
+17778,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Bucks Crossing_AM1/20221012_230000.WAV,Bucks Crossing_AM1,12/10/2022,13/10/2022 10:00,22,23.5,22,23.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.615,0.001,0,0,0,0.023,0.614,0.014,"[0.346 0.    0.    0.001 0.014 0.    0.    0.    0.    0.    0.    0.023
+ 0.    0.614 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:00,194
+138165,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Tarma Lagoon_AM2/20211116_111500.WAV,Tarma Lagoon_AM2,15/11/2021,16/11/2021 22:15,49,50.5,49,50.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.607,0.006,0.002,0,0,0,0.608,0,"[0.384 0.    0.    0.006 0.    0.    0.    0.002 0.    0.    0.    0.
+ 0.    0.608 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:00,195
+151503,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Two Mile Bunyip_AM2/20211015_094500.WAV,Two Mile Bunyip_AM2,14/10/2021,15/10/2021 20:45,22,23.5,22,23.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.672,0,0,0.007,0,0,0.672,0,"[0.31  0.    0.    0.    0.    0.    0.    0.    0.007 0.    0.    0.
+ 0.    0.672 0.    0.    0.01 ]",-903723,Not A Frog,LD,14/05/2024 17:00,196
+14378,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Black Gate Lagoon_AM2/20220113_091500.WAV,Black Gate Lagoon_AM2,12/01/2022,13/01/2022 20:15,25,26.5,25,26.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.721,0,0,0,0,0,0.72,0.002,"[0.278 0.    0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.72  0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:00,197
+6265,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231017_220000.WAV,Black Gate Lagoon_AM1,17/10/2023,18/10/2023 9:00,30,31.5,30,31.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.653,0,0.08,0.002,0.003,0.001,0.654,0.004,"[0.055 0.    0.    0.    0.004 0.    0.    0.08  0.002 0.    0.    0.001
+ 0.    0.654 0.    0.003 0.201]",63913,Pobblebonk Frog,LD,14/05/2024 17:00,198
+60999,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Hut Lake_AM1/20231026_234500.WAV,Hut Lake_AM1,26/10/2023,27/10/2023 10:45,48,49.5,48,49.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.721,0,0,0,0,0,0.721,0,"[0.278 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.721 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:00,199
+102429,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20220104_143000.WAV,Mannions_AM2,4/01/2022,5/01/2022 1:30,27,28.5,27,28.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.97,0,0,0,0,0,0.97,0,"[0.03 0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.97
+ 0.   0.   0.  ]",-903723,Not A Frog,LD,14/05/2024 17:00,200
+29596,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Burial Lagoon_AM2/20230924_230000.WAV,Burial Lagoon_AM2,24/09/2023,25/09/2023 9:00,15,16.5,15,16.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.845,0,0.003,0,0,0,0.845,0.019,"[0.001 0.    0.    0.    0.019 0.    0.    0.003 0.    0.    0.    0.
+ 0.    0.845 0.    0.    0.131]",63913,Pobblebonk Frog,LD,14/05/2024 17:00,201
+35161,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Bunyip Gully Gowers_AM1/20211005_093000.WAV,Bunyip Gully Gowers_AM1,4/10/2021,5/10/2021 20:30,51,52.5,51,52.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.802,0,0,0,0,0,0.802,0,"[0.198 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.802 0.    0.    0.   ]",63913,Pobblebonk Frog,LD,14/05/2024 17:00,202
+102615,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20220112_130000.WAV,Mannions_AM2,12/01/2022,13/01/2022,54,55.5,54,55.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.984,0,0,0,0,0,0.984,0,"[0.015 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.984 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,203
+9690,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Boals_AM1/20230920_201500.WAV,Boals_AM1,20/09/2023,21/09/2023 6:15,30,31.5,30,31.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.806,0,0.002,0,0.008,0,0.806,0,"[0.18  0.    0.001 0.    0.    0.    0.    0.002 0.    0.    0.    0.
+ 0.    0.806 0.    0.008 0.001]",-903723,Not A Frog,LD,14/05/2024 17:01,204
+9828,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Boals_AM1/20230926_004500.WAV,Boals_AM1,25/09/2023,26/09/2023 10:45,31,32.5,31,32.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.991,0,0,0,0,0,0.991,0,"[0.008 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.991 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,205
+66170,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20211113_094500.WAV,Horseshoe Lagoon_AM1,12/11/2021,13/11/2021 20:45,40,41.5,40,41.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.819,0,0,0,0,0,0.819,0,"[0.18  0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.819 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,206
+65268,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Mannions_AM1/20230118_213000.WAV,Mannions_AM1,18/01/2023,19/01/2023 8:30,15,16.5,15,16.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.888,0,0,0,0,0,0.888,0,"[0.112 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.888 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,207
+66833,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20211210_133000.WAV,Horseshoe Lagoon_AM1,10/12/2021,11/12/2021 0:30,26,27.5,26,27.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.957,0,0,0,0,0,0.957,0,"[0.043 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.957 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,208
+101397,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20211122_143000.WAV,Mannions_AM2,22/11/2021,23/11/2021 1:30,23,24.5,23,24.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.844,0,0,0,0,0.001,0.844,0.002,"[0.153 0.    0.    0.    0.002 0.    0.    0.    0.    0.    0.    0.001
+ 0.    0.844 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,209
+68782,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM2/20211018_144500.WAV,Horseshoe Lagoon_AM2,18/10/2021,19/10/2021 1:45,31,32.5,31,32.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.874,0,0,0,0,0,0.874,0.001,"[0.124 0.    0.    0.    0.001 0.001 0.    0.    0.    0.    0.    0.
+ 0.    0.874 0.    0.    0.   ]",63913,Pobblebonk Frog,LD,14/05/2024 17:01,210
+68803,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM2/20211019_140000.WAV,Horseshoe Lagoon_AM2,19/10/2021,20/10/2021 1:00,37,38.5,37,38.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.897,0,0,0,0,0,0.897,0,"[0.103 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.897 0.    0.    0.   ]",63913,Pobblebonk Frog,LD,14/05/2024 17:01,211
+66430,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20211123_144500.WAV,Horseshoe Lagoon_AM1,23/11/2021,24/11/2021 1:45,55,56.5,55,56.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.876,0.001,0.007,0,0,0,0.876,0.007,"[0.107 0.    0.    0.001 0.007 0.    0.    0.007 0.    0.    0.    0.
+ 0.    0.876 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,212
+102282,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20211229_134500.WAV,Mannions_AM2,29/12/2021,30/12/2021 0:45,36,37.5,36,37.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.921,0.001,0.001,0,0,0.005,0.921,0.003,"[0.066 0.    0.    0.001 0.003 0.002 0.    0.001 0.    0.    0.    0.005
+ 0.    0.921 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,213
+99379,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Steamer Plain_AM2/20230830_004500.WAV,Steamer Plain_AM2,29/08/2023,30/08/2023 10:45,30,31.5,30,31.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.818,0,0,0,0.002,0,0.818,0,"[0.175 0.    0.004 0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.818 0.    0.002 0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,214
+66956,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Horseshoe Lagoon_AM1/20211215_141500.WAV,Horseshoe Lagoon_AM1,15/12/2021,16/12/2021 1:15,44,45.5,44,45.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.971,0,0,0,0,0,0.971,0,"[0.027 0.    0.    0.    0.    0.002 0.    0.    0.    0.    0.    0.
+ 0.    0.971 0.    0.    0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,215
+102500,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Mannions_AM2/20220107_141500.WAV,Mannions_AM2,7/01/2022,8/01/2022 1:15,28,29.5,28,29.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,1,0,0,0,0,0,1,0,[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 0.],-903723,Not A Frog,LD,14/05/2024 17:01,216
+112662,S:/SoundData/FrogCalls/TLM_2022-23_Barmah-Millewa/Whores Creek_AM2/20221209_220000.WAV,Whores Creek_AM2,9/12/2022,10/12/2022 9:00,39,40.5,39,40.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.826,0,0,0,0,0,0.826,0,"[0.169 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.003 0.
+ 0.    0.826 0.001 0.    0.001]",-903723,Not A Frog,LD,14/05/2024 17:01,217
+6626,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231101_221500.WAV,Black Gate Lagoon_AM1,1/11/2023,2/11/2023 9:15,49,50.5,49,50.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.802,0,0,0,0.005,0,0.802,0,"[0.191 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.802 0.001 0.005 0.   ]",-903723,Not A Frog,LD,14/05/2024 17:01,218
+159537,S:/SoundData/FrogCalls/TLM_Barmah-Millewa_2021-22/Two Mile Sandridge_AM2/20211023_141500.WAV,Two Mile Sandridge_AM2,23/10/2021,24/10/2021 1:15,10,11.5,10,11.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.995,0,0,0,0,0,0.994,0,"[0.006 0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ 0.    0.994 0.    0.    0.   ]",63913,Pobblebonk Frog,LD,14/05/2024 17:02,219
+6369,S:/SoundData/FrogCalls/TLM_2023-24_Barmah-Millewa/Black Gate Lagoon_AM1/20231022_000000.WAV,Black Gate Lagoon_AM1,21/10/2023,22/10/2023 11:00,9,10.5,9,10.5,63913,Pobblebonk Frog,63913,Pobblebonk Frog,0.875,0,0,0,0.001,0,0.875,0.001,"[0.107 0.    0.    0.    0.001 0.    0.    0.    0.    0.    0.    0.
+ 0.    0.875 0.    0.001 0.015]",63913,Pobblebonk Frog,LD,14/05/2024 17:02,220

@@ -27,3 +27,6 @@ data/climate/tmin_2019.nc
 data/climate/tmin_2020.nc
 data/climate/tmin_2021.nc
 outputs/fit.rds
+data/climate/tmin_2024.nc
+data/climate/precip_2024.nc
+data/model_results/TLM_Barmah_Frogs_March2024_3.csv
