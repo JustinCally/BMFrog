@@ -113,6 +113,8 @@ for(i in 1:nsites) {
 
 generated quantities {
     int<lower=0,upper=1> z[nsites, nspec];
+    // real<lower=0,upper=1> z_hat[nyear, nspec];
+    // real<lower=0,upper=1> theta_hat[nyear, nspec];
     real mu_pred[2,nspec];
     real theta_phen [365,nspec];
     array[nspec] vector<lower=0,upper=1>[nfiles] det_pred;
@@ -137,6 +139,10 @@ for(j in 1:nspec) {
         score_pred[k,j] = beta_rng(mu[2,j], sigma[2,j]);
       }
     }
+    // for(y in 1:nyear) {
+      // z_hat[y,j] = sum(z[year_code[,j] == y,j])/size(z[year_code[,j] == y,j]);
+      // theta_hat[y,j] = ;
+    // }
 }
 }
 
