@@ -509,7 +509,7 @@ psi_form <- ~ scale(sqrt(wet)) + scale(pv) + scale(sqrt(water)) + FloodScore
 occ_matrix[[i]] <- model.matrix(psi_form, data = site_data[[i]])
 
 # Daily precipitation matrix
-theta_form <- ~ scale(Precipitation) + scale(tmin) + scale(wet) + scale(water) + scale(pv) + cosDay + sinDay
+theta_form <- ~ scale(Precipitation) + scale(tmin) + scale(wet) + scale(water) + scale(pv) #+ cosDay + sinDay
 call_rate_matrix[[i]] <- model.matrix(theta_form, data = joined_data[[i]])
 
 for(j in 1:nsites) {
@@ -632,13 +632,14 @@ Below is the STAN model used in our analysis. It is a mult-species, multi-season
 ```
 
 ```{r readmods, echo = F}
-cont_model_ms_norm <- cmdstan_model("stan/continuous_model_ms_my_norm.stan")
+# cont_model_ms_norm <- cmdstan_model("stan/continuous_model_ms_my_norm.stan")
+cont_model_ms_norm <- cmdstan_model("stan/continuous_model_ms_my_norm3.stan")
 ```
 
 ```{r modelparams}
 ni <- 200 #samples
 nw <- 200 #warmups
-nc <- 8 #chains
+nc <- 10 #chains
 ```
 
 ```{r fitmods, eval = F}
@@ -678,7 +679,22 @@ bayesplot::color_scheme_set(bayes_theme)
 funs <- c(max, mean, sd, ppc_scatter_avg, prop_zero, ppc_dens_overlay)
 titles <- c("Max", "Mean", "SD", "Average Site Counts", "Proportion Zeros", "Density of Counts")
 
+score_preds <- fit_norm$draws("score_pred", format = "matrix")
+scores_unlist <- unlist(scores)
 
+ppc_plots <- bayesplot::ppc_stat(y = scores_unlist,
+                                 yrep = score_preds,
+                                 stat=mean) +
+      ggplot2::ggtitle(label = "mean") +
+      # ggplot2::scale_x_continuous(limits = c(qmin, qmax)) +
+      ggplot2::theme_bw() +
+      ggplot2::theme(legend.position = "top")
+
+posterior_checks_multispecies(model = fit_norm, 
+                              model_data = stan_data, 
+                              species_index = 1,
+                              stat = "mean", 
+                              title = "mean") 
 ```
 
 
