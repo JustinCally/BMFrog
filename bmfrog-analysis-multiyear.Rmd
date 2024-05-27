@@ -23,6 +23,7 @@ library(cmdstanr)
 library(bayesplot)
 library(httr)
 library(VicmapR)
+library(ggridges)
 check_cmdstan_toolchain(fix = TRUE, quiet = TRUE)
 options(mc.cores=4)
 register_knitr_engine(override = FALSE)
@@ -489,10 +490,13 @@ joined_data[[i]] <- records_validated[[i]] %>%
          Prob_f = case_when(Prob_One == 1 ~ 0.999, 
                             Prob_One == 0 ~ 0.001, 
                             TRUE ~ Prob_One),
-         Prob_One_M = qlogis(Prob_f)) %>%
+         Prob_One_M = qlogis(Prob_f), 
+         weight = case_when(Detected == 2 ~ 0.01,
+                            TRUE ~ 1)) %>%
   group_by(Site_f) %>%
   mutate(any_seen = case_when(any(Detected == 1) ~ 1, 
                               TRUE ~ 0)) %>%
+  slice_sample(n = 10, weight_by = weight) %>%
   ungroup() %>%
   arrange(Site_f, Detected) 
 
@@ -505,11 +509,11 @@ site_data[[i]] <- joined_data[[i]] %>%
   left_join(site_vars, by = "Site_Year")
 
 # occupancy model
-psi_form <- ~ scale(sqrt(wet)) + scale(pv) + scale(sqrt(water)) + FloodScore
+psi_form <- ~ scale(sqrt(wet)) + scale(pv) + scale(sqrt(water)) # + FloodScore
 occ_matrix[[i]] <- model.matrix(psi_form, data = site_data[[i]])
 
 # Daily precipitation matrix
-theta_form <- ~ scale(Precipitation) + scale(tmin) + scale(wet) + scale(water) + scale(pv) #+ cosDay + sinDay
+theta_form <- ~ scale(sqrt(Precipitation)) + scale(tmin) + scale(sqrt(wet)) + scale(sqrt(water)) + scale(pv) #+ cosDay + sinDay
 call_rate_matrix[[i]] <- model.matrix(theta_form, data = joined_data[[i]])
 
 for(j in 1:nsites) {
@@ -570,7 +574,7 @@ any_seen_joined <- any_seen_clean
 
 for(j in 1:ncol(any_seen_clean)) {
   for(i in 1:nrow(any_seen_clean))
-    any_seen_joined[i,j] <- max(any_seen[i,j], any_seen_clean[i,j])
+    any_seen_joined[i,j] <- any_seen[i,j] #max(any_seen[i,j], any_seen_clean[i,j])
 }
 ```
 
@@ -583,6 +587,7 @@ site_list <- lapply(joined_data, function(x) pull(x, Site_f))
 loc_code <- lapply(site_data, function(x) pull(x, Loc)) 
 cluster_code <- lapply(site_data, function(x) pull(x, Cluster)) 
 year_code <- lapply(site_data, function(x) pull(x, Year)) 
+detected <- lapply(joined_data, function(x) pull(x, Detected))
 
 nyear <- length(unique(unlist(year_code)))
 nloc <- length(unique(unlist(loc_code)))
@@ -613,7 +618,8 @@ stan_data <- list(nfiles = nfiles,
                   theta_mm = call_rate_matrix, 
                   theta_nc = ncol(call_rate_matrix[[1]]), 
                   psi_mm = occ_matrix, 
-                  psi_nc = ncol(occ_matrix[[1]]))
+                  psi_nc = ncol(occ_matrix[[1]]), 
+                  detected = array(unlist(detected),dim=c(nfiles,nspecies_cleaned)))
 
 # stan_data$year_code[stan_data$year_code == 5] <- 4
 stan_data_beta <- stan_data 
@@ -632,18 +638,28 @@ Below is the STAN model used in our analysis. It is a mult-species, multi-season
 ```
 
 ```{r readmods, echo = F}
-# cont_model_ms_norm <- cmdstan_model("stan/continuous_model_ms_my_norm.stan")
-cont_model_ms_norm <- cmdstan_model("stan/continuous_model_ms_my_norm3.stan")
+cont_model_ms_norm <- cmdstan_model("stan/continuous_model_ms_my_norm.stan")
+cont_model_ms_beta <- cmdstan_model("stan/continuous_model_ms_my_beta.stan")
 ```
 
 ```{r modelparams}
-ni <- 200 #samples
-nw <- 200 #warmups
-nc <- 10 #chains
+ni <- 150 #samples
+nw <- 150 #warmups
+nc <- 8 #chains
 ```
 
 ```{r fitmods, eval = F}
-fit_norm <- cont_model_ms_norm$sample(data = stan_data,
+# fit_norm <- cont_model_ms_norm$sample(data = stan_data,
+#                          chains = nc,
+#                          parallel_chains = nc,
+#                          show_messages = TRUE,
+#                          save_warmup = FALSE,
+#                          iter_sampling = ni,
+#                          iter_warmup = nw, refresh = 20)
+# 
+# fit_norm$save_object("outputs/fit_norm.rds")
+
+fit_beta <- cont_model_ms_beta$sample(data = stan_data_beta,
                          chains = nc,
                          parallel_chains = nc,
                          show_messages = TRUE,
@@ -651,19 +667,23 @@ fit_norm <- cont_model_ms_norm$sample(data = stan_data,
                          iter_sampling = ni,
                          iter_warmup = nw, refresh = 20)
 
-fit_norm$save_object("outputs/fit_norm.rds")
+fit_beta$save_object("outputs/fit_beta.rds")
 ```
 
 ```{r readinmods}
-fit_norm <- readRDS("outputs/fit_norm.rds")
+fit_beta <- readRDS("outputs/fit_beta.rds")
 ```
 
 # Model analysis 
 
 ## Posterior predictive checks  
-```{r PPC}
+
+Posterior predictive checks can be used to compare model predictions to the original data supplied to the model. Here we compare summary statistics for the probability scores supplied to the model. Ideally, predictions from the model are able to align with the supplied data. We compare 25%, 50% and 75% confidence intervals for the 'probability scores'.
+
+```{r PPC, fig.height=24, fig.width=18, message = F}
 q95 <- function(x) quantile(x, 0.95, na.rm = T)
-# q25 <- function(x) quantile(x, 0.25, na.rm = T)
+q25 <- function(x) quantile(x, 0.25, na.rm = T)
+q50 <- function(x) quantile(x, 0.5, na.rm = T)
 q75 <- function(x) quantile(x, 0.75, na.rm = T)
 sd_90 <- function (x, na.rm = FALSE) {
   quants <- quantile(x, c(0.05, 0.95), na.rm = T)
@@ -672,34 +692,43 @@ sd_90 <- function (x, na.rm = FALSE) {
     na.rm = na.rm))
 }
 
-bayes_theme <- c(delwp_cols_seq$Teal[6:8], delwp_cols_shades$Navy[1:3])
+species_list_cleaned2 <- species_list_cleaned
+names(species_list_cleaned2)[6] <- "Spotted Marsh Frog"
 
-bayesplot::color_scheme_set(bayes_theme)
+ppc_plots_25 <- list()
+ppc_plots_50 <- list()
+ppc_plots_75 <- list()
+for(i in 1:length(species_list_cleaned)) {
+ppc_plots_25[[i]] <- posterior_checks_multispecies(model = fit_beta, 
+                              model_data = joined_data, 
+                              species_index = i,
+                              stat = "q25", 
+                              title = paste0("25% quantile ", names(species_list_cleaned2)[i]))
 
-funs <- c(max, mean, sd, ppc_scatter_avg, prop_zero, ppc_dens_overlay)
-titles <- c("Max", "Mean", "SD", "Average Site Counts", "Proportion Zeros", "Density of Counts")
+ppc_plots_50[[i]] <- posterior_checks_multispecies(model = fit_beta, 
+                              model_data = joined_data, 
+                              species_index = i,
+                              stat = "q50", 
+                              title = paste0("50% quantile ", names(species_list_cleaned2)[i]))
 
-score_preds <- fit_norm$draws("score_pred", format = "matrix")
-scores_unlist <- unlist(scores)
+ppc_plots_75[[i]] <- posterior_checks_multispecies(model = fit_beta, 
+                              model_data = joined_data, 
+                              species_index = i,
+                              stat = "q75", 
+                              title = paste0("75% quantile ", names(species_list_cleaned2)[i]))
 
-ppc_plots <- bayesplot::ppc_stat(y = scores_unlist,
-                                 yrep = score_preds,
-                                 stat=mean) +
-      ggplot2::ggtitle(label = "mean") +
-      # ggplot2::scale_x_continuous(limits = c(qmin, qmax)) +
-      ggplot2::theme_bw() +
-      ggplot2::theme(legend.position = "top")
+}
 
-posterior_checks_multispecies(model = fit_norm, 
-                              model_data = stan_data, 
-                              species_index = 1,
-                              stat = "mean", 
-                              title = "mean") 
+ppc_grid <- cowplot::plot_grid(plotlist = c(ppc_plots_25, ppc_plots_50, ppc_plots_75), nrow = 6, byrow = F)
+
+ggsave(plot = ppc_grid, filename = "outputs/plots/ppcs_beta.pdf", width = 6000, height = 8000, units = "px")
+
+ppc_grid
 ```
 
 
-```{r, fig.width = 18, fig.height = 30}
-psi_summary <- fit_norm$summary("psi")
+```{r, fig.width = 18, fig.height = 30, eval = FALSE}
+psi_summary <- fit_beta$summary("psi")
 
 for(i in 1:length(species_list_cleaned)) {
 psi_summary_species <- psi_summary %>%
@@ -707,9 +736,10 @@ psi_summary_species <- psi_summary %>%
   mutate(label = paste0("Det = ", any_seen, ", Occ = ", round(mean,2), " [", round(q5,2), " - ", round(q95,2), "]"))
 
 heatmap <- joined_data[[i]] %>% 
+  mutate(yday = yday(Date)) %>%
   ggplot() + 
-  geom_tile(aes(x = Day, y = Site_Year, fill = Prob_f, colour = Prob_f)) + 
-  geom_text(aes(x = 260, y = Site_Year, label = label), data = psi_summary_species, size = 4) +
+  geom_tile(aes(x = yday, y = Site_Year, fill = Prob_f, colour = Prob_f)) + 
+  geom_text(aes(x = 100, y = Site_Year, label = label), data = psi_summary_species, size = 4) +
   scale_fill_gradient(low = "#fff5f0", high = "#67000d") +
   scale_colour_gradient(low = "#fff5f0", high = "#67000d") + 
   ggtitle(label = names(species_list_cleaned)[i])
@@ -718,9 +748,9 @@ ggsave(plot = heatmap, filename = paste0("outputs/plots/heatmap/score_heatmap_",
 }
 ```
 
+# Model summary 
 
-
-```{r}
+```{r, eval = FALSE}
 psi_summary <- fit_norm$summary("psi")
 psi_summary_sp <- list()
 for(i in 1:nspecies_cleaned) {
@@ -780,14 +810,38 @@ theta_summary_combined %>%
   geom_pointrange(aes(ymin = q5, ymax = q95), position = position_dodge2(width = 0.5, padding = 0.5))
 ```
 
-```{r, fig.height = 8}
-mu_summary <- fit_norm$draws("mu_pred") 
-mcmc_areas(mu_summary, prob_outer = 0.9)
+## Call recogniser performance  
+
+Using our model we can visualise how our statistical model is able to delineate validated calls into detections an non-detections. Our model determines the performance of the acoustic classifier by the estimation of two hierarchical parameters for each species. These parameters estimate the 'classifier probability score' ($\mu$) when there is no call present in the snippet ($\mu_{det\ =\ 0}$) and when there is a call present in the snippet ($\mu_{det\ =\ 1}$). At the very least, the classifier should have a higher probability score for detections than non-detections ($\mu_{det\ =\ 1}$ > $\mu_{det\ =\ 0}$).
+
+```{r, fig.height = 8, message = FALSE}
+mu_summary <- fit_beta$draws("mu_pred", format = "df") 
+mu_summary_long <- pivot_longer(mu_summary, cols = 1:12)
+mu_summary_long$`Validated detection` <- rep(c("Non-detection", "Detection"), length.out = nrow(mu_summary_long))
+mu_summary_long$Species <- rep(names(species_list_cleaned), each = 2, length.out = nrow(mu_summary_long))
+
+ggplot(data = mu_summary_long) +
+  stat_density_ridges(aes(x = value, 
+                          y = `Validated detection`, 
+                          fill = 0.5 - abs(0.5 - stat(ecdf))), 
+                      quantile_lines = TRUE, quantiles = 2, geom = "density_ridges_gradient", calc_ecdf = TRUE) +
+  scale_fill_gradient(name = "Posterior density", low = delwp_cols[3], high = delwp_cols[1]) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0,1), name = "Classifier probability score") +
+  scale_y_discrete(expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  facet_wrap(~Species) + 
+  delwp_theme() +
+  theme(panel.spacing = unit(2, "lines"))
 ```
+Based on these distributions we see that the classifier is more often than not able to delineate true calls from unlikely calls. However. we also see that these distributions overlap. This means there is a relatively large probaility space where a 'classifier probability score' could reasonable both be a non-detection or a detection. 
+
+## Covariates impacting occupancy  
+
+We investigated whether several hydrological covariates impacted site occupancy for each species. These variables can vary across time (over survey years) and across space (over different sites). 
 
 ```{r FixedEffects, fig.height=15, fig.width = 8, warning = FALSE, message = FALSE, fig.cap="Marginal response curves for the various fixed-effect parameters used in the model."}
 # beta_summaries 
-beta_summaries <- fit_norm$summary("beta_psi")
+beta_summaries <- fit_beta$summary("beta_psi")
 
 beta_table_summary <- beta_summaries %>% 
   mutate(species = factor(rep(names(species_list_cleaned), times = 4), levels = names(species_list_cleaned)), 
@@ -813,7 +867,7 @@ format_cov <- function(sp, b, data = beta_summaries, variable = "beta_psi") {
 
 ab_joined_list <- list()
 for(j in 1:length(species_list_cleaned)) {
-beta_draws <- fit_norm$draws("beta_psi", format = "df")
+beta_draws <- fit_beta$draws("beta_psi", format = "df")
 
 which_sp <- which(stringr::str_detect(string = colnames(beta_draws),
                                     pattern = paste0("beta_psi\\[", j)))
@@ -875,7 +929,7 @@ cov_plot
 
 ```{r FixedEffects, fig.height=15, fig.width = 12, warning = FALSE, message = FALSE, fig.cap="Marginal response curves for the various fixed-effect parameters used in the model."}
 # beta_summaries 
-theta_summaries <- fit_norm$summary("beta_theta")
+theta_summaries <- fit_beta$summary("beta_theta")
 
 theta_table_summary <- theta_summaries %>% 
   mutate(species = factor(rep(names(species_list_cleaned), times = 6), levels = names(species_list_cleaned)), 
@@ -890,7 +944,7 @@ theta_table_summary <- theta_summaries %>%
 
 ab_joined_list <- list()
 for(j in 1:length(species_list_cleaned)) {
-theta_draws <- fit_norm$draws("beta_theta", format = "df")
+theta_draws <- fit_beta$draws("beta_theta", format = "df")
 
 which_sp <- which(stringr::str_detect(string = colnames(theta_draws),
                                     pattern = paste0("beta_theta\\[", j)))
@@ -970,7 +1024,7 @@ theta_hat <- fit_norm$summary("theta_hat")
 theta_hat$year <- zhat$year
 theta_hat$species <- zhat$species
 
-zhat_draws <- fit_norm$draws("z_hat", format = "matrix") %>%
+zhat_draws <- fit_beta$draws("z_hat", format = "matrix") %>%
   as.data.frame() %>%
   pivot_longer(cols = everything()) %>%
   mutate(year = rep(sort(unique(site_metadata_sf$`Monitoring year`)), length.out = nrow(.)),
@@ -996,7 +1050,7 @@ dfas[[i]] <- data.frame(any_seen = stan_data$any_seen[,i],
 dfas_comb <- bind_rows(dfas)
 
 
-theta_hat_draws <- fit_norm$draws("theta_hat", format = "matrix") %>%
+theta_hat_draws <- fit_beta$draws("theta_hat", format = "matrix") %>%
   as.data.frame() %>%
   pivot_longer(cols = everything()) %>%
   mutate(year = rep(sort(unique(site_metadata_sf$`Monitoring year`)), length.out = nrow(.)),
@@ -1017,7 +1071,7 @@ zhat_draws %>%
 ```
 
 ```{r, fig.width = 5, fig.height = 10}
-rel_ab_draws <- fit_norm$draws("rel_ab_mean", format = "matrix") %>%
+rel_ab_draws <- fit_beta$draws("rel_ab_mean", format = "matrix") %>%
   as.data.frame() %>%
   pivot_longer(cols = everything()) %>%
   mutate(year = rep(sort(unique(site_metadata_sf$`Monitoring year`)), length.out = nrow(.)),
