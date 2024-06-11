@@ -8,6 +8,7 @@ data {
   int<lower=0> nloc; // number of site locations (independent of years)
   array[nfiles, nspec] real score; // occupancy detection score
   array[nfiles, nspec] int detected; // whether or not was deteted
+  array[nfiles, nspec] int site_code; // file to site code
   array[nsites, nspec] int loc_code;
   array[nsites, nspec] int cluster_code;
   array[nsites, nspec] int year_code;
@@ -51,8 +52,8 @@ parameters {
   array[nsites, nspec] real site_raw;
   real<lower=0> site_sd[nspec];
   // files random effect
-  array[nfiles, nspec] real file_raw;
-  real<lower=0> file_sd[nspec];
+  // array[nfiles, nspec] real file_raw;
+  // real<lower=0> file_sd[nspec];
   // call rate coefficient
   array[nspec] vector[theta_nc] beta_theta; //call rate
   // occ coef
@@ -95,10 +96,11 @@ for(j in 1:nspec) {
 
 for(i in 1:nsites) {
   eps_site[i,j] = site_sd[j] * site_raw[i,j];
-  psi[i,j] = inv_logit(psi_mm[j, i] * beta_psi[j] + eps_loc[loc_code[i,j], j] + eps_year[year_code[i,j], j] + eps_site[i,j]);
+  psi[i,j] = inv_logit(psi_mm[j, i] * beta_psi[j] + eps_loc[loc_code[i,j], j] + eps_year[year_code[i,j], j]); // + eps_site[i,j]);
 }
-
-  theta[j] = inv_logit(theta_mm[j] * beta_theta[j]); // + (file_sd[j] * to_vector(file_raw[,j])));
+for(k in 1:nfiles) {
+  theta[j,k] = inv_logit(theta_mm[j,k] * beta_theta[j] + eps_site[site_code[k,j],j]); // + (file_sd[j] * to_vector(file_raw[,j])));
+}
 }
 
 }
@@ -116,27 +118,27 @@ for(j in 1:nspec) {
   year_sd[j] ~ normal(0,1);
   site_raw[,j] ~ normal(0,1);
   site_sd[j] ~ normal(0,1);
-  file_raw[,j] ~ normal(0,1);
-  file_sd[j] ~ normal(0,1);
+  // file_raw[,j] ~ normal(0,1);
+  // file_sd[j] ~ normal(0,1);
 
   beta_theta[j] ~ normal(0,2);
   beta_psi[j] ~ normal(0,2);
 
 }
 // mu priors
-  mu_int[1] ~ normal(-1,2);
-  mu_int[2] ~ normal(3,2);
+  mu_int[1] ~ normal(0,10);
+  mu_int[2] ~ normal(0,10);
   mu_raw[1,] ~ normal(0,1);
   mu_raw[2,] ~ normal(0,1);
 
-  mu_sd ~ normal(0,5);
+  mu_sd ~ normal(0,1);
 //sigma priors
   sigma_int[1] ~ normal(0,3);
   sigma_int[2] ~ normal(0,3);
   sigma_raw[1,] ~ normal(0,1);
   sigma_raw[2,] ~ normal(0,1);
 
-  sigma_sd ~ normal(0,3);
+  sigma_sd ~ normal(0,1);
 
 for(j in 1:nspec) {
 for(i in 1:nsites) {

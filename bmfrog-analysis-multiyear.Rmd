@@ -1,7 +1,31 @@
 ---
-title: "BMFrog Analysis"
-output: html_document
-date: "2024-03-07"
+title: "Barmah-Millewa Frog Monitoring"
+description: |
+  Analysis of frog monitoring data from 6 years at Barmah-Millewa forest.
+author:
+  - name: Justin G Cally
+    url: https://justincally.github.io/blog/
+    affiliation: Arthur Rylah Institute
+    affiliation_url: https://www.ari.vic.gov.au/
+date: 2024-05-28
+output:
+  distill::distill_article:
+    self_contained: true
+    toc: true # table of content true
+    toc_float: true # make 
+    depth: 3  # upto three depths of headings (specified by #, ## and ###)
+    number_sections: false  ## if you want number sections at each table header
+    code_folding: true # awesome buttons to show/hide the code
+    theme: yeti
+slug: bmffrog
+knit: |
+  (function(input, ...) {
+    rmarkdown::render(
+      input,
+      output_file = 'docs/index.html',
+      envir = globalenv()
+    )
+  })
 ---
 
 # Brief
@@ -39,6 +63,8 @@ filelist <- unlist(lapply(content(req)$tree, "[", "path"), use.names = F)
 function_files <- paste0("https://raw.githubusercontent.com/JustinCally/statewide-deer-analysis/main/",
                          grep("functions/", filelist, value = TRUE, fixed = TRUE))
 sapply(function_files, source, verbose = F)
+
+source("functions/ppc_plots.R")
 ```
 
 # Site data  
@@ -116,15 +142,22 @@ nights_dep_joined <- bind_rows(nights_dep)
 ```{r hull, eval = F}
 site_hull <- st_convex_hull(unique_sites %>% st_combine()) %>% 
   st_transform(3577) %>%
-  st_buffer(5000)
+  st_buffer(100)
 hydro_data <- vicmap_query("open-data-platform:hy_water_area_polygon") %>%
+  filter(BBOX(site_hull)) %>%
+  collect()
+
+elev_data <- vicmap_query("open-data-platform:el_contour") %>%
   filter(BBOX(site_hull)) %>%
   collect()
 
 mapview(hydro_data, zcol = "feature_type_code") + mapview(site_metadata_sf)
 
 sf::st_write(site_hull, "data/barmah_hull/barmah_hull.shp")
+sf::st_write(site_hull %>% st_transform(4326), "data/barmah_hull/barmah_hull.geojson")
 sf::st_write(unique_sites %>% st_transform(3577) %>% st_buffer(100), "data/site_metadata_sf/site_metadata_sf.shp", overwrite = T)
+
+sf::st_write(unique_sites %>% st_buffer(10, endCapStyle = "SQUARE") %>% st_transform(4326) %>% st_combine(), "data/barmah_hull/site_locs.geojson", overwrite = T)
 ```
 
 ## Hydrological data 
@@ -282,7 +315,11 @@ site_vars <- daily_vars %>%
   summarise(across(c("pv", "npv", "bs", "wet", "water", "veg_areas"), mean)) %>% 
   ungroup() %>%
   mutate(watercomb = wet + water) %>%
-  left_join(site_metadata_sf %>% st_drop_geometry() %>% transmute(Site_Year, WMA, FloodScore = factor(FloodScore)))
+  left_join(site_metadata_sf %>% 
+              st_drop_geometry() %>% 
+              transmute(Site_Year, WMA, FloodScore = factor(FloodScore), 
+                        Site_type = factor(Site_type), Water_permanence = factor(Water_permanence)), 
+            by = join_by(Site_Year))
 ```
 
 # Acoustic data 
@@ -291,7 +328,7 @@ site_vars <- daily_vars %>%
 
 For this analysis we model occupancy and call rate using daily maximum call probability scores. We obtained these scores from the raw model output and processed them in a separate script available in this repository: `frog_daily_subset.R`. This data comes in two chunks (2018-2021 and 2021-2024). 
 
-```{r dailymaxscores}
+```{r dailymaxscores, warning = F, message = F}
 # Subset to site years
 site_year <- nights_dep_joined %>% select(Site, Site_Year, Date) %>% 
   unique() %>% 
@@ -481,24 +518,27 @@ site_idx_end <- empty_array
 call_rate_matrix <- list()
 occ_matrix <- list()
 
+joined_data <- readRDS("data/intermediate/joined_data.rds")
+
 for(i in 1:length(species_list_cleaned)) {
 
-joined_data[[i]] <- records_validated[[i]] %>%
-  inner_join(daily_vars %>% na.omit()) %>%
-  mutate(Prob_One = Validated_Grp_score,
-         Site_f = as.integer(factor(Site_Year)), 
-         Prob_f = case_when(Prob_One == 1 ~ 0.999, 
-                            Prob_One == 0 ~ 0.001, 
-                            TRUE ~ Prob_One),
-         Prob_One_M = qlogis(Prob_f), 
-         weight = case_when(Detected == 2 ~ 0.01,
-                            TRUE ~ 1)) %>%
-  group_by(Site_f) %>%
-  mutate(any_seen = case_when(any(Detected == 1) ~ 1, 
-                              TRUE ~ 0)) %>%
-  slice_sample(n = 10, weight_by = weight) %>%
-  ungroup() %>%
-  arrange(Site_f, Detected) 
+#### Because we are randomly sampling ####
+# joined_data[[i]] <- records_validated[[i]] %>%
+#   inner_join(daily_vars %>% na.omit()) %>%
+#   mutate(Prob_One = Validated_Grp_score,
+#          Site_f = as.integer(factor(Site_Year)), 
+#          Prob_f = case_when(Prob_One == 1 ~ 0.999, 
+#                             Prob_One == 0 ~ 0.001, 
+#                             TRUE ~ Prob_One),
+#          Prob_One_M = qlogis(Prob_f), 
+#          weight = case_when(Detected == 2 ~ 0.01,
+#                             TRUE ~ 1)) %>%
+#   group_by(Site_f) %>%
+#   mutate(any_seen = case_when(any(Detected == 1) ~ 1, 
+#                               TRUE ~ 0)) %>%
+#   slice_sample(n = 10, weight_by = weight) %>%
+#   ungroup() %>%
+#   arrange(Site_f, Detected) 
 
 site_data[[i]] <- joined_data[[i]] %>%
   mutate(Loc = as.factor(Site) %>% as.integer(), 
@@ -509,7 +549,7 @@ site_data[[i]] <- joined_data[[i]] %>%
   left_join(site_vars, by = "Site_Year")
 
 # occupancy model
-psi_form <- ~ scale(sqrt(wet)) + scale(pv) + scale(sqrt(water)) # + FloodScore
+psi_form <- ~ scale(sqrt(wet)) + scale(pv) + scale(sqrt(water)) + Site_type + Water_permanence  # + FloodScore
 occ_matrix[[i]] <- model.matrix(psi_form, data = site_data[[i]])
 
 # Daily precipitation matrix
@@ -540,6 +580,8 @@ end_idx_2[is.infinite(end_idx_2[,i]),i] <- 0
 
 any_seen[,i] <- as.integer(start_idx_1[,i] != 0)
 }
+
+# saveRDS(joined_data, "data/intermediate/joined_data.rds")
 ```
 
 In addition to the validation data, we also have previous validations at a site-level that notes whether any calls were detected at that site in that year. These are included in the model as if restricts the probability space we need to marginalize over for sites that have at least one detection. 
@@ -574,7 +616,7 @@ any_seen_joined <- any_seen_clean
 
 for(j in 1:ncol(any_seen_clean)) {
   for(i in 1:nrow(any_seen_clean))
-    any_seen_joined[i,j] <- any_seen[i,j] #max(any_seen[i,j], any_seen_clean[i,j])
+    any_seen_joined[i,j] <- max(any_seen[i,j], any_seen_clean[i,j])
 }
 ```
 
@@ -588,6 +630,7 @@ loc_code <- lapply(site_data, function(x) pull(x, Loc))
 cluster_code <- lapply(site_data, function(x) pull(x, Cluster)) 
 year_code <- lapply(site_data, function(x) pull(x, Year)) 
 detected <- lapply(joined_data, function(x) pull(x, Detected))
+site_code <- lapply(joined_data, function(x) pull(x, Site_f))
 
 nyear <- length(unique(unlist(year_code)))
 nloc <- length(unique(unlist(loc_code)))
@@ -601,6 +644,7 @@ stan_data <- list(nfiles = nfiles,
                   nloc = nloc, 
                   nclusters = nclusters,
                   score = array(unlist(scores),dim=c(nfiles,nspecies_cleaned)), 
+                  site_code = array(unlist(site_code),dim=c(nfiles,nspecies_cleaned)),
                   loc_code = array(unlist(loc_code),dim=c(nsites,nspecies_cleaned)), 
                   cluster_code = array(unlist(cluster_code),dim=c(nsites,nspecies_cleaned)), 
                   year_code = array(unlist(year_code),dim=c(nsites,nspecies_cleaned)), 
@@ -633,12 +677,12 @@ saveRDS(stan_data, "data/stan_data.rds")
 
 Below is the STAN model used in our analysis. It is a mult-species, multi-season model. 
 
-```{cmdstan, file = "stan/continuous_model_ms_my_norm.stan", output.var = "cont_model_ms_norm", eval = FALSE}
+```{cmdstan, file = "stan/continuous_model_ms_my_beta.stan", output.var = "cont_model_ms_beta", eval = FALSE}
 
 ```
 
 ```{r readmods, echo = F}
-cont_model_ms_norm <- cmdstan_model("stan/continuous_model_ms_my_norm.stan")
+# cont_model_ms_norm <- cmdstan_model("stan/continuous_model_ms_my_norm.stan")
 cont_model_ms_beta <- cmdstan_model("stan/continuous_model_ms_my_beta.stan")
 ```
 
@@ -649,23 +693,13 @@ nc <- 8 #chains
 ```
 
 ```{r fitmods, eval = F}
-# fit_norm <- cont_model_ms_norm$sample(data = stan_data,
-#                          chains = nc,
-#                          parallel_chains = nc,
-#                          show_messages = TRUE,
-#                          save_warmup = FALSE,
-#                          iter_sampling = ni,
-#                          iter_warmup = nw, refresh = 20)
-# 
-# fit_norm$save_object("outputs/fit_norm.rds")
-
 fit_beta <- cont_model_ms_beta$sample(data = stan_data_beta,
                          chains = nc,
                          parallel_chains = nc,
                          show_messages = TRUE,
                          save_warmup = FALSE,
                          iter_sampling = ni,
-                         iter_warmup = nw, refresh = 20)
+                         iter_warmup = nw, refresh = 50)
 
 fit_beta$save_object("outputs/fit_beta.rds")
 ```
@@ -680,7 +714,7 @@ fit_beta <- readRDS("outputs/fit_beta.rds")
 
 Posterior predictive checks can be used to compare model predictions to the original data supplied to the model. Here we compare summary statistics for the probability scores supplied to the model. Ideally, predictions from the model are able to align with the supplied data. We compare 25%, 50% and 75% confidence intervals for the 'probability scores'.
 
-```{r PPC, fig.height=24, fig.width=18, message = F}
+```{r PPC, fig.height=24, fig.width=18, message = F, fig.cap = "Posterior predictive checks for the 25%, 50%, and 75% quantiles of backpredicted classifier probability scores against the observed quantiles from validated data"}
 q95 <- function(x) quantile(x, 0.95, na.rm = T)
 q25 <- function(x) quantile(x, 0.25, na.rm = T)
 q50 <- function(x) quantile(x, 0.5, na.rm = T)
@@ -727,7 +761,7 @@ ppc_grid
 ```
 
 
-```{r, fig.width = 18, fig.height = 30, eval = FALSE}
+```{r, fig.width = 18, fig.height = 30, eval = FALSE, include = FALSE, echo=FALSE}
 psi_summary <- fit_beta$summary("psi")
 
 for(i in 1:length(species_list_cleaned)) {
@@ -750,7 +784,7 @@ ggsave(plot = heatmap, filename = paste0("outputs/plots/heatmap/score_heatmap_",
 
 # Model summary 
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, include = FALSE, echo = FALSE}
 psi_summary <- fit_norm$summary("psi")
 psi_summary_sp <- list()
 for(i in 1:nspecies_cleaned) {
@@ -767,30 +801,8 @@ psi_summary %>%
   summarise(psi = mean(mean))
 ```
 
-```{r, eval = FALSE}
-# phenology summary 
-theta_phen <- fit_norm$summary("theta_phen") 
 
-theta_phen_spec <- list()
-
-for(i in 1:nspecies_cleaned) {
-  theta_phen_spec[[i]] <- theta_phen %>%
-  filter(str_detect(variable, paste0(",",i,"]"))) %>%
-    mutate(Species = names(species_list_cleaned)[i], 
-           Day = 1:365, 
-           Date = seq.Date(from = as.Date("2022-09-01"), to = as.Date("2023-08-30"), length.out = 365))
-}
-
-theta_phen_joined <- bind_rows(theta_phen_spec)
-
-theta_phen_joined %>% ggplot(aes(x = Day, 
-                                 y = mean, 
-                                 colour = Species)) +
-  geom_line() +
-  scale_x_continuous(limits = c(1, 120))
-```
-
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, eval = FALSE, include = FALSE, echo = FALSE}
 nbeta_theta <- ncol(call_rate_matrix[[1]])
 beta_theta_names <- labels(call_rate_matrix[[1]])[[2]]
 theta_summary <- fit_norm$summary("beta_theta")
@@ -805,16 +817,16 @@ for(i in 1:nspecies_cleaned) {
 theta_summary_combined <- bind_rows(theta_summary_sp)
 
 
-theta_summary_combined %>% 
-  ggplot(aes(x = param, y = mean, colour = species)) +
-  geom_pointrange(aes(ymin = q5, ymax = q95), position = position_dodge2(width = 0.5, padding = 0.5))
+# theta_summary_combined %>% 
+#   ggplot(aes(x = param, y = mean, colour = species)) +
+#   geom_pointrange(aes(ymin = q5, ymax = q95), position = position_dodge2(width = 0.5, padding = 0.5))
 ```
 
 ## Call recogniser performance  
 
 Using our model we can visualise how our statistical model is able to delineate validated calls into detections an non-detections. Our model determines the performance of the acoustic classifier by the estimation of two hierarchical parameters for each species. These parameters estimate the 'classifier probability score' ($\mu$) when there is no call present in the snippet ($\mu_{det\ =\ 0}$) and when there is a call present in the snippet ($\mu_{det\ =\ 1}$). At the very least, the classifier should have a higher probability score for detections than non-detections ($\mu_{det\ =\ 1}$ > $\mu_{det\ =\ 0}$).
 
-```{r, fig.height = 8, message = FALSE}
+```{r, fig.height = 8, fig.width = 12, message = FALSE, fig.cap = "Fitted beta-distributions of acoustic classifier performance for scores when a snippet had a detection vs non-detection"}
 mu_summary <- fit_beta$draws("mu_pred", format = "df") 
 mu_summary_long <- pivot_longer(mu_summary, cols = 1:12)
 mu_summary_long$`Validated detection` <- rep(c("Non-detection", "Detection"), length.out = nrow(mu_summary_long))
@@ -839,16 +851,19 @@ Based on these distributions we see that the classifier is more often than not a
 
 We investigated whether several hydrological covariates impacted site occupancy for each species. These variables can vary across time (over survey years) and across space (over different sites). 
 
-```{r FixedEffects, fig.height=15, fig.width = 8, warning = FALSE, message = FALSE, fig.cap="Marginal response curves for the various fixed-effect parameters used in the model."}
+```{r FixedEffects, fig.height=16, fig.width = 15, warning = FALSE, message = FALSE, fig.cap="Marginal response curves for the various fixed-effect occupancy parameters used in the model."}
 # beta_summaries 
 beta_summaries <- fit_beta$summary("beta_psi")
 
 beta_table_summary <- beta_summaries %>% 
-  mutate(species = factor(rep(names(species_list_cleaned), times = 4), levels = names(species_list_cleaned)), 
+  mutate(species = factor(rep(names(species_list_cleaned), times = 7), levels = names(species_list_cleaned)), 
          covariate = rep(c("(Intercept)",
               "Wetness", 
               "Photosynthetic Vegetation", 
-              "Water"), each = length(species_list_cleaned))) %>%
+              "Water", 
+              "Site type = Wetland", 
+              "Permenant Water", 
+              "Semipermenant Water"), each = length(species_list_cleaned))) %>%
   arrange(species) %>%
   select(species, covariate, mean, sd, q5, q95)
 
@@ -879,17 +894,20 @@ ab_plot <- list()
 
 ab_to_use <- psi_form
 
-phi_vars <- unlist(stringr::str_remove_all(string = labels(terms(psi_form)), pattern =  "log|scale|sqrt|\\)|\\("))
-phi_logs <- unlist(stringr::str_detect(string = labels(terms(psi_form)), pattern =  "log\\("))
-phi_sqrts <- c(0.5,1,0.5)
+phi_vars <- c(unlist(stringr::str_remove_all(string = labels(terms(psi_form)), pattern =  "log|scale|sqrt|\\)|\\(")), "Water_permanence")
+phi_logs <- c(unlist(stringr::str_detect(string = labels(terms(psi_form)), pattern =  "log\\(")), F)
+phi_sqrts <- c(0.5,1,0.5,1,1,1)
 
 phi_labs <- c("Wetness", 
               "Photosynthetic Vegetation", 
-              "Water")
+              "Water", 
+              "Wetland", 
+              "Permenant Water", 
+              "Semi-permenant Water")
 
-fac <- c(FALSE, FALSE, FALSE)
+fac <- c(FALSE, FALSE, FALSE, T, T, T)
 
-for(i in 1:length(phi_vars)) {
+for(i in 1:3) {
 ab_marginal_effects[[i]] <- marginal_effects_cmd(beta_draws, 
                                               param = "beta_psi", species_index = j,
                                               param_number = i+1, log = phi_logs[i],
@@ -901,33 +919,110 @@ ab_marginal_effects[[i]] <- marginal_effects_cmd(beta_draws,
   mutate(species = names(species_list_cleaned)[j])
 
 }
-ab_joined_list[[j]] <- bind_rows(ab_marginal_effects)
+ ab_joined_list[[j]] <- ab_marginal_effects
 }
 
-all_me_data <- bind_rows(ab_joined_list) %>%
+cov_plot <- list()
+
+for(i in 1:3) {
+
+all_me_data <- bind_rows(list(ab_joined_list[[1]][[i]],
+                              ab_joined_list[[2]][[i]],
+                              ab_joined_list[[3]][[i]],
+                              ab_joined_list[[4]][[i]],
+                              ab_joined_list[[5]][[i]],
+                              ab_joined_list[[6]][[i]])) %>%
   mutate(param = case_when(param == "wet" ~ "Wetness", 
                            param == "pv" ~ "Photosynthetic Vegetation", 
                            param == "water" ~ "Water"), 
          species = case_when(species == "Spotted Marsh Frog (race unknown)" ~ "Spotted Marsh Frog", TRUE ~ species))
   
 
-cov_plot <- marginal_effects_plot_cmd_all(all_me_data %>% 
+cov_plot[[i]] <- marginal_effects_plot_cmd_all(all_me_data %>% 
                                             mutate(param = factor(param, levels = phi_labs)), 
                           col = "DarkGreen", 
-                          factor = FALSE,
+                          factor = fac[i],
                           ylab = "Contribution to occupancy") +
    ggplot2::facet_grid(species~param, scales = "free") +
   delwp_theme() +
   theme(strip.text = ggtext::element_markdown()) +
-  xlab("Covariate value")
+  xlab("Covariate value") +
+  delwp_theme()
 
-ggsave(plot = cov_plot, filename = "outputs/plots/occupancy_covariate_effects.png", width = 2000, height = 3000, units = "px")
+}
 
-cov_plot
+#### Factor effects #### 
+site_type <- list()
+water_perm <- list()
+for(j in 1:length(species_list_cleaned)) {
+beta_draws <- fit_beta$draws("beta_psi", format = "df")
 
+which_sp <- which(stringr::str_detect(string = colnames(beta_draws),
+                                    pattern = paste0("beta_psi\\[", j)))
+
+beta_draws <- beta_draws[,which_sp]
+site_type[[j]] <- data.frame(variable = rep(c("Creekline", 
+                                              "Wetland"), each = nrow(beta_draws)), 
+                        value = c(plogis(beta_draws[[1]]), plogis(beta_draws[[1]] + beta_draws[[5]])), 
+                        param = "Site type", 
+                        species = names(species_list_cleaned)[j])
+
+water_perm[[j]] <- tibble(variable = rep(c("Ephemeral creekline", 
+                                               "Permenant creekline", 
+                                               "Semi-permenant creekline", 
+                                               "Ephemeral wetland", 
+                                               "Permenant wetland", 
+                                               "Semi-permenant wetland"), each = nrow(beta_draws)),
+                              `Site type` = rep(c("Creekline", 
+                                              "Wetland"), each = 3*nrow(beta_draws)), 
+                              `Water permenance` = rep(c("Ephemeral", 
+                                              "Permenant", 
+                                              "Semi-permenant"), each = nrow(beta_draws), times = 2),
+                        value = c(plogis(beta_draws[[1]]), 
+                                  plogis(beta_draws[[1]] + beta_draws[[6]]),
+                                  plogis(beta_draws[[1]] + beta_draws[[7]]),
+                                  plogis(beta_draws[[1]] + beta_draws[[5]]), 
+                                  plogis(beta_draws[[1]] + beta_draws[[5]] + beta_draws[[6]]),
+                                  plogis(beta_draws[[1]] + beta_draws[[5]] + beta_draws[[7]])), 
+                        param = "Site type and water permenance", 
+                        species = names(species_list_cleaned)[j])
+}
+
+factor_data <- bind_rows(bind_rows(water_perm))
+
+factor_plot <- factor_data %>% 
+  mutate(`Water permenance` = factor(`Water permenance`, levels = c("Ephemeral", 
+                                              "Semi-permenant", 
+                                              "Permenant"))) %>%
+      ggplot2::ggplot(aes(x = `Water permenance`, y = value, fill = `Site type`)) +
+      ggplot2::geom_violin(draw_quantiles = c(0.05, 0.5, 0.95),
+                           alpha = 0.5, scale = "width", trim = TRUE,
+                           position=position_dodge(width=0.5)) +
+      ggplot2::facet_grid(species~param, scales = "free") +
+      ggplot2::xlab("Water permenance") +
+      ggplot2::scale_fill_manual(values = unname(delwp_cols[c(1,3)])) +
+      delwp_theme() +
+      # ylab("Contribution to occupancy") +
+      ggplot2::theme(axis.title.y = element_blank()) 
+  
+
+cov_plot_list <- cov_plot
+cov_plot_list[[4]] <- factor_plot
+cov_plot_list[[2]] <- cov_plot_list[[2]] + ggplot2::theme(axis.title.y = element_blank())
+cov_plot_list[[3]] <- cov_plot_list[[3]] + ggplot2::theme(axis.title.y = element_blank())
+
+
+cov_plot_joined <- cowplot::plot_grid(plotlist = cov_plot_list, nrow = 1, rel_widths = c(0.22,0.21,0.21,0.35))
+
+ggsave(plot = cov_plot_joined, filename = "outputs/plots/occupancy_covariate_effects.png", width = 4000, height = 4250, units = "px")
+
+cov_plot_joined
 ```
+## Covariates impacting call activity  
 
-```{r FixedEffects, fig.height=15, fig.width = 12, warning = FALSE, message = FALSE, fig.cap="Marginal response curves for the various fixed-effect parameters used in the model."}
+We also model how various covariates impact nightly/daily calling activity. Here we look at nightly precipitation, minimum temperature, current hydrological 'wetness', 'water' and 'photosynthetic vegetation' cover.
+
+```{r FixedEffectsCallRate, fig.height=15, fig.width = 12, warning = FALSE, message = FALSE, fig.cap="Marginal response curves for the various fixed-effect call-rate parameters used in the model."}
 # beta_summaries 
 theta_summaries <- fit_beta$summary("beta_theta")
 
@@ -1008,21 +1103,15 @@ theta_plot
 
 ```
 
-```{r}
-score_pred <- fit$draws(paste0("score_pred[", 1:stan_data$nfiles, ",1]"), format = "matrix")
+## Occupancy rates across years  
 
+Using our model, we estimate how occupancy rates vary for each species, and whether there is variation in these over the years. 
 
-plotdens <- ppc_hist(y = lapply(joined_data, function(x) pull(x, Prob_f))[[1]], yrep = score_pred)
-```
-
-```{r avrates}
-zhat <- fit_norm$summary("z_hat")
+```{r avrates, fig.width=10, fig.height=12, fig.cap= "Estimated occupancy rates accross all songmeter sites per year for each species"}
+zhat <- fit_beta$summary("z_hat")
 zhat$year <- rep(sort(unique(site_metadata_sf$`Monitoring year`)), times = length(species_list_cleaned))
 zhat$species <- rep(names(species_list_cleaned), each = length(unique(site_metadata_sf$`Monitoring year`)))
 
-theta_hat <- fit_norm$summary("theta_hat")
-theta_hat$year <- zhat$year
-theta_hat$species <- zhat$species
 
 zhat_draws <- fit_beta$draws("z_hat", format = "matrix") %>%
   as.data.frame() %>%
@@ -1047,7 +1136,29 @@ dfas[[i]] <- data.frame(any_seen = stan_data$any_seen[,i],
          species = names(species_list_cleaned)[i])
 }
 
-dfas_comb <- bind_rows(dfas)
+dfas_comb <- bind_rows(dfas) %>%
+  mutate(Validated = "Proportion of sites with validated occupancy")
+
+zhat_draws %>%
+  ggplot() +
+  geom_violin(aes(x = year, y = value), draw_quantiles = c(0.5), adjust = 2, fill = "grey95") +
+  geom_point(aes(x = year, y = rate, fill = Validated), data = dfas_comb, shape = 21, size = 3) +
+  facet_wrap(~species, nrow = 3) +
+  ylab("Proportion of songmeter sites occupied") +
+  xlab("Survey year") +
+  scale_fill_manual(values = unname(delwp_cols[3])) +
+  delwp_theme() +
+  theme(legend.position = "top", legend.title = element_text(size = 0), legend.text = element_text(size = 12))
+```
+
+## Call rates across years  
+
+We can also estimate the average detected calling activities over the years. This estimate is the average across all sites surveyed that year and represents the average nightly detected call rate. Note that this 'call rate' may be a mixture of the acoustic devices ability to detect the call, the calling activity as well as the abundance of frogs at that site. Note that these estimates are conditional upon the site being occupied. Thus an unoccupied site would not have corresponding call rate estimated.  
+
+```{r avcallrate, fig.width=10, fig.height=12, fig.cap= "Estimated call rates accross all songmeter sites per year for each species, conditional upon the site being occupied"}
+theta_hat <- fit_beta$summary("theta_hat")
+theta_hat$year <- zhat$year
+theta_hat$species <- zhat$species
 
 
 theta_hat_draws <- fit_beta$draws("theta_hat", format = "matrix") %>%
@@ -1060,17 +1171,18 @@ theta_hat_draws <- fit_beta$draws("theta_hat", format = "matrix") %>%
 
 theta_hat_draws %>%
   ggplot() +
-  geom_violin(aes(x = value, y = year)) +
-  facet_wrap(~species)
-
-zhat_draws %>%
-  ggplot() +
-  geom_violin(aes(x = value, y = year)) +
-  geom_point(aes(x = rate, y = year), data = dfas_comb, shape = 21, size = 2, fill = "DarkRed") +
-  facet_wrap(~species)
+  geom_violin(aes(x = year, y = value), adjust = 2, draw_quantiles = 0.5, fill = "grey95") +
+  facet_wrap(~species, nrow = 3) + 
+  scale_y_continuous(name = "Average calling activity (nightly call probability)", limits = c(0,0.52)) +
+  xlab("Survey year") +
+  delwp_theme()
 ```
 
-```{r, fig.width = 5, fig.height = 10}
+## Unconditional call activity (relative activity/abundance) 
+
+Given that call rate is dependent upon the site being occupied, the estimated call rate may be better interpreted alongside occupancy in order to measure the relative frog activity or abundance at the site. A score of 1 means that every site is predicted to be occupied and the species is calling every night. This metric might be beneficial in comparing relative activity and abundance between species and across years.    
+
+```{r relAb, fig.width=10, fig.height=12, fig.cap= "Estimated activity accross all songmeter sites per year for each species, unconditional on occupancy (a mixture of both occupancy and calling activity)"}
 rel_ab_draws <- fit_beta$draws("rel_ab_mean", format = "matrix") %>%
   as.data.frame() %>%
   pivot_longer(cols = everything()) %>%
@@ -1081,7 +1193,42 @@ rel_ab_draws <- fit_beta$draws("rel_ab_mean", format = "matrix") %>%
 
 rel_ab_draws %>%
   ggplot() +
-  geom_violin(aes(x = year, y = value)) +
-  facet_wrap(~species, ncol = 1)
+  geom_violin(aes(x = year, y = value), adjust = 2, draw_quantiles = 0.5, fill = "grey95") +
+  facet_wrap(~species, nrow = 3) + 
+  scale_y_continuous(name = "Unconditional calling activity", limits = c(0,0.52)) +
+  xlab("Survey year") +
+  delwp_theme()
+```
+
+## Species-richness 
+
+We can calculate species-richness at each site by estimating how many (out of the 6 species modelled) are estimated to occupy each site. 
+
+```{r sprich, fig.width=10, fig.height=8, fig.cap= "Estimated species-richness across sites and over the years. Species richness is grouped according to measured flood scores at that site, in that particular year. The grey points in the background represent the distribution of posterior samples for the average species-richness across all sites from year-to-year"}
+sp_r <- fit_beta$summary("species_richness")
+
+sp_r_draws <- t(fit_beta$draws("species_richness", format = "matrix")) %>% as.data.frame()
+sp_r_draws$year <- year_code[[1]]
+sp_r_draws$Site_f <- site_data[[1]]$Site_f
+
+
+sp_r_draws_long <- pivot_longer(sp_r_draws, cols = !all_of(c("year", "Site_f"))) %>%
+  group_by(name, year) %>%
+  summarise(mean = mean(value)) %>%
+  ungroup()
+
+sp_r$year <- year_code[[1]]
+sp_r$FloodScore <- site_data[[1]]$FloodScore
+
+cols_sep <- unlist(lapply(delwp_cols_seq, function(x) x[c(6,10)]))
+
+sp_r %>%
+  ggplot() +
+  ggbeeswarm::geom_quasirandom(aes(y = mean, x = year), data = sp_r_draws_long, shape = 21, size = 1, fill = "grey70", alpha = 0.25, stroke = 0.1) +
+  ggbeeswarm::geom_quasirandom(aes(y = mean, x = year, fill = FloodScore), shape = 21, size = 2) + 
+  scale_fill_manual(values = unname(delwp_cols)) +
+  labs(x = "Year", y = "Site-level species richness", fill = "Flood score") +
+  scale_x_continuous(breaks = 1:6, labels = paste(2018:2023, 2019:2024, sep = " - ")) +
+  delwp_theme()
 ```
 

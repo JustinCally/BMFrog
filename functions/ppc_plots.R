@@ -65,8 +65,8 @@ posterior_checks_multispecies <- function(model, model_data, species_index,
                                do.call(stat, args = list(x = n_obs_totals_1))))
 
     ppc_plots <- ggplot(data = model_draws_df) +
-      geom_histogram(aes(fill = variable, x = value, colour = variable),
-                     linewidth = 0.15, na.rm = TRUE, binwidth = 0.005) +
+      geom_histogram(aes(fill = variable, x = value),
+                     linewidth = 0.02, na.rm = TRUE, binwidth = 0.005) +
       geom_vline(data = y_df, aes(xintercept = value, colour = variable), linewidth = 1) +
       bayesplot:::scale_color_ppc(values = c("#005954", "#894400"),
                                   labels = c(expression(italic(T(italic(`y=1`)))),
@@ -87,7 +87,8 @@ posterior_checks_multispecies <- function(model, model_data, species_index,
       ggplot2::ggtitle(label = title) +
       ggplot2::scale_x_continuous(limits = c(0, 1)) +
       ggplot2::theme_bw() +
-      ggplot2::theme(legend.position = "top")
+      ggplot2::theme(legend.position = "top",
+                     legend.key = element_rect(colour = "transparent", fill = "transparent"))
 
   return(ppc_plots)
 }
