@@ -8,6 +8,7 @@ author:
     affiliation: Arthur Rylah Institute
     affiliation_url: https://www.ari.vic.gov.au/
 date: 2024-05-28
+bibliography: frog.bib
 output:
   distill::distill_article:
     self_contained: true
@@ -48,6 +49,7 @@ library(bayesplot)
 library(httr)
 library(VicmapR)
 library(ggridges)
+library(kableExtra)
 check_cmdstan_toolchain(fix = TRUE, quiet = TRUE)
 options(mc.cores=4)
 register_knitr_engine(override = FALSE)
@@ -286,6 +288,54 @@ tmin_daily_long <- pivot_longer(tmin_daily_df,
   right_join(nights_dep_joined, by = join_by(Site_Year, Date))
 ```
 
+## Flow Data 
+
+We also include two key flow variables in our analysis: 
+1. Whether the site was subject to any active regulation  
+2. When that active regulation occured via release of water through regulators. 
+
+```{r flow}
+flow_hist_b <- read_excel("data/reg_data/ALL_REG_DATA.xlsx", sheet = 1)
+flow_hist_m <- read_excel("data/reg_data/ALL_REG_DATA.xlsx", sheet = 2)
+flow_hist <- full_join(flow_hist_b, flow_hist_m) %>%
+  filter(Date > as.Date("2018-01-01")) %>%
+  mutate(Days = Date + lubridate::days(2))
+
+reg_site_sizes <- read_excel("data/reg_data/Reg_Site Interactions.xlsx") %>%
+  mutate(gate_1_total = `No gates Size 1` * `Gate size 1 height` * `Gate size 1 width`, 
+         gate_2_total = `No gates Size 2` * `Gate size 2 height` * `Gate size 2 width`,
+         gate_3_total = `No gates Size 3` * `Gates Size 3 height` * `Gates Size 3 width`,
+         gate_4_total = `No gates Size 4` * `Gates Size 4 height` * `Gates Size 4 width`,
+         gate_5_total = `No gates Size 5` * `Gates Size 5 height` * `Gates Size 5 width`, 
+         gate_avg = sum(gate_1_total,gate_2_total,gate_3_total,gate_4_total,gate_5_total, na.rm = T)/`Total gates`, 
+         gate_avg = coalesce(gate_avg, 0)) %>%
+          select(regulator = `Reg and overbank site details`, gate_avg)
+
+reg_to_site <- read_excel("data/reg_data/Reg_Site Interactions.xlsx", sheet = 2) %>%
+  filter(`Regulation score` == "3")
+reg_to_site_long <- reg_to_site %>%
+  pivot_longer(cols = 9:47, names_to = "regulator", values_to = "count", values_drop_na = T) %>%
+  select(Site = SITE, water_arrival = `Water arrival (days)`, regulator, count) %>%
+  mutate(`Site` = case_when(`Site` == "Warri" ~ "Warri Yards", 
+                                 `Site` == "Hughes Crossing" ~ "Hughs Crossing",
+                                 Site == "Little Rushy Swamp" ~ "Little Rushy",
+                                 Site == "Reed Beds Swamp" ~ "Reed Bed Swamp",
+                                 Site == "Wathours Lagoon" ~ "Wathours",
+                                 TRUE ~ `Site`)) %>%
+  full_join(reg_site_sizes)
+
+flow_hist_long <- flow_hist %>%
+  pivot_longer(cols = 5:34, names_to = "regulator", values_to = "n_gates") %>%
+  left_join(reg_to_site_long) %>%
+  group_by(Date, Site) %>% 
+  summarise(total_gate_size_on = sum(n_gates * gate_avg)) %>%
+  ungroup()
+
+flow_hist_long_c <- bind_rows(flow_hist_long %>% mutate(Site = paste0(Site, "_AM1")), 
+                              flow_hist_long %>% mutate(Site = paste0(Site, "_AM2"))) %>%
+  mutate(Regulated = TRUE)
+```
+
 ## Save daily variables 
 
 Given some of the preceding code can take a while to run we save the output as an rds. This output is the daily values at each site for hydrological and climate conditions as well as the days since the start of spring (1st of September). 
@@ -308,7 +358,11 @@ saveRDS(daily_vars, "data/intermediate/daily_vars.rds")
 
 ```{r loaddailyvars}
 # read in daily vars
-daily_vars <- readRDS("data/intermediate/daily_vars.rds")
+daily_vars <- readRDS("data/intermediate/daily_vars.rds") %>%
+  left_join(flow_hist_long_c) %>%
+  mutate(total_gate_size_on = coalesce(total_gate_size_on, 0), 
+         any_gates_on = total_gate_size_on > 0, 
+         Regulated = coalesce(Regulated, FALSE))
 
 site_vars <- daily_vars %>%
   group_by(Site_Year) %>%
@@ -518,27 +572,27 @@ site_idx_end <- empty_array
 call_rate_matrix <- list()
 occ_matrix <- list()
 
-joined_data <- readRDS("data/intermediate/joined_data.rds")
+# joined_data <- readRDS("data/intermediate/joined_data.rds")
 
 for(i in 1:length(species_list_cleaned)) {
 
 #### Because we are randomly sampling ####
-# joined_data[[i]] <- records_validated[[i]] %>%
-#   inner_join(daily_vars %>% na.omit()) %>%
-#   mutate(Prob_One = Validated_Grp_score,
-#          Site_f = as.integer(factor(Site_Year)), 
-#          Prob_f = case_when(Prob_One == 1 ~ 0.999, 
-#                             Prob_One == 0 ~ 0.001, 
-#                             TRUE ~ Prob_One),
-#          Prob_One_M = qlogis(Prob_f), 
-#          weight = case_when(Detected == 2 ~ 0.01,
-#                             TRUE ~ 1)) %>%
-#   group_by(Site_f) %>%
-#   mutate(any_seen = case_when(any(Detected == 1) ~ 1, 
-#                               TRUE ~ 0)) %>%
-#   slice_sample(n = 10, weight_by = weight) %>%
-#   ungroup() %>%
-#   arrange(Site_f, Detected) 
+joined_data[[i]] <- records_validated[[i]] %>%
+  inner_join(daily_vars %>% na.omit()) %>%
+  mutate(Prob_One = Validated_Grp_score,
+         Site_f = as.integer(factor(Site_Year)),
+         Prob_f = case_when(Prob_One == 1 ~ 0.999,
+                            Prob_One == 0 ~ 0.001,
+                            TRUE ~ Prob_One),
+         Prob_One_M = qlogis(Prob_f),
+         weight = case_when(Detected == 2 ~ 0.01,
+                            TRUE ~ 1)) %>%
+  group_by(Site_f) %>%
+  mutate(any_seen = case_when(any(Detected == 1) ~ 1,
+                              TRUE ~ 0)) %>%
+  slice_sample(n = 10, weight_by = weight) %>%
+  ungroup() %>%
+  arrange(Site_f, Detected)
 
 site_data[[i]] <- joined_data[[i]] %>%
   mutate(Loc = as.factor(Site) %>% as.integer(), 
@@ -553,7 +607,7 @@ psi_form <- ~ scale(sqrt(wet)) + scale(pv) + scale(sqrt(water)) + Site_type + Wa
 occ_matrix[[i]] <- model.matrix(psi_form, data = site_data[[i]])
 
 # Daily precipitation matrix
-theta_form <- ~ scale(sqrt(Precipitation)) + scale(tmin) + scale(sqrt(wet)) + scale(sqrt(water)) + scale(pv) #+ cosDay + sinDay
+theta_form <- ~ scale(sqrt(Precipitation)) + scale(tmin) + scale(sqrt(wet)) + scale(sqrt(water)) + scale(pv) + Regulated + any_gates_on + Regulated*any_gates_on #+ cosDay + sinDay
 call_rate_matrix[[i]] <- model.matrix(theta_form, data = joined_data[[i]])
 
 for(j in 1:nsites) {
@@ -675,7 +729,7 @@ saveRDS(stan_data, "data/stan_data.rds")
 
 # STAN Model  
 
-Below is the STAN model used in our analysis. It is a mult-species, multi-season model. 
+Below is the STAN model used in our analysis. It is a multi-species, multi-season model. We model observations as a mixture of validated detections and unvalidated probable detections, using the probability scores assigned by the acoustic classifier as the response variable in a beta regression 
 
 ```{cmdstan, file = "stan/continuous_model_ms_my_beta.stan", output.var = "cont_model_ms_beta", eval = FALSE}
 
@@ -707,6 +761,66 @@ fit_beta$save_object("outputs/fit_beta.rds")
 ```{r readinmods}
 fit_beta <- readRDS("outputs/fit_beta.rds")
 ```
+
+# Analysis summary. 
+
+## Data 
+
+### Acoustic surveys  
+
+Six consecutive years of acoustic data was analysed. Acoustic monitoring began in the Austral Spring/Summer of 2018-2019 and has continued through until the most recent 2023-2024 season. Throughout the six-year monitoring period a total of 36 sites with paired songmeters (n = 72) were surveyed. However, not each songmeter-site was surveyed each year, or in some cases equipment errors gave no survey data, leading to a total of 234 songmeter-sites being surveyed across the six years. Songmeters were deployed for varying lengths of time, with an average of 124 nights and a maximum of 241 nights. Acoustic recordings were processed using an automated species-classification recogniser. 
+
+The output of this acoustic classifier model produced 11,633,143 snippets of possible frog detections for the following species: Barking Marsh Frog, Eastern Sign-bearing Froglet, Common Froglet, Common Spadefoot Toad, Peron's Tree Frog, Pobblebonk Frog, Spotted Marsh Frog (race unknown). Each snippet was encoded with a vector of 'probability scores' for each species; which describe the probabilistic assignment of a given call snippet to a given species. For this analysis, we subset the over 11-million records into a snippet with the species-level daily maximum probability score, leaving us with 29,213 possible call snippets for each species across all site-year combinations. For each species between 338 and 441 call snippets were selected using stratified random sampling to be validated. To ensure we were validating a range of 'probability scores' for each species this stratification enabled balanced sampling across five 'probability score' strata (0 - 0.2, 0.2 - 0.4, 0.4 - 0.6, 0.6 - 0.8 and 0.8 - 1). 
+
+The final data includes a mix of validated and not validated snippets for each species and for each songmeter-site across the surveys years. Each snippet has a 'probability score' between 0 - 1 as well as a validation label (0 = validated: species not heard, 1 = validated: species heard, and 2 = not validated). 
+
+### Site data 
+
+We collected and compiled data that may vary spatially and temporally. Data compiled can be used in the modelling of either; (i) occupancy or (ii) call rate/activity. Whereby data associated with occupancy will be related to conditions during the span of the survey in that year (e.g. multiple months). Alternatively data associated with call rate was collected at a daily/nightly frequency, as it seeks to explain variation in calling activity over the length of deployment within an occupied site. 
+
+#### Hydrological data  
+
+Hydrology is expected to be a key driver of frog occupancy and activity within Barmah-Millewa. In this analysis we used remotely-sensed estimates of water, wetness and photosynthetic vegetation [@geoscience]. This process was supported by the use of Digital Earth Australia's Wetlands Insight Tool (WIT). Using Landsat 5,7, and 8, we estimated fractional cover of freestanding water, wetness, photosynthetic vegetation, dry vegetation and bare soil. For each songmeter-site we obtained time-series data across the six survey years within a 100m buffer surrounding the songmeter. Landsat measurements occurred approximately every 15 days. To estimate the fractional cover metrics on a daily-level we interpolated the data between measurements. We implemented local polynomial regression to enable daily predictions of fractional vegetation and water coverage using the `loess()` R function [@Cleveland2017].      
+
+#### Active regulation data 
+
+Active regulation data was obtained via a time-series of regulator usage and data linking each regulator with sites that would be impacted by their usage. Active regulation data as available on a daily-basis, with a uniform 2-day lag implemented between the regulator function (ON/OFF) and any modelled effect on sites. 
+
+#### Daily climate data 
+
+Daily temperature and precipitation are anticipated to impact frog calling activity. To obtain estimates of daily minimum temperature and precipitation we used National Oceanic and Atmospheric Administration (NOAA) data of gridded daily precipitation and temperature [@noaa]. Daily precipitation and minimum temperature values were estimated at each site at a broad spatial scale (0.5 x 0.5 degrees), thus the variation in temperature and precipitation is largely temporal rather than spatial.
+
+## Model  
+
+Barmah-Millewa is a dynamic ecological system; the habitat suitability for analysed frog species is anticipated to vary according to hydrological conditions; which vary spatially and temporally. While multi-year occupancy models are often analysed using models that estimate local colonisation and extinction rates at each site [@MacKenzie2003], this process becomes more difficult when data is sparse (i.e., only 5 out of 36 sites were measured consistently across the six survey years). When data is sparse and sites are not surveyed consistently then transition parameters (colonisation and extinction) at sites become more difficult to estimate. Given the sparsity of data, and that site characteristics can vary substantially between years we opt for use of a 'stacked' multiseason model. A 'stacked' multiseason model effectively models site-year combinations independently (as different sites), accounting for a particular sites non-independence across years with a site-level random effect [@Kellner2022]. This approach may be particularly well-suited to our data, as primary drivers of occupancy and call activity are temporally variable (hydrological conditions and climate). 
+
+Unlike traditional occupancy models that account for imperfect detection, we modelled occupancy and call activity using a continuous score bounded between 0 and 1 (i.e., the 'probability scores'). To do this we implemented the methods from [@Rhinehart2022]. To do this, occupancy at a songmeter-site for each species and a given survey year was modelled as:  
+
+$$z_{si} \sim Bernoulli(\psi_{si})$$
+Whereby $\psi_i$ is the probability of occupancy at that songmeter-site-year; modelled as a logit-link linear model: 
+
+$$\psi_{s,i} = \alpha_{s} + \beta_s \chi_i + \epsilon_{j(s,i)} + \zeta_{y(s,i)} $$
+Here, $\alpha_s$ is the intercept for species *s*, $\beta_s \chi_i$ is the contribution of fixed-effect covariates. Additionally random effects for songmeter site (*j*) and year (*y*) are denoted by $\epsilon_{j(s,i)}$ and $\zeta_{y(s,i)}$ respectively.  
+
+The call-rate is modelled through a Bernoulli model:
+
+$$f_{k(s,i)} \sim Bernoulli(z_{s,i} \theta_{k(s,i)})$$
+Where $f_{k(s,i)}$ denotes the audio snippet *k* at site *i*. The true occupancy at a site here is denoted by $z_{s,i}$, thus when $z_{s,i} = 0$, the species will not be present in any files. If a species is present at a site ($z_{s,i} = 1$), then the frequency the species call appears in files is given by the parameter estimating call rate ($\theta_{k(s,i)}$). We model this parameter as a logit-link linear model:
+
+$$\theta_{k(s,i)} = \delta_{s} + \eta_s \chi_{k(s,i)} + \xi_{k(s,i)} $$
+Here, $\delta_{s}$is the intercept, $\eta_s \chi_{k(s,i)}$ is the contribution of the fixed-effects for daily ovariates that might impact calling rate and $\xi_{k(s,i)}$ is a random-effect for each observation period. 
+
+In @Rhinehart2022, a logit-transformed normal distribution is used for the 'probability scores'. However, here we opt into using a beta distribution for modelling classifier performance and relating the 'probability scores' to observations or non-observations. To model this process we parameterize a beta-distribution model with a random-effects linear model, where the random-effect is the contribution to performance of the acoustic classifier for a given species. This allows us to model the performance of the acoustic classifier differently for each species, however it allows us to use 'share' information on classifier performance between species; which may be particularly informative in cases where a given species has fewer validated detections and estimation of performance is more difficult within the model. Modelling acoustic classifier performance, or how probability scores from the acoustic classifier relate to validated detections and non-detections is given as: 
+
+$$p_{k(s,i)} ∣ f_{k(s,i)} = 0 ∼ Beta(\alpha_{1,s}, \beta_{1,s}) $$
+$$p_{k(s,i)} ∣ f_{k(s,i)} = 1 ∼ Beta(\alpha_{2,s}, \beta_{2,s}) $$
+With separate models for cases when the validated probability score ($p_{k(s,i)}$) is validated as a non-detection ($f_{k(s,i)} = 0$), and a detection ($f_{k(s,i)} = 1$). The parameters determining the shape of the distribution ($\alpha$ and $\beta$) are modelled using mean ($inv\_logit(\mu + \gamma_s)$) and variance components ($exp(\sigma + \kappa_s)$): 
+
+$$\alpha = inv\_logit(\mu + \gamma_s) \times exp(\sigma + \kappa_s) $$
+$$\beta = exp(\sigma + \kappa_s)-inv\_logit(\mu + \gamma_s) \times exp(\sigma + \kappa_s) $$
+Here $\mu$ is the intercept for the mean and $\sigma$ is the intercept for the variance. Species-level random effects for the mean and variance models are given with $\gamma_s$ and $\kappa_s$ respectively. 
+
+The likelihood functions for each of the possible combinations of file annotations and whether the site is validated as being occupied can be found within Table 1 of [@Rhinehart2022], and our STAN code presented above.
 
 # Model analysis 
 
@@ -760,66 +874,19 @@ ggsave(plot = ppc_grid, filename = "outputs/plots/ppcs_beta.pdf", width = 6000, 
 ppc_grid
 ```
 
+## Traceplots 
 
-```{r, fig.width = 18, fig.height = 30, eval = FALSE, include = FALSE, echo=FALSE}
-psi_summary <- fit_beta$summary("psi")
+To check model convergence we can visualise traceplots. Good chain-mixing and convergence is evidenced with traceplots from various chains being overlayed and not diverging.
 
-for(i in 1:length(species_list_cleaned)) {
-psi_summary_species <- psi_summary %>%
-  filter(str_detect(variable, pattern = paste0(",", i,"]"))) %>% bind_cols(site_data[[i]]) %>%
-  mutate(label = paste0("Det = ", any_seen, ", Occ = ", round(mean,2), " [", round(q5,2), " - ", round(q95,2), "]"))
+```{r traceplots, fig.height = 34, fig.width = 30}
+params_to_trace <- c("mu_sd", 
+                     "sigma_sd", 
+                     "beta_psi", 
+                     "beta_theta")
 
-heatmap <- joined_data[[i]] %>% 
-  mutate(yday = yday(Date)) %>%
-  ggplot() + 
-  geom_tile(aes(x = yday, y = Site_Year, fill = Prob_f, colour = Prob_f)) + 
-  geom_text(aes(x = 100, y = Site_Year, label = label), data = psi_summary_species, size = 4) +
-  scale_fill_gradient(low = "#fff5f0", high = "#67000d") +
-  scale_colour_gradient(low = "#fff5f0", high = "#67000d") + 
-  ggtitle(label = names(species_list_cleaned)[i])
+traces <- mcmc_trace(fit_beta$draws(params_to_trace))
 
-ggsave(plot = heatmap, filename = paste0("outputs/plots/heatmap/score_heatmap_",names(species_list_cleaned)[i],".pdf"), width = 5000, height = 10000, units = "px")
-}
-```
-
-# Model summary 
-
-```{r, eval = FALSE, include = FALSE, echo = FALSE}
-psi_summary <- fit_norm$summary("psi")
-psi_summary_sp <- list()
-for(i in 1:nspecies_cleaned) {
-  var_names <- paste0("psi[",1:nsites, ",", i, "]")
-  psi_summary_sp[[i]] <- psi_summary %>% 
-    filter(variable %in% var_names) %>%
-    mutate(species = names(species_list_cleaned)[i], 
-           any_seen = stan_data$any_seen[,i])
-}
-psi_summary <- bind_rows(psi_summary_sp)
-
-psi_summary %>%
-  group_by(any_seen, species) %>%
-  summarise(psi = mean(mean))
-```
-
-
-```{r, fig.width = 10, fig.height = 6, eval = FALSE, include = FALSE, echo = FALSE}
-nbeta_theta <- ncol(call_rate_matrix[[1]])
-beta_theta_names <- labels(call_rate_matrix[[1]])[[2]]
-theta_summary <- fit_norm$summary("beta_theta")
-theta_summary_sp <- list()
-for(i in 1:nspecies_cleaned) {
-  var_names <- paste0("beta_theta[",i, ",", 1:nbeta_theta, "]")
-  theta_summary_sp[[i]] <- theta_summary %>% 
-    filter(variable %in% var_names) %>%
-    mutate(species = names(species_list_cleaned)[i], 
-           param = beta_theta_names)
-}
-theta_summary_combined <- bind_rows(theta_summary_sp)
-
-
-# theta_summary_combined %>% 
-#   ggplot(aes(x = param, y = mean, colour = species)) +
-#   geom_pointrange(aes(ymin = q5, ymax = q95), position = position_dodge2(width = 0.5, padding = 0.5))
+traces
 ```
 
 ## Call recogniser performance  
@@ -827,6 +894,7 @@ theta_summary_combined <- bind_rows(theta_summary_sp)
 Using our model we can visualise how our statistical model is able to delineate validated calls into detections an non-detections. Our model determines the performance of the acoustic classifier by the estimation of two hierarchical parameters for each species. These parameters estimate the 'classifier probability score' ($\mu$) when there is no call present in the snippet ($\mu_{det\ =\ 0}$) and when there is a call present in the snippet ($\mu_{det\ =\ 1}$). At the very least, the classifier should have a higher probability score for detections than non-detections ($\mu_{det\ =\ 1}$ > $\mu_{det\ =\ 0}$).
 
 ```{r, fig.height = 8, fig.width = 12, message = FALSE, fig.cap = "Fitted beta-distributions of acoustic classifier performance for scores when a snippet had a detection vs non-detection"}
+
 mu_summary <- fit_beta$draws("mu_pred", format = "df") 
 mu_summary_long <- pivot_longer(mu_summary, cols = 1:12)
 mu_summary_long$`Validated detection` <- rep(c("Non-detection", "Detection"), length.out = nrow(mu_summary_long))
@@ -845,11 +913,12 @@ ggplot(data = mu_summary_long) +
   delwp_theme() +
   theme(panel.spacing = unit(2, "lines"))
 ```
-Based on these distributions we see that the classifier is more often than not able to delineate true calls from unlikely calls. However. we also see that these distributions overlap. This means there is a relatively large probaility space where a 'classifier probability score' could reasonable both be a non-detection or a detection. 
+
+Based on these distributions we see that the classifier is more often than not able to delineate true calls from unlikely calls. However. we also see that these distributions overlap. This means there is a relatively large probability space where a 'classifier probability score' could reasonable both be a non-detection or a detection. 
 
 ## Covariates impacting occupancy  
 
-We investigated whether several hydrological covariates impacted site occupancy for each species. These variables can vary across time (over survey years) and across space (over different sites). 
+We investigated whether several hydrological and site covariates impacted site occupancy for each species. Hydrological variables can vary across time (over survey years) and across space (over different sites). Alternatively site type variable just differ between sites.  
 
 ```{r FixedEffects, fig.height=16, fig.width = 15, warning = FALSE, message = FALSE, fig.cap="Marginal response curves for the various fixed-effect occupancy parameters used in the model."}
 # beta_summaries 
@@ -1014,10 +1083,12 @@ cov_plot_list[[3]] <- cov_plot_list[[3]] + ggplot2::theme(axis.title.y = element
 
 cov_plot_joined <- cowplot::plot_grid(plotlist = cov_plot_list, nrow = 1, rel_widths = c(0.22,0.21,0.21,0.35))
 
-ggsave(plot = cov_plot_joined, filename = "outputs/plots/occupancy_covariate_effects.png", width = 4000, height = 4250, units = "px")
+ggsave(plot = cov_plot_joined, filename = "outputs/plots/occupancy_covariate_effects.pdf", width = 4000, height = 4250, units = "px")
 
 cov_plot_joined
 ```
+
+
 ## Covariates impacting call activity  
 
 We also model how various covariates impact nightly/daily calling activity. Here we look at nightly precipitation, minimum temperature, current hydrological 'wetness', 'water' and 'photosynthetic vegetation' cover.
@@ -1027,13 +1098,16 @@ We also model how various covariates impact nightly/daily calling activity. Here
 theta_summaries <- fit_beta$summary("beta_theta")
 
 theta_table_summary <- theta_summaries %>% 
-  mutate(species = factor(rep(names(species_list_cleaned), times = 6), levels = names(species_list_cleaned)), 
+  mutate(species = factor(rep(names(species_list_cleaned), times = 9), levels = names(species_list_cleaned)), 
          covariate = rep(c("(Intercept)",
                            "Precipitation", 
                            "Minimum Temperature",
                            "Wetness", 
                            "Water",
-                           "Photosynthetic Vegetation"), each = length(species_list_cleaned))) %>%
+                           "Photosynthetic Vegetation", 
+                           "Regulated", 
+                           "Gates On", 
+                           "Regulated:any_gates_on"), each = length(species_list_cleaned))) %>%
   arrange(species) %>%
   select(species, covariate, mean, sd, q5, q95)
 
@@ -1063,7 +1137,7 @@ phi_labs <- c("Precipitation",
 
 fac <- c(FALSE, FALSE, FALSE, FALSE, FALSE)
 
-for(i in 1:length(phi_vars)) {
+for(i in 1:length(phi_labs)) {
 ab_marginal_effects[[i]] <- marginal_effects_cmd(theta_draws, 
                                               param = "beta_theta", species_index = j,
                                               param_number = i+1, log = phi_logs[i],
@@ -1097,10 +1171,57 @@ theta_plot <- marginal_effects_plot_cmd_all(all_theta_data %>%
   theme(strip.text = ggtext::element_markdown()) +
   xlab("Covariate value")
 
-ggsave(plot = theta_plot, filename = "outputs/plots/call_rate_covariate_effects.png", width = 2800, height = 3000, units = "px")
+## factor plot ##
+#### Factor effects #### 
+regulator_eff <- list()
+for(j in 1:length(species_list_cleaned)) {
+beta_draws <- fit_beta$draws("beta_theta", format = "df")
+
+which_sp <- which(stringr::str_detect(string = colnames(beta_draws),
+                                    pattern = paste0("beta_theta\\[", j)))
+
+beta_draws <- beta_draws[,which_sp]
+
+regulator_eff[[j]] <- tibble(`Active management` = rep(c("Unregulated", 
+                                              "Regulated OFF", 
+                                              "Regulated ON"), each = nrow(beta_draws)),
+                              `Regulated` = rep(c("Unregulated", 
+                                              "Regulated", 
+                                              "Regulated"), each = nrow(beta_draws)),
+                        value = c(plogis(beta_draws[[1]]), 
+                                  plogis(beta_draws[[1]] + beta_draws[[7]]),
+                                  plogis(beta_draws[[1]] + beta_draws[[7]] + beta_draws[[8]] + beta_draws[[9]])), 
+                        param = "Active management", 
+                        species = names(species_list_cleaned)[j])
+}
+
+regulator_thta_eff <- bind_rows(bind_rows(regulator_eff))
+
+factor_theta_plot <- regulator_thta_eff %>% 
+  mutate(`Active management` = factor(`Active management`, levels = c("Unregulated", 
+                                              "Regulated OFF", 
+                                              "Regulated ON"))) %>%
+      ggplot2::ggplot(aes(x = `Active management`, y = value, fill = `Active management`)) +
+      ggplot2::geom_violin(draw_quantiles = c(0.05, 0.5, 0.95),
+                           alpha = 0.5, scale = "width", trim = T,
+                           position=position_dodge(width=0.5)) +
+      ggplot2::facet_wrap(~species, scales = "free", nrow = 2) +
+      ggplot2::xlab("Regulated") +
+      ggplot2::scale_fill_manual(values = c("grey", unname(delwp_cols[c(1,3)]))) +
+      delwp_theme() +
+      ylab("Nightly call rate") +
+      ggplot2::theme(axis.title.y = element_blank()) 
+
+ggsave(plot = theta_plot, filename = "outputs/plots/call_rate_covariate_effects.pdf", width = 4000, height = 4250, units = "px")
+ggsave(plot = factor_theta_plot, filename = "outputs/plots/call_rate_regulator.pdf", width = 3500, height = 2600, units = "px")
 
 theta_plot
+```
 
+Calling activity can also be impacted by management strategies. Here the impact of active regulation, which allows water to flow through regulators to certain sites can be assessed. With a 2-day lag incorporated, active regulation shows signs of positively impacting call activity:  
+
+```{r factoroccplot, fig.height=8, fig.width = 12, fig.cap="Impact of active regulation on nightly call-rate activity"}
+factor_theta_plot
 ```
 
 ## Occupancy rates across years  
@@ -1139,16 +1260,20 @@ dfas[[i]] <- data.frame(any_seen = stan_data$any_seen[,i],
 dfas_comb <- bind_rows(dfas) %>%
   mutate(Validated = "Proportion of sites with validated occupancy")
 
-zhat_draws %>%
+zhat_plot <- zhat_draws %>%
   ggplot() +
-  geom_violin(aes(x = year, y = value), draw_quantiles = c(0.5), adjust = 2, fill = "grey95") +
+  geom_violin(aes(x = year, y = value), draw_quantiles = c(0.5), adjust = 4, fill = "grey95", scale = "width") +
   geom_point(aes(x = year, y = rate, fill = Validated), data = dfas_comb, shape = 21, size = 3) +
-  facet_wrap(~species, nrow = 3) +
+  facet_wrap(~species, nrow = 3, scales = "fixed") +
   ylab("Proportion of songmeter sites occupied") +
   xlab("Survey year") +
   scale_fill_manual(values = unname(delwp_cols[3])) +
   delwp_theme() +
   theme(legend.position = "top", legend.title = element_text(size = 0), legend.text = element_text(size = 12))
+
+ggsave(plot = zhat_plot, filename = "outputs/plots/zhat_plot.pdf", width = 3500, height = 3000, units = "px")
+
+zhat_plot
 ```
 
 ## Call rates across years  
@@ -1160,7 +1285,6 @@ theta_hat <- fit_beta$summary("theta_hat")
 theta_hat$year <- zhat$year
 theta_hat$species <- zhat$species
 
-
 theta_hat_draws <- fit_beta$draws("theta_hat", format = "matrix") %>%
   as.data.frame() %>%
   pivot_longer(cols = everything()) %>%
@@ -1169,18 +1293,22 @@ theta_hat_draws <- fit_beta$draws("theta_hat", format = "matrix") %>%
                        each = length(unique(site_metadata_sf$`Monitoring year`)),
                        length.out = nrow(.)))
 
-theta_hat_draws %>%
+theta_hat_plot <- theta_hat_draws %>%
   ggplot() +
   geom_violin(aes(x = year, y = value), adjust = 2, draw_quantiles = 0.5, fill = "grey95") +
-  facet_wrap(~species, nrow = 3) + 
-  scale_y_continuous(name = "Average calling activity (nightly call probability)", limits = c(0,0.52)) +
+  facet_wrap(~species, nrow = 3, scales = "fixed") + 
+  scale_y_continuous(name = "Average calling activity (nightly call probability)") +
   xlab("Survey year") +
   delwp_theme()
+
+ggsave(plot = theta_hat_plot, filename = "outputs/plots/theta_hat_plot.pdf", width = 3500, height = 3000, units = "px")
+
+theta_hat_plot
 ```
 
 ## Unconditional call activity (relative activity/abundance) 
 
-Given that call rate is dependent upon the site being occupied, the estimated call rate may be better interpreted alongside occupancy in order to measure the relative frog activity or abundance at the site. A score of 1 means that every site is predicted to be occupied and the species is calling every night. This metric might be beneficial in comparing relative activity and abundance between species and across years.    
+Given that call rate is dependent upon the site being occupied, the estimated call rate may be better interpreted alongside occupancy in order to measure the relative frog activity or abundance at the site. A score of 1 means that every site is predicted to be occupied and the species is calling every night. This metric might be beneficial in comparing relative activity and/or abundance between species and across years. The values in the plot are also summarised in the subsequent table.    
 
 ```{r relAb, fig.width=10, fig.height=12, fig.cap= "Estimated activity accross all songmeter sites per year for each species, unconditional on occupancy (a mixture of both occupancy and calling activity)"}
 rel_ab_draws <- fit_beta$draws("rel_ab_mean", format = "matrix") %>%
@@ -1191,20 +1319,38 @@ rel_ab_draws <- fit_beta$draws("rel_ab_mean", format = "matrix") %>%
                        each = length(unique(site_metadata_sf$`Monitoring year`)),
                        length.out = nrow(.)))
 
-rel_ab_draws %>%
+rel_ab_plot <- rel_ab_draws %>%
   ggplot() +
   geom_violin(aes(x = year, y = value), adjust = 2, draw_quantiles = 0.5, fill = "grey95") +
-  facet_wrap(~species, nrow = 3) + 
-  scale_y_continuous(name = "Unconditional calling activity", limits = c(0,0.52)) +
+  facet_wrap(~species, nrow = 3, scales = "fixed") + 
+  scale_y_continuous(name = "Unconditional calling activity") +
   xlab("Survey year") +
   delwp_theme()
+
+ggsave(plot = rel_ab_plot, filename = "outputs/plots/rel_ab_plot.pdf", width = 3500, height = 3000, units = "px")
+
+rel_ab_plot
 ```
+
+```{r callratetable}
+ab_hat <- fit_beta$summary("rel_ab_mean")
+ab_hat$year <- rep(sort(unique(site_metadata_sf$`Monitoring year`)), times = length(species_list_cleaned))
+ab_hat$species <- rep(names(species_list_cleaned), each = length(unique(site_metadata_sf$`Monitoring year`)))
+
+ab_hat %>%
+  select(Year = year, Species = species, Median = median, SD = sd, `5% CI` = q5, `95% CI` = q95) %>%
+  arrange(Year) %>% 
+  kbl(format = "html", digits = 2, row.names = F, caption = "Unconditional nightly call rates across species and years") %>%
+  kable_styling(bootstrap_options = "basic") %>%
+  collapse_rows(1:2)
+```
+
 
 ## Species-richness 
 
 We can calculate species-richness at each site by estimating how many (out of the 6 species modelled) are estimated to occupy each site. 
 
-```{r sprich, fig.width=10, fig.height=8, fig.cap= "Estimated species-richness across sites and over the years. Species richness is grouped according to measured flood scores at that site, in that particular year. The grey points in the background represent the distribution of posterior samples for the average species-richness across all sites from year-to-year"}
+```{r sprich, fig.width=9, fig.height=6, fig.cap= "Estimated species-richness across sites and over the years. Species richness is grouped according to measured flood scores at that site, in that particular year. The grey points in the background represent the distribution of posterior samples for the average species-richness across all sites from year-to-year"}
 sp_r <- fit_beta$summary("species_richness")
 
 sp_r_draws <- t(fit_beta$draws("species_richness", format = "matrix")) %>% as.data.frame()
@@ -1222,7 +1368,7 @@ sp_r$FloodScore <- site_data[[1]]$FloodScore
 
 cols_sep <- unlist(lapply(delwp_cols_seq, function(x) x[c(6,10)]))
 
-sp_r %>%
+sp_r_plot <- sp_r %>%
   ggplot() +
   ggbeeswarm::geom_quasirandom(aes(y = mean, x = year), data = sp_r_draws_long, shape = 21, size = 1, fill = "grey70", alpha = 0.25, stroke = 0.1) +
   ggbeeswarm::geom_quasirandom(aes(y = mean, x = year, fill = FloodScore), shape = 21, size = 2) + 
@@ -1230,5 +1376,9 @@ sp_r %>%
   labs(x = "Year", y = "Site-level species richness", fill = "Flood score") +
   scale_x_continuous(breaks = 1:6, labels = paste(2018:2023, 2019:2024, sep = " - ")) +
   delwp_theme()
+
+ggsave(plot = sp_r_plot, filename = "outputs/plots/sp_r_plot.pdf", width = 2400, height = 1600, units = "px")
+
+sp_r_plot
 ```
 

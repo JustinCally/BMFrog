@@ -65,26 +65,26 @@ transformed parameters {
   array[nsites, nspec] real<lower=0,upper=1> psi;
   array[nspec] vector<lower=0,upper=1>[nfiles] theta;
   real<lower=0> sigma[2, nspec];
-  real sigma_var[2, nspec];
+  real<lower=0> sigma_var[2, nspec];
   // random effects
   array[nloc, nspec] real eps_loc;
   array[nyear, nspec] real eps_year;
   array[nsites, nspec] real eps_site;
-  array[2, nspec] real mu_mean;
+  array[2, nspec] real<lower=0, upper=1> mu_mean;
   array[2, nspec] real<lower=0> mu;
 
 for(j in 1:nspec) {
   // mu and sigma beta param
-  mu_mean[1,j] = mu_int[1] + mu_sd[1] * mu_raw[1,j];
-  mu_mean[2,j] = mu_int[2] + mu_sd[2] * mu_raw[2,j];
+  mu_mean[1,j] = inv_logit(mu_int[1] + mu_sd[1] * mu_raw[1,j]);
+  mu_mean[2,j] = inv_logit(mu_int[2] + mu_sd[2] * mu_raw[2,j]);
   // linear model for sigma
-  sigma_var[1,j] = sigma_int[1] + sigma_sd[1] * sigma_raw[1,j];
-  sigma_var[2,j] = sigma_int[2] + sigma_sd[2] * sigma_raw[2,j];
+  sigma_var[1,j] = exp(sigma_int[1] + sigma_sd[1] * sigma_raw[1,j]);
+  sigma_var[2,j] = exp(sigma_int[2] + sigma_sd[2] * sigma_raw[2,j]);
   // beta parameterization
-  mu[1,j] = inv_logit(mu_mean[1,j]) .* exp(sigma_var[1,j]);
-  mu[2,j] = inv_logit(mu_mean[2,j]) .* exp(sigma_var[2,j]);
-  sigma[1,j] = ((1-inv_logit(mu_mean[1,j])) .* exp(sigma_var[1,j]));
-  sigma[2,j] = ((1-inv_logit(mu_mean[2,j])) .* exp(sigma_var[2,j]));
+  mu[1,j] = mu_mean[1,j] .* sigma_var[1,j];
+  mu[2,j] = mu_mean[2,j] .* sigma_var[2,j];
+  sigma[1,j] = (sigma_var[1,j]-mu_mean[1,j] .* sigma_var[1,j]);
+  sigma[2,j] = (sigma_var[2,j]-mu_mean[2,j] .* sigma_var[2,j]);
   // locations
   for(l in 1:nloc) {
     eps_loc[l,j] = loc_sd[j] * loc_raw[l,j];
