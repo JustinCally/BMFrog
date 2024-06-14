@@ -572,27 +572,27 @@ site_idx_end <- empty_array
 call_rate_matrix <- list()
 occ_matrix <- list()
 
-# joined_data <- readRDS("data/intermediate/joined_data.rds")
+joined_data <- readRDS("data/intermediate/joined_data.rds")
 
 for(i in 1:length(species_list_cleaned)) {
 
-#### Because we are randomly sampling ####
-joined_data[[i]] <- records_validated[[i]] %>%
-  inner_join(daily_vars %>% na.omit()) %>%
-  mutate(Prob_One = Validated_Grp_score,
-         Site_f = as.integer(factor(Site_Year)),
-         Prob_f = case_when(Prob_One == 1 ~ 0.999,
-                            Prob_One == 0 ~ 0.001,
-                            TRUE ~ Prob_One),
-         Prob_One_M = qlogis(Prob_f),
-         weight = case_when(Detected == 2 ~ 0.01,
-                            TRUE ~ 1)) %>%
-  group_by(Site_f) %>%
-  mutate(any_seen = case_when(any(Detected == 1) ~ 1,
-                              TRUE ~ 0)) %>%
-  slice_sample(n = 10, weight_by = weight) %>%
-  ungroup() %>%
-  arrange(Site_f, Detected)
+### Because we are randomly sampling ####
+# joined_data[[i]] <- records_validated[[i]] %>%
+#   inner_join(daily_vars %>% na.omit()) %>%
+#   mutate(Prob_One = Validated_Grp_score,
+#          Site_f = as.integer(factor(Site_Year)),
+#          Prob_f = case_when(Prob_One == 1 ~ 0.999,
+#                             Prob_One == 0 ~ 0.001,
+#                             TRUE ~ Prob_One),
+#          Prob_One_M = qlogis(Prob_f),
+#          weight = case_when(Detected == 2 ~ 0.01,
+#                             TRUE ~ 1)) %>%
+#   group_by(Site_f) %>%
+#   mutate(any_seen = case_when(any(Detected == 1) ~ 1,
+#                               TRUE ~ 0)) %>%
+#   slice_sample(n = 30, weight_by = weight) %>%
+#   ungroup() %>%
+#   arrange(Site_f, Detected)
 
 site_data[[i]] <- joined_data[[i]] %>%
   mutate(Loc = as.factor(Site) %>% as.integer(), 
@@ -741,8 +741,8 @@ cont_model_ms_beta <- cmdstan_model("stan/continuous_model_ms_my_beta.stan")
 ```
 
 ```{r modelparams}
-ni <- 150 #samples
-nw <- 150 #warmups
+ni <- 500 #samples
+nw <- 500 #warmups
 nc <- 8 #chains
 ```
 
@@ -821,6 +821,8 @@ $$\beta = exp(\sigma + \kappa_s)-inv\_logit(\mu + \gamma_s) \times exp(\sigma + 
 Here $\mu$ is the intercept for the mean and $\sigma$ is the intercept for the variance. Species-level random effects for the mean and variance models are given with $\gamma_s$ and $\kappa_s$ respectively. 
 
 The likelihood functions for each of the possible combinations of file annotations and whether the site is validated as being occupied can be found within Table 1 of [@Rhinehart2022], and our STAN code presented above.
+
+Models were written using the STAN programming language and run for 250 warmup and 250 sampling iterations across 8 parallel chains. Model convergence and diagnostics were determined using 
 
 # Model analysis 
 
@@ -920,6 +922,7 @@ Based on these distributions we see that the classifier is more often than not a
 
 We investigated whether several hydrological and site covariates impacted site occupancy for each species. Hydrological variables can vary across time (over survey years) and across space (over different sites). Alternatively site type variable just differ between sites.  
 
+
 ```{r FixedEffects, fig.height=16, fig.width = 15, warning = FALSE, message = FALSE, fig.cap="Marginal response curves for the various fixed-effect occupancy parameters used in the model."}
 # beta_summaries 
 beta_summaries <- fit_beta$summary("beta_psi")
@@ -1011,7 +1014,7 @@ cov_plot[[i]] <- marginal_effects_plot_cmd_all(all_me_data %>%
                                             mutate(param = factor(param, levels = phi_labs)), 
                           col = "DarkGreen", 
                           factor = fac[i],
-                          ylab = "Contribution to occupancy") +
+                          ylab = "Occupancy probability") +
    ggplot2::facet_grid(species~param, scales = "free") +
   delwp_theme() +
   theme(strip.text = ggtext::element_markdown()) +
@@ -1065,7 +1068,7 @@ factor_plot <- factor_data %>%
                                               "Permenant"))) %>%
       ggplot2::ggplot(aes(x = `Water permenance`, y = value, fill = `Site type`)) +
       ggplot2::geom_violin(draw_quantiles = c(0.05, 0.5, 0.95),
-                           alpha = 0.5, scale = "width", trim = TRUE,
+                           alpha = 0.5, scale = "width", trim = TRUE, adjust = 2,
                            position=position_dodge(width=0.5)) +
       ggplot2::facet_grid(species~param, scales = "free") +
       ggplot2::xlab("Water permenance") +
@@ -1165,7 +1168,7 @@ theta_plot <- marginal_effects_plot_cmd_all(all_theta_data %>%
                                             mutate(param = factor(param, levels = phi_labs)), 
                           col = "DarkGreen", 
                           factor = FALSE,
-                          ylab = "Contribution to call rate") +
+                          ylab = "Nightly call activity/detection probability") +
    ggplot2::facet_grid(species~param, scales = "free") +
   delwp_theme() +
   theme(strip.text = ggtext::element_markdown()) +
@@ -1203,10 +1206,11 @@ factor_theta_plot <- regulator_thta_eff %>%
                                               "Regulated ON"))) %>%
       ggplot2::ggplot(aes(x = `Active management`, y = value, fill = `Active management`)) +
       ggplot2::geom_violin(draw_quantiles = c(0.05, 0.5, 0.95),
-                           alpha = 0.5, scale = "width", trim = T,
+                           alpha = 0.5, scale = "width", trim = T, adjust = 2,
                            position=position_dodge(width=0.5)) +
       ggplot2::facet_wrap(~species, scales = "free", nrow = 2) +
       ggplot2::xlab("Regulated") +
+      ggplot2::ylab("Nightly call activity/detection probability") +
       ggplot2::scale_fill_manual(values = c("grey", unname(delwp_cols[c(1,3)]))) +
       delwp_theme() +
       ylab("Nightly call rate") +
