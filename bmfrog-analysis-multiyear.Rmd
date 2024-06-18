@@ -738,15 +738,26 @@ Below is the STAN model used in our analysis. It is a multi-species, multi-seaso
 ```{r readmods, echo = F}
 # cont_model_ms_norm <- cmdstan_model("stan/continuous_model_ms_my_norm.stan")
 cont_model_ms_beta <- cmdstan_model("stan/continuous_model_ms_my_beta.stan")
+# cont_model_ms_normal <- cmdstan_model("stan/continuous_model_ms_my_normal.stan")
 ```
 
 ```{r modelparams}
-ni <- 500 #samples
-nw <- 500 #warmups
+ni <- 250 #samples
+nw <- 250 #warmups
 nc <- 8 #chains
 ```
 
 ```{r fitmods, eval = F}
+# fit_normal <- cont_model_ms_normal$sample(data = stan_data_beta,
+#                          chains = nc,
+#                          parallel_chains = nc,
+#                          show_messages = TRUE,
+#                          save_warmup = FALSE,
+#                          iter_sampling = ni,
+#                          iter_warmup = nw, refresh = 50)
+# 
+# fit_normal$save_object("outputs/fit_normal.rds")
+
 fit_beta <- cont_model_ms_beta$sample(data = stan_data_beta,
                          chains = nc,
                          parallel_chains = nc,
@@ -871,7 +882,7 @@ ppc_plots_75[[i]] <- posterior_checks_multispecies(model = fit_beta,
 
 ppc_grid <- cowplot::plot_grid(plotlist = c(ppc_plots_25, ppc_plots_50, ppc_plots_75), nrow = 6, byrow = F)
 
-ggsave(plot = ppc_grid, filename = "outputs/plots/ppcs_beta.pdf", width = 6000, height = 8000, units = "px")
+ggsave(plot = ppc_grid, filename = "outputs/plots/ppcs_normal.pdf", width = 6000, height = 8000, units = "px")
 
 ppc_grid
 ```
@@ -902,7 +913,7 @@ mu_summary_long <- pivot_longer(mu_summary, cols = 1:12)
 mu_summary_long$`Validated detection` <- rep(c("Non-detection", "Detection"), length.out = nrow(mu_summary_long))
 mu_summary_long$Species <- rep(names(species_list_cleaned), each = 2, length.out = nrow(mu_summary_long))
 
-ggplot(data = mu_summary_long) +
+classifier_plot <- ggplot(data = mu_summary_long) +
   stat_density_ridges(aes(x = value, 
                           y = `Validated detection`, 
                           fill = 0.5 - abs(0.5 - stat(ecdf))), 
@@ -914,9 +925,24 @@ ggplot(data = mu_summary_long) +
   facet_wrap(~Species) + 
   delwp_theme() +
   theme(panel.spacing = unit(2, "lines"))
+
+
+ggsave(plot = classifier_plot, filename = "outputs/plots/classifier_plot.pdf", width = 3000, height = 2000, units = "px")
+
+classifier_plot
 ```
 
 Based on these distributions we see that the classifier is more often than not able to delineate true calls from unlikely calls. However. we also see that these distributions overlap. This means there is a relatively large probability space where a 'classifier probability score' could reasonable both be a non-detection or a detection. 
+
+<!-- # ```{r classifier50} -->
+<!-- # mu_sum_50 <- mu_summary_long %>%  -->
+<!-- #   group_by(Species, `Validated detection`) %>% -->
+<!-- #   summarise(prop_greater = sum(value >= 0.5)/n(),  -->
+<!-- #             prop_less = sum(value < 0.5)/n()) -->
+<!-- #  -->
+<!-- # mu_sum_50 -->
+<!-- # ``` -->
+
 
 ## Covariates impacting occupancy  
 
@@ -1323,9 +1349,18 @@ rel_ab_draws <- fit_beta$draws("rel_ab_mean", format = "matrix") %>%
                        each = length(unique(site_metadata_sf$`Monitoring year`)),
                        length.out = nrow(.)))
 
+rel_ab_draws_mean <- rel_ab_draws %>%
+  group_by(species) %>%
+  summarise(Median = median(value), 
+            SD = sd(value), 
+            `5% CI` = quantile(value, 0.05), 
+            `95% CI` = quantile(value, 0.95)) 
+
 rel_ab_plot <- rel_ab_draws %>%
   ggplot() +
-  geom_violin(aes(x = year, y = value), adjust = 2, draw_quantiles = 0.5, fill = "grey95") +
+  geom_hline(aes(yintercept = Median), linetype = "dashed", colour = "DarkRed", data = rel_ab_draws_mean) +
+  geom_violin(aes(x = year, y = value), adjust = 2, draw_quantiles = 0.5, fill = "grey95", alpha = 0.8) +
+  ggtext::geom_richtext(aes(y = Median, x = 0, label = round(Median, 2)), data = rel_ab_draws_mean, angle = 90, nudge_x = 0.6) +
   facet_wrap(~species, nrow = 3, scales = "fixed") + 
   scale_y_continuous(name = "Unconditional calling activity") +
   xlab("Survey year") +
@@ -1343,6 +1378,7 @@ ab_hat$species <- rep(names(species_list_cleaned), each = length(unique(site_met
 
 ab_hat %>%
   select(Year = year, Species = species, Median = median, SD = sd, `5% CI` = q5, `95% CI` = q95) %>%
+  bind_rows(rel_ab_draws_mean %>% mutate(Year = "All") %>% rename(Species = species)) %>%
   arrange(Year) %>% 
   kbl(format = "html", digits = 2, row.names = F, caption = "Unconditional nightly call rates across species and years") %>%
   kable_styling(bootstrap_options = "basic") %>%
@@ -1367,6 +1403,11 @@ sp_r_draws_long <- pivot_longer(sp_r_draws, cols = !all_of(c("year", "Site_f")))
   summarise(mean = mean(value)) %>%
   ungroup()
 
+sp_r_draws_long_mean <- sp_r_draws_long %>%
+  group_by(year) %>%
+  summarise(label = paste0("mean: ", round(mean(mean), 2), "\n[90% CI: ", round(quantile(mean, 0.05), 2), ", ", round(quantile(mean, 0.95), 2), "]"), 
+            mean = mean(mean))
+
 sp_r$year <- year_code[[1]]
 sp_r$FloodScore <- site_data[[1]]$FloodScore
 
@@ -1374,14 +1415,16 @@ cols_sep <- unlist(lapply(delwp_cols_seq, function(x) x[c(6,10)]))
 
 sp_r_plot <- sp_r %>%
   ggplot() +
+  # geom_hline(yintercept = 5.25, linetype = "dashed", colour = "DarkRed") +
   ggbeeswarm::geom_quasirandom(aes(y = mean, x = year), data = sp_r_draws_long, shape = 21, size = 1, fill = "grey70", alpha = 0.25, stroke = 0.1) +
   ggbeeswarm::geom_quasirandom(aes(y = mean, x = year, fill = FloodScore), shape = 21, size = 2) + 
+  geom_label(data = sp_r_draws_long_mean, aes(label = label, y = 5.9, x = year), alpha = 0.8, size = 2.5) +
   scale_fill_manual(values = unname(delwp_cols)) +
   labs(x = "Year", y = "Site-level species richness", fill = "Flood score") +
   scale_x_continuous(breaks = 1:6, labels = paste(2018:2023, 2019:2024, sep = " - ")) +
   delwp_theme()
 
-ggsave(plot = sp_r_plot, filename = "outputs/plots/sp_r_plot.pdf", width = 2400, height = 1600, units = "px")
+ggsave(plot = sp_r_plot, filename = "outputs/plots/sp_r_plot.pdf", width = 2800, height = 1800, units = "px")
 
 sp_r_plot
 ```
