@@ -960,8 +960,8 @@ beta_table_summary <- beta_summaries %>%
               "Photosynthetic Vegetation", 
               "Water", 
               "Site type = Wetland", 
-              "Permenant Water", 
-              "Semipermenant Water"), each = length(species_list_cleaned))) %>%
+              "Permanent Water", 
+              "Semi-permanent Water"), each = length(species_list_cleaned))) %>%
   arrange(species) %>%
   select(species, covariate, mean, sd, q5, q95)
 
@@ -1066,38 +1066,39 @@ site_type[[j]] <- data.frame(variable = rep(c("Creekline",
                         species = names(species_list_cleaned)[j])
 
 water_perm[[j]] <- tibble(variable = rep(c("Ephemeral creekline", 
-                                               "Permenant creekline", 
-                                               "Semi-permenant creekline", 
+                                               "Permanent creekline", 
+                                               "Semi-permanent creekline", 
                                                "Ephemeral wetland", 
-                                               "Permenant wetland", 
-                                               "Semi-permenant wetland"), each = nrow(beta_draws)),
+                                               "Permanent wetland", 
+                                               "Semi-permanent wetland"), each = nrow(beta_draws)),
                               `Site type` = rep(c("Creekline", 
                                               "Wetland"), each = 3*nrow(beta_draws)), 
                               `Water permenance` = rep(c("Ephemeral", 
-                                              "Permenant", 
-                                              "Semi-permenant"), each = nrow(beta_draws), times = 2),
+                                              "Permanent", 
+                                              "Semi-permanent"), each = nrow(beta_draws), times = 2),
                         value = c(plogis(beta_draws[[1]]), 
                                   plogis(beta_draws[[1]] + beta_draws[[6]]),
                                   plogis(beta_draws[[1]] + beta_draws[[7]]),
                                   plogis(beta_draws[[1]] + beta_draws[[5]]), 
                                   plogis(beta_draws[[1]] + beta_draws[[5]] + beta_draws[[6]]),
                                   plogis(beta_draws[[1]] + beta_draws[[5]] + beta_draws[[7]])), 
-                        param = "Site type and water permenance", 
-                        species = names(species_list_cleaned)[j])
+                        param = "Site type and water permanence", 
+                        species = names(species_list_cleaned)[j]) %>% 
+  mutate(species = case_when(species == "Spotted Marsh Frog (race unknown)" ~ "Spotted Marsh Frog", TRUE ~ species))
 }
 
 factor_data <- bind_rows(bind_rows(water_perm))
 
 factor_plot <- factor_data %>% 
   mutate(`Water permenance` = factor(`Water permenance`, levels = c("Ephemeral", 
-                                              "Semi-permenant", 
-                                              "Permenant"))) %>%
+                                              "Semi-permanent", 
+                                              "Permanent"))) %>%
       ggplot2::ggplot(aes(x = `Water permenance`, y = value, fill = `Site type`)) +
       ggplot2::geom_violin(draw_quantiles = c(0.05, 0.5, 0.95),
                            alpha = 0.5, scale = "width", trim = TRUE, adjust = 2,
                            position=position_dodge(width=0.5)) +
       ggplot2::facet_grid(species~param, scales = "free") +
-      ggplot2::xlab("Water permenance") +
+      ggplot2::xlab("Water permanence") +
       ggplot2::scale_fill_manual(values = unname(delwp_cols[c(1,3)])) +
       delwp_theme() +
       # ylab("Contribution to occupancy") +
